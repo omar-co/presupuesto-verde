@@ -5,7 +5,9 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class ObjetivosAmbientales extends Model
+class ObjetivoAmbiental extends Model
 {
     use HasFactory;
+
+    protected $table = 'objetivos_ambientales';
 }
