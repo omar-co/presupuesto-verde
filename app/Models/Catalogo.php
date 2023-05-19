@@ -8,4 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class Catalogo extends Model
 {
     use HasFactory;
+
+    public function cat() {
+        return $this->belongsTo(Catalogo::class);
+    }
 }
