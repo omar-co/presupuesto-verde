@@ -10,7 +10,7 @@ module.exports = {
         extend: {
             colors: {
                 danger: colors.rose,
-                success: {
+                primary: {
                     DEFAULT: '#13322B',
                     50: '#46B79D',
                     100: '#40A891',
@@ -24,7 +24,7 @@ module.exports = {
                     900: '#000000',
                     950: '#000000'
                 },
-                primary: {
+                success: {
                     DEFAULT: '#9D2449',
                     50: '#E692AC',
                     100: '#E2829F',

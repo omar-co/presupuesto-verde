@@ -1,1 +1,202 @@
 @import '../../vendor/filament/filament/resources/css/app.css';
+
+.main-footer {
+    background-color: #13322B;
+    min-height: 56px;
+    color: #FFF;
+    padding: 0px 0 0px;
+    text-align: left;
+    font-weight: 300;
+}
+
+.main-footer .list-info {
+    line-height: auto;
+    background-color: #12322B;
+    background-image: url(https://framework-gb.cdn.gob.mx/landing/img/fondofooter3.svg);
+    color: white;
+    background-size: cover;
+    background-position: bottom;
+    padding: 30px 10px 10px;
+    margin-bottom: 30px;
+}
+
+@media (min-width: 1200px) {
+    .container {
+        width: 1170px;
+    }
+}
+
+@media (min-width: 992px) {
+    .container {
+        width: 970px;
+    }
+}
+
+
+.container, .container-fluid {
+    margin-right: auto;
+    margin-left: auto;
+}
+
+
+.row {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: 1fr;
+    grid-column-gap: 0px;
+    grid-row-gap: 0px;
+}
+
+@media (min-width: 768px) {
+    .main-footer .row > div {
+        margin-bottom: 0;
+    }
+}
+
+.main-footer .row > div {
+    margin-bottom: 15px;
+}
+
+
+
+@media (min-width: 768px) {
+    .col-sm-1, .col-sm-10, .col-sm-11, .col-sm-12, .col-sm-2, .col-sm-3, .col-sm-4, .col-sm-5, .col-sm-6, .col-sm-7, .col-sm-8, .col-sm-9 {
+        float: left;
+    }
+}
+
+.col-lg-1, .col-lg-10, .col-lg-11, .col-lg-12, .col-lg-2, .col-lg-3, .col-lg-4, .col-lg-5, .col-lg-6, .col-lg-7, .col-lg-8, .col-lg-9, .col-md-1, .col-md-10, .col-md-11, .col-md-12, .col-md-2, .col-md-3, .col-md-4, .col-md-5, .col-md-6, .col-md-7, .col-md-8, .col-md-9, .col-sm-1, .col-sm-10, .col-sm-11, .col-sm-12, .col-sm-2, .col-sm-3, .col-sm-4, .col-sm-5, .col-sm-6, .col-sm-7, .col-sm-8, .col-sm-9, .col-xs-1, .col-xs-10, .col-xs-11, .col-xs-12, .col-xs-2, .col-xs-3, .col-xs-4, .col-xs-5, .col-xs-6, .col-xs-7, .col-xs-8, .col-xs-9 {
+    position: relative;
+    min-height: 1px;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+
+.main-footer .list-info h5 {
+    font-weight: 300;
+    margin-bottom: 20px;
+}
+
+.h5, h5 {
+    font-size: 18px;
+}
+.h4, .h5, .h6, h4, h5, h6 {
+    margin-top: 12.5px;
+    margin-bottom: 12.5px;
+}
+.h1, .h2, .h3, .h4, .h5, .h6, h1, h2, h3, h4, h5, h6 {
+    font-family: inherit;
+    font-weight: 600;
+    line-height: 1.1;
+    color: inherit;
+}
+
+.main-footer .list-info ul {
+    margin: 0 0 60px;
+    padding: 0;
+}
+
+.main-footer .list-info ul li {
+    list-style-type: none;
+    margin: 0 0 2px;
+    padding: 0;
+    line-height: 110%;
+}
+
+.main-footer .list-info p {
+    margin-bottom: 15px;
+}
+
+.main-footer p {
+    margin: 0;
+    font-size: 14px;
+    line-height: 136%;
+    height: auto;
+    position: static;
+}
+
+.main-footer .list-info a {
+    color: #FFF;
+    font-size: 14px;
+    text-decoration: none;
+}
+
+.main-footer .list-info ul {
+    margin: 0 0 60px;
+    padding: 0;
+}
+
+.main-footer .list-info a {
+    color: #FFF;
+    font-size: 14px;
+    text-decoration: none;
+}
+.social-icon.facebook {
+    width: 14px;
+    height: 20px;
+    background-position: 0 0;
+}
+.social-icon {
+    background-image: url('https://framework-gb.cdn.gob.mx/qa/assets/images/icons_full.png');
+    text-indent: -9999px;
+    margin-right: 5px;
+    display: block;
+}
+
+.social-icon.twitter {
+    width: 24px;
+    height: 20px;
+    background-position: -34px 0;
+}
+
+.list-inline, .list-unstyled {
+    padding-left: 0;
+    list-style: none;
+    display: flex;
+}
+.footer-pleca {
+    background-color: #12322B;
+    background-image: url(https://framework-gb.cdn.gob.mx/landing/img/pleca.svg);
+    background-repeat: repeat-x;
+}
+
+hr, img {
+    border: 0;
+}
+
+.btn, .btn-group, .btn-group-vertical, .caret, .checkbox-inline, .radio-inline, img {
+    vertical-align: middle;
+}
+.navbar {
+    margin-bottom: 0;
+    font-size: 16px;
+    font-weight: 300;
+    height: 60px;
+    border: none;
+}
+
+.navbar-brand {
+    padding: 15px 15px;
+    font-size: 20px;
+}
+.navbar-brand img {
+    height: 30px;
+    width: auto;
+    margin-top: 1rem;
+    display: inherit;
+}
+
+.container-fluid>.navbar-collapse, .container-fluid>.navbar-header, .container>.navbar-collapse, .container>.navbar-header {
+    margin-right: 0;
+    margin-left: 0;
+}
+
+.navbar-inverse {
+    background-color: #0C231E;
+    border-color: transparent;
+}
+
+footer, header{
+    display: block;
+}

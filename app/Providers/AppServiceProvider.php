@@ -23,5 +23,9 @@ class AppServiceProvider extends ServiceProvider
         Filament::serving(function () {
             Filament::registerViteTheme('resources/css/filament.css');
         });
+
+        Filament::registerScripts([
+            'https://framework-gb.cdn.gob.mx/gobmx.js',
+        ]);
     }
 }
