@@ -3,6 +3,7 @@
 namespace App\Filament\Resources;
 
 use App\Filament\Resources\ObjetivoAmbientalResource\Pages;
+use App\Filament\Resources\ObjetivoAmbientalResource\Promarnat;
 use App\Filament\Resources\ObjetivoAmbientalResource\RelationManagers;
 use App\Models\Catalogo;
 use App\Models\ObjetivoAmbiental;
@@ -20,8 +21,7 @@ use Filament\Tables;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 
-class ObjetivoAmbientalResource extends Resource
-{
+class ObjetivoAmbientalResource extends Resource {
     protected static ?string $model = ObjetivoAmbiental::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-collection';
@@ -29,13 +29,12 @@ class ObjetivoAmbientalResource extends Resource
     protected static ?string $label = 'Objetivo Ambiental';
     protected static ?string $pluralLabel = 'Objetivos Ambientales';
 
-    public static function form(Form $form): Form
-    {
+    public static function form(Form $form): Form {
         return $form
             ->schema([
                 Tabs::make('Heading')
                     ->tabs([
-                        Tabs\Tab::make('Identificación del progrmama presupuestario')
+                        Tabs\Tab::make('Identificación')
                             ->schema([
                                 Forms\Components\Select::make('ramo_id')
                                     ->label('Ramo')
@@ -46,7 +45,7 @@ class ObjetivoAmbientalResource extends Resource
                                     ->afterStateUpdated(function ($state, callable $get, callable $set) {
                                         $ramo = Catalogo::where('id_ramo', $state)->first();
                                         if ($ramo) {
-                                            $modalidadId = (int) $get('modalidad_id');
+                                            $modalidadId = (int)$get('modalidad_id');
 
                                             if ($modalidadId && $modalidad = Catalogo::where('id_modalidad', $modalidadId)->first()) {
                                                 if ($modalidad->id_ramo !== $ramo->id_ramo) {
@@ -55,7 +54,7 @@ class ObjetivoAmbientalResource extends Resource
                                             }
                                         }
                                     })
-                                ->reactive(),
+                                    ->reactive(),
                                 Forms\Components\Select::make('modalidad_id')
                                     ->label('Modalidad')
                                     ->options(function (callable $get, callable $set) {
@@ -84,26 +83,40 @@ class ObjetivoAmbientalResource extends Resource
                                         }
                                         return [];
                                     })
-                                    ->required(),
+                                    ->required()
+                                    ->reactive()
+                                    ->afterStateUpdated(function (callable $get, callable $set, $state) {
+                                        $set('actividad_institucional',
+                                            Catalogo::query()
+                                                ->select(['desc_ai'])
+                                                ->where('id_pp', $get('programa_presupuestario_id'))
+                                                ->first()->toArray()
+
+                                        );
+                                    }),
                                 TextInput::make('mir_nivel_id')
                                     ->label('Nivel MIR')
                                     ->required(),
+
+                                TextInput::make('programa_presupuestario')
+                                    ->required(),
+
+                                TextInput::make('actividad_institucional')
+                                    ->label('Actividad Institucional')
+                                    ->filled(true, 'prueba')
+                                    ->required(),
                             ]),
-                        Tabs\Tab::make('Vinculación de los programas presupuestarios con los objetivos ambientales')
-                            ->schema([
-                                // ...
-                            ]),
-                        Tabs\Tab::make('Contribución de los programas presupuestarios a los objetivos ambientales')
+                        (new Promarnat())(),
+                        Tabs\Tab::make('Contribución')
                             ->schema([
                                 // ...
                             ]),
                     ])
-                ->columnSpan('full'),
+                    ->columnSpan('full'),
             ]);
     }
 
-    public static function table(Table $table): Table
-    {
+    public static function table(Table $table): Table {
         return $table
             ->columns([
                 Tables\Columns\TextColumn::make('id')->sortable(),
@@ -120,15 +133,13 @@ class ObjetivoAmbientalResource extends Resource
             ]);
     }
 
-    public static function getRelations(): array
-    {
+    public static function getRelations(): array {
         return [
             //
         ];
     }
 
-    public static function getPages(): array
-    {
+    public static function getPages(): array {
         return [
             'index' => Pages\ListObjetivoAmbientals::route('/'),
             'create' => Pages\CreateObjetivoAmbiental::route('/create'),
