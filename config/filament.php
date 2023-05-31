@@ -139,8 +139,7 @@ return [
         'namespace' => 'App\\Filament\\Widgets',
         'path' => app_path('Filament/Widgets'),
         'register' => [
-            Widgets\AccountWidget::class,
-            Widgets\FilamentInfoWidget::class,
+            \App\Filament\Resources\ObjetivoAmbientalResource\Widgets\LatestOrders::class,
         ],
     ],
 
@@ -245,7 +244,7 @@ return [
             'alignment' => 'right',
         ],
         'sidebar' => [
-            'is_collapsible_on_desktop' => false,
+            'is_collapsible_on_desktop' => true,
             'groups' => [
                 'are_collapsible' => true,
             ],
