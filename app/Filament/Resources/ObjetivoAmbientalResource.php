@@ -5,21 +5,18 @@ namespace App\Filament\Resources;
 use App\Filament\Resources\ObjetivoAmbientalResource\Pages;
 use App\Filament\Resources\ObjetivoAmbientalResource\Promarnat;
 use App\Filament\Resources\ObjetivoAmbientalResource\RelationManagers;
+use App\Forms\Fields\Identificacion\Modalidad;
+use App\Forms\Fields\Identificacion\Ramo;
+use App\Forms\Sections\Indentificacion;
 use App\Models\Catalogo;
 use App\Models\ObjetivoAmbiental;
 use Filament\Forms;
-use Filament\Forms\Components\Fieldset;
-use Filament\Forms\Components\Grid;
-use Filament\Forms\Components\Section;
 use Filament\Forms\Components\Tabs;
 use Filament\Forms\Components\TextInput;
-use Filament\Forms\Components\Wizard;
 use Filament\Resources\Form;
 use Filament\Resources\Resource;
 use Filament\Resources\Table;
 use Filament\Tables;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\SoftDeletingScope;
 
 class ObjetivoAmbientalResource extends Resource {
     protected static ?string $model = ObjetivoAmbiental::class;
@@ -34,78 +31,7 @@ class ObjetivoAmbientalResource extends Resource {
             ->schema([
                 Tabs::make('Heading')
                     ->tabs([
-                        Tabs\Tab::make('Identificación')
-                            ->schema([
-                                Forms\Components\Select::make('ramo_id')
-                                    ->label('Ramo')
-                                    ->options(function () {
-                                        return Catalogo::select('id_ramo', 'desc_ramo')->groupBy('id_ramo', 'desc_ramo')->get()->pluck('desc_ramo', 'id_ramo');
-                                    })
-                                    ->required()
-                                    ->afterStateUpdated(function ($state, callable $get, callable $set) {
-                                        $ramo = Catalogo::where('id_ramo', $state)->first();
-                                        if ($ramo) {
-                                            $modalidadId = (int)$get('modalidad_id');
-
-                                            if ($modalidadId && $modalidad = Catalogo::where('id_modalidad', $modalidadId)->first()) {
-                                                if ($modalidad->id_ramo !== $ramo->id_ramo) {
-                                                    $set('modalidad_id', null);
-                                                }
-                                            }
-                                        }
-                                    })
-                                    ->reactive(),
-                                Forms\Components\Select::make('modalidad_id')
-                                    ->label('Modalidad')
-                                    ->options(function (callable $get, callable $set) {
-                                        $ramoId = $get('ramo_id');
-                                        if ($ramoId) {
-                                            return Catalogo::select(['id_modalidad', 'desc_modalidad'])
-                                                ->where('id_ramo', $ramoId)
-                                                ->groupBy('id_modalidad', 'desc_modalidad')
-                                                ->get()
-                                                ->pluck('desc_modalidad', 'id_modalidad');
-                                        }
-                                        return [];
-                                    })
-                                    ->required()
-                                    ->reactive(),
-                                Forms\Components\Select::make('programa_presupuestario_id')
-                                    ->label('Programa presupuestario')
-                                    ->options(function (callable $get, callable $set) {
-                                        $modalidadId = $get('modalidad_id');
-                                        if ($modalidadId) {
-                                            return Catalogo::select(['id_pp', 'desc_pp'])
-                                                ->where('id_modalidad', $modalidadId)
-                                                ->groupBy('id_pp', 'desc_pp')
-                                                ->get()
-                                                ->pluck('desc_pp', 'id_pp');
-                                        }
-                                        return [];
-                                    })
-                                    ->required()
-                                    ->reactive()
-                                    ->afterStateUpdated(function (callable $get, callable $set, $state) {
-                                        $set('actividad_institucional',
-                                            Catalogo::query()
-                                                ->select(['desc_ai'])
-                                                ->where('id_pp', $get('programa_presupuestario_id'))
-                                                ->first()->toArray()
-
-                                        );
-                                    }),
-                                TextInput::make('mir_nivel_id')
-                                    ->label('Nivel MIR')
-                                    ->required(),
-
-                                TextInput::make('programa_presupuestario')
-                                    ->required(),
-
-                                TextInput::make('actividad_institucional')
-                                    ->label('Actividad Institucional')
-                                    ->filled(true, 'prueba')
-                                    ->required(),
-                            ]),
+                        (new Indentificacion())->build(),
                         (new Promarnat())(),
                         Tabs\Tab::make('Contribución')
                             ->schema([
