@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('politicas_publicas_elementos', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
+            $table->mediumText('name');
             $table->foreignId('parent_id')->nullable()->unsigned()->index();
             $table->foreignId('politica_publica_id')->constrained('politicas_publicas');
             $table->integer('politica_publica_nivel_id')->constrained('politicas_publicas_niveles');
