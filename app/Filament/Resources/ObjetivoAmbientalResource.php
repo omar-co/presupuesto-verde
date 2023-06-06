@@ -17,14 +17,18 @@ use Filament\Resources\Form;
 use Filament\Resources\Resource;
 use Filament\Resources\Table;
 use Filament\Tables;
+use Filament\Tables\Filters\SelectFilter;
 
 class ObjetivoAmbientalResource extends Resource {
     protected static ?string $model = ObjetivoAmbiental::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-collection';
+    protected static ?string $navigationIcon = 'heroicon-o-beaker';
+    protected static ?string $navigationGroup = 'Presupuesto Verde';
 
     protected static ?string $label = 'Objetivo Ambiental';
     protected static ?string $pluralLabel = 'Objetivos Ambientales';
+
+    protected static ?int $navigationSort = -3;
 
     public static function form(Form $form): Form {
         return $form
@@ -34,6 +38,10 @@ class ObjetivoAmbientalResource extends Resource {
                         (new Indentificacion())->build(),
                         (new Promarnat())(),
                         Tabs\Tab::make('Contribución')
+                            ->schema([
+                                // ...
+                            ]),
+                        Tabs\Tab::make('otro')
                             ->schema([
                                 // ...
                             ]),
@@ -47,9 +55,21 @@ class ObjetivoAmbientalResource extends Resource {
             ->columns([
                 Tables\Columns\TextColumn::make('id')->sortable(),
                 Tables\Columns\TextColumn::make('ramo_id')->sortable()->searchable(),
+                Tables\Columns\TextColumn::make('updated_at')
+                    ->label('Actualizado el')
+                    ->sortable()->searchable(),
             ])
             ->filters([
-                //
+                SelectFilter::make('ramo_id')
+                    ->label('Ramo')
+                    ->options(
+                        Catalogo::select('id_ramo', 'desc_ramo')
+                            ->groupBy('id_ramo', 'desc_ramo')
+                            ->get()
+                            ->mapWithKeys(function ($ramo, $key) {
+                                return [$ramo->id_ramo => "{$ramo->id_ramo} - {$ramo->desc_ramo}"];
+                            })
+                    )
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),

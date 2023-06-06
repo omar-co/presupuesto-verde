@@ -48,6 +48,6 @@ class User extends Authenticatable
 
 
     public function ramo(): BelongsTo {
-        return $this->belongsTo(Catalogo::class, 'ramo_id', 'id_ramo')->groupBy('id_ramo', 'id');
+        return $this->belongsTo(Catalogo::class, 'ramo_id', 'id_ramo')->select('id_ramo', 'desc_ramo')->groupBy('id_ramo', 'desc_ramo');
     }
 }
