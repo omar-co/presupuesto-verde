@@ -8,10 +8,12 @@ use Filament\Forms\Components\Tabs;
 abstract class FieldCollection implements Field, \IteratorAggregate {
 
     protected array $fields;
+    private string $sectionName;
 
 
-    public function __construct(Field ...$fields) {
+    public function __construct(string $sectionName, Field ...$fields) {
         $this->fields = $fields;
+        $this->sectionName = $sectionName;
     }
 
     public function build(): \Filament\Forms\Components\Component {
@@ -20,7 +22,7 @@ abstract class FieldCollection implements Field, \IteratorAggregate {
             $fields[] = $field->build();
         }
 
-        return Tabs\Tab::make('Identificación')->schema($fields);
+        return Tabs\Tab::make($this->sectionName)->schema($fields);
     }
 
     public function getIterator(): Traversable {

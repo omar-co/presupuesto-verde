@@ -13,6 +13,7 @@ class Indentificacion extends FieldCollection {
 
     public function __construct() {
         parent::__construct(
+            'Identificación',
             new Ramo('ramo_id'),
             new Modalidad('modalidad_id'),
             new ProgramaPresupuestario('programa_presupuestario_id'),
