@@ -32,7 +32,7 @@ return [
     */
 
     'nav.group' => 'Usuarios y Permisos',
-    'nav.role.label' => 'Roles',
+    'nav.role.label' => 'Roles y Permisos',
     'nav.role.icon' => 'heroicon-o-shield-check',
     'resource.label.role' => 'Rol',
     'resource.label.roles' => 'Roles',
