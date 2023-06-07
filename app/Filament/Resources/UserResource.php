@@ -55,8 +55,7 @@ class UserResource extends Resource {
                             ->mapWithKeys(function ($ramo) {
                                 return [$ramo->id_ramo => "{$ramo->id_ramo} - {$ramo->desc_ramo}"];
                             })
-                    )
-                    ->required(),
+                    ),
                 Forms\Components\Select::make('roles')
                 ->label('Rol')
                     ->multiple()

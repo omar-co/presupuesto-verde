@@ -8,6 +8,7 @@ use App\Filament\Resources\ObjetivoAmbientalResource\RelationManagers;
 use App\Forms\Fields\Identificacion\Modalidad;
 use App\Forms\Fields\Identificacion\Ramo;
 use App\Forms\Sections\Indentificacion;
+use App\Forms\Sections\Vinculacion;
 use App\Models\Catalogo;
 use App\Models\ObjetivoAmbiental;
 use Filament\Forms;
@@ -41,10 +42,7 @@ class ObjetivoAmbientalResource extends Resource {
                             ->schema([
                                 // ...
                             ]),
-                        Tabs\Tab::make('otro')
-                            ->schema([
-                                // ...
-                            ]),
+                        (new Vinculacion())->build(),
                     ])
                     ->columnSpan('full'),
             ]);
