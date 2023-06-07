@@ -7,6 +7,7 @@ use App\Filament\Resources\ObjetivoAmbientalResource\Promarnat;
 use App\Filament\Resources\ObjetivoAmbientalResource\RelationManagers;
 use App\Forms\Fields\Identificacion\Modalidad;
 use App\Forms\Fields\Identificacion\Ramo;
+use App\Forms\Sections\Contribucion;
 use App\Forms\Sections\Indentificacion;
 use App\Forms\Sections\Vinculacion;
 use App\Models\Catalogo;
@@ -15,6 +16,9 @@ use App\Services\FormMessage;
 use App\Settings\Calendario;
 use Awcodes\Shout\Shout;
 use Filament\Forms;
+use Filament\Forms\Components\Grid;
+use Filament\Forms\Components\Placeholder;
+use Filament\Forms\Components\Section;
 use Filament\Forms\Components\Tabs;
 use Filament\Forms\Components\TextInput;
 use Filament\Resources\Form;
@@ -50,6 +54,7 @@ class ObjetivoAmbientalResource extends Resource {
                                 // ...
                             ]),
                         (new Vinculacion())->build(),
+                        (new Contribucion())->build(),
                     ])
                     ->columnSpan('full'),
             ]);
