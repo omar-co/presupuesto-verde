@@ -4,6 +4,7 @@ namespace App\Forms\Sections;
 
 use App\Forms\Fields\Identificacion\ActividadInstitucional;
 use App\Forms\Fields\Identificacion\Modalidad;
+use App\Forms\Fields\Identificacion\ObjetivosMir;
 use App\Forms\Fields\Identificacion\ProgramaPresupuestario;
 use App\Forms\Fields\Identificacion\Ramo;
 use App\Forms\Fields\Identificacion\UnidadResponsable;
@@ -19,6 +20,7 @@ class Indentificacion extends FieldCollection {
             new ProgramaPresupuestario('programa_presupuestario_id'),
             new ActividadInstitucional('actividad_institucional'),
             new UnidadResponsable('unidad_responsable'),
+            new ObjetivosMir('Objetivos Mir'),
         );
     }
 
