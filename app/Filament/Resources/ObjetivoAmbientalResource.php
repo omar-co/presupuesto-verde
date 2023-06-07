@@ -11,6 +11,9 @@ use App\Forms\Sections\Indentificacion;
 use App\Forms\Sections\Vinculacion;
 use App\Models\Catalogo;
 use App\Models\ObjetivoAmbiental;
+use App\Services\FormMessage;
+use App\Settings\Calendario;
+use Awcodes\Shout\Shout;
 use Filament\Forms;
 use Filament\Forms\Components\Tabs;
 use Filament\Forms\Components\TextInput;
@@ -34,6 +37,10 @@ class ObjetivoAmbientalResource extends Resource {
     public static function form(Form $form): Form {
         return $form
             ->schema([
+                Shout::make('success')
+                    ->content((new FormMessage())(app(Calendario::class)))
+                    ->type('info')
+                    ->columnSpan('full'),
                 Tabs::make('Heading')
                     ->tabs([
                         (new Indentificacion())->build(),

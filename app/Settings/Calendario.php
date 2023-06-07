@@ -2,7 +2,6 @@
 
 namespace App\Settings;
 
-use Illuminate\Support\Facades\Date;
 use Spatie\LaravelSettings\Settings;
 
 class Calendario extends Settings {
