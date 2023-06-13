@@ -6,6 +6,7 @@ use App\Filament\Resources\ObjetivoAmbientalResource\Pages;
 use App\Filament\Resources\ObjetivoAmbientalResource\Promarnat;
 use App\Filament\Resources\ObjetivoAmbientalResource\RelationManagers;
 use App\Forms\Sections\Clasificacion;
+use App\Filament\Resources\ObjetivoAmbientalResource\Repository;
 use App\Forms\Sections\Contribucion;
 use App\Forms\Sections\Cuantificacion;
 use App\Forms\Sections\Indentificacion;
@@ -92,14 +93,7 @@ class ObjetivoAmbientalResource extends Resource {
             ->filters([
                 SelectFilter::make('ramo_id')
                     ->label('Ramo')
-                    ->options(
-                        Catalogo::select('id_ramo', 'desc_ramo')
-                            ->groupBy('id_ramo', 'desc_ramo')
-                            ->get()
-                            ->mapWithKeys(function ($ramo, $key) {
-                                return [$ramo->id_ramo => "{$ramo->id_ramo} - {$ramo->desc_ramo}"];
-                            })
-                    )
+                    ->options(Repository::ramos())
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
