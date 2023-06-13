@@ -11,7 +11,7 @@ class Plataforma extends Select implements Field
     public function build(): Select
     {
         return $this
-            ->label('Plataforma para la Reducción del Riesgo de Desastres:')
+            ->label('Plataforma para la Reducción del Riesgo de Desastres')
             ->options([
                 'si' => 'Sí',
                 'no' => 'No',

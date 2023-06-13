@@ -11,7 +11,8 @@ class Recursos extends TextInput implements Field
     public function build(): TextInput
     {
         return $this
-            ->label('Recursos internacionales recibidos para este ejercicio presupuestario en el marco de esta Plataforma:')
+            ->label('Recursos internacionales recibidos para este ejercicio presupuestario en el marco de esta Plataforma')
+            ->numeric()
             ->reactive();
     }
 

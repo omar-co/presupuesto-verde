@@ -7,6 +7,7 @@ use App\Services\FormBuilder\Field;
 use Filament\Forms\Components\Grid;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
+use Filament\Forms\Components\TextInput\Mask;
 
 class Convenio extends Grid implements Field
 {
@@ -15,25 +16,28 @@ class Convenio extends Grid implements Field
     {
         return $this->schema([
             Select::make('convenio_diversidad')
-                ->label('Convenio sobre la Diversidad Biológica:')
+                ->label('Convenio sobre la Diversidad Biológica')
                 ->options([
                     'si' => 'Sí',
                     'no' => 'No',
                 ])
                 ->reactive(),
             Select::make('convenio_desertificacion')
-                ->label('Convenio internacional de lucha contra la desertificación:')
+                ->label('Convenio internacional de lucha contra la desertificación')
                 ->options([
                     'si' => 'Sí',
                     'no' => 'No',
                 ])
                 ->reactive(),
             TextInput::make('recursos_convenio')
-                ->label('Recursos internacionales recibidos para este ejercicio presupuestario en el marco de este Convenio:')
+                ->label('Recursos internacionales recibidos para este ejercicio presupuestario en el marco de este Convenio')
+                ->numeric()
                 ->reactive(),
             TextInput::make('recursos_convencion')
-                ->label('Recursos internacionales recibidos para este ejercicio presupuestario en el marco de esta Convención:')
-                ->reactive()]);
+                ->label('Recursos internacionales recibidos para este ejercicio presupuestario en el marco de esta Convención')
+                ->numeric()
+                ->reactive()
+        ]);
 
     }
 
