@@ -29,9 +29,6 @@ class PresupuestosTabla extends ViewField implements Field {
             ->beforeStateDehydrated(function (callable $get, callable $set){
 
                 $set('tabla', [ $get('ramo_id'), $get('modalidad_id')]);
-
-                $this->context = Data::$demo;
-                $anda = Data::$demo;
             })
 
             ;
