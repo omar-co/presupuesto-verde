@@ -15,24 +15,30 @@ return new class extends Migration
             $table->id();
             $table->string('ciclo');
             $table->integer('ramo_id')->index()->nullable();
-            $table->integer('modalidad_id');
+            $table->char('modalidad_id');
             $table->integer('programa_presupuestario_id');
-            $table->string('actividad_institucional');
-            $table->string('unidad_responsable');
-            $table->integer('mir_nivel_id');
-            $table->integer('mir_objetivo_id');
-            $table->integer('mir_proposito_id');
+            $table->integer('mir_nivel_id')->nullable(); //TODO: es multi
+            $table->integer('mir_objetivo_id')->nullable();
+            $table->integer('mir_proposito_id')->nullable();
             $table->string('componentes')->nullable();
             $table->text('actividades_con_incidencia')->nullable();
-            $table->integer('ods_id');
+            $table->integer('ods_id')->nullable();
 
-            $table->integer('promarnat_objetivo_id');
-            $table->integer('promarnat_estrategia_id');
-            $table->integer('promarnat_actividad_id');
+            $table->integer('promarnat_objetivo_id')->nullable();
+            $table->integer('promarnat_estrategia_id')->nullable();
+            $table->integer('promarnat_actividad_id')->nullable();
             $table->mediumText('promarnat_actividades')->nullable();
             $table->mediumText('promarnat_indicador_propuesto')->nullable();
             $table->mediumText('promarnat_periodo_implementacion')->nullable();
             $table->mediumText('promarnat_estapa_politica_id')->nullable();
+
+            $table->string('convenio_diversidad')->nullable();
+            $table->string('convenio_desertificacion')->nullable();
+            $table->string('recursos_convenio')->nullable();
+            $table->string('recursos_convencion')->nullable();
+            $table->string('plataforma_reduccion')->nullable();
+            $table->string('recursos_plataforma')->nullable();
+            $table->mediumText('observaciones')->nullable();
 
             $table->integer('user_id')->index();
             $table->timestamps();
