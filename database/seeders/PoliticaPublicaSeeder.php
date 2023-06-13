@@ -13,7 +13,7 @@ class PoliticaPublicaSeeder extends Seeder {
     public function run(): void {
         DB::table('politicas_publicas')->insert([
             [
-                'name' => 'PROMARNAT',
+                'name' => 'Política Nacional de Media Ambiente',
                 'user_id' => 1,
                 'created_at' => now(),
                 'updated_at' => now(),
