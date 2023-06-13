@@ -32,4 +32,27 @@ class ObjetivoAmbiental extends Model
         'recursos_plataforma',
         'observaciones',
     ];
+
+
+    public function ramo(): BelongsTo {
+        return $this->createCatalogRelationship('ramo');
+    }
+    public function modalidad(): BelongsTo {
+        return $this->createCatalogRelationship('modalidad');
+    }
+
+    public function pp(): BelongsTo {
+        return $this->createCatalogRelationship('programa_presupuestario', 'pp');
+    }
+
+    private function createCatalogRelationship(string $key, string $foreign = null): BelongsTo {
+
+        if (!$foreign) {
+            $foreign = $key;
+        }
+
+        return $this->belongsTo(Catalogo::class,"{$key}_id", "id_{$foreign}")
+            ->select(["id_{$foreign}", "desc_{$foreign}"])
+            ->groupBy(["id_{$foreign}", "desc_{$foreign}"]);
+    }
 }
