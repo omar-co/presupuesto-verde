@@ -2,8 +2,10 @@
 
 namespace App\Models;
 
+use App\Events\SavingRegistry;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class ObjetivoAmbiental extends Model
 {
@@ -11,7 +13,13 @@ class ObjetivoAmbiental extends Model
 
     protected $table = 'objetivos_ambientales';
 
+    protected $dispatchesEvents = [
+      'saving' => SavingRegistry::class,
+    ];
+
     protected $fillable = [
+        'ciclo',
+        'user_id',
         'ramo_id',
         'promarnat_objetivo_id',
         'modalidad_id',
