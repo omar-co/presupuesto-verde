@@ -14,7 +14,9 @@ use App\Models\ObjetivoAmbiental;
 use App\Services\FormMessage;
 use App\Settings\Calendario;
 use Awcodes\Shout\Shout;
+use Filament\Forms\Components\Card;
 use Filament\Forms\Components\Tabs;
+use Filament\Forms\Components\Wizard;
 use Filament\Resources\Form;
 use Filament\Resources\Resource;
 use Filament\Resources\Table;
@@ -39,18 +41,44 @@ class ObjetivoAmbientalResource extends Resource {
                     ->content((new FormMessage())(app(Calendario::class)))
                     ->type('info')
                     ->columnSpan('full'),
-                Tabs::make('Heading')
-                    ->tabs([
-                        (new Indentificacion())->build(),
-                        (new Promarnat())(),
-                        Tabs\Tab::make('Contribución')
-                            ->schema([
-                            ]),
-                        (new Vinculacion())->build(),
-                        (new Contribucion())->build(),
-                        (new Cuantificacion())->build()->reactive(),
-                    ])
-                    ->columnSpan('full'),
+                Wizard::make([
+                    Wizard\Step::make('Identificación')
+                        ->description('Identificación')
+                        ->schema([
+                            Card::make()
+                                ->schema([
+                                    (new Indentificacion())->build(),
+                                ])
+                        ]),
+                    Wizard\Step::make('Promarnat')
+                        ->description('Promarnat')
+                        ->schema([
+                            (new Promarnat())(),
+                        ]),
+                    Wizard\Step::make('Contribución')
+                        ->description('Contribución')
+                        ->schema([
+                            Tabs\Tab::make('Contribución')
+                                ->schema([
+                                    // ...
+                                ])
+                        ]),
+                    Wizard\Step::make('Vinculación otros')
+                        ->description('Vinculación otros')
+                        ->schema([
+                            (new Vinculacion())->build(),
+                        ]),
+                    Wizard\Step::make('Contribución PP-PV')
+                        ->description('Contribución PP-PV')
+                        ->schema([
+                            (new Contribucion())->build(),
+                        ]),
+                    Wizard\Step::make('Cuantificación')
+                        ->description('Cuantificación')
+                        ->schema([
+                            (new Cuantificacion())->build()->reactive(),
+                        ]),
+                ])->columnSpan(2)
             ]);
     }
 

@@ -44,7 +44,8 @@ class UserResource extends Resource {
                 Forms\Components\TextInput::make('password')
                     ->password()
                     ->required()
-                    ->maxLength(255),
+                    ->maxLength(255)
+                    ->visibleOn('create'),
                 Forms\Components\Select::make('ramo_id')
                     ->label('Ramo')
                     ->options(
