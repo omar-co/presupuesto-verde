@@ -5,6 +5,7 @@ namespace App\Filament\Resources;
 use App\Filament\Resources\ObjetivoAmbientalResource\Pages;
 use App\Filament\Resources\ObjetivoAmbientalResource\Promarnat;
 use App\Filament\Resources\ObjetivoAmbientalResource\RelationManagers;
+use App\Forms\Sections\Clasificacion;
 use App\Forms\Sections\Contribucion;
 use App\Forms\Sections\Cuantificacion;
 use App\Forms\Sections\Indentificacion;
@@ -55,14 +56,6 @@ class ObjetivoAmbientalResource extends Resource {
                         ->schema([
                             (new Promarnat())(),
                         ]),
-                    Wizard\Step::make('Contribución')
-                        ->description('Contribución')
-                        ->schema([
-                            Tabs\Tab::make('Contribución')
-                                ->schema([
-                                    // ...
-                                ])
-                        ]),
                     Wizard\Step::make('Vinculación otros')
                         ->description('Vinculación otros')
                         ->schema([
@@ -77,6 +70,11 @@ class ObjetivoAmbientalResource extends Resource {
                         ->description('Cuantificación')
                         ->schema([
                             (new Cuantificacion())->build()->reactive(),
+                        ]),
+                    Wizard\Step::make('Clasificación')
+                        ->description('Clasificación')
+                        ->schema([
+                            (new Clasificacion())->build(),
                         ]),
                 ])->columnSpan(2)
             ]);
