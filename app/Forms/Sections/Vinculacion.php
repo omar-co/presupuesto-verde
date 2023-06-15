@@ -13,7 +13,6 @@ class Vinculacion extends FieldCollection
 
     public function __construct() {
         parent::__construct(
-            'Instrumentos relevantes',
             new Convenio(2),
             new Plataforma('plataforma_reduccion'),
             new Recursos('recursos_plataforma'),

@@ -15,7 +15,6 @@ class Clasificacion extends FieldCollection
 
     public function __construct() {
         parent::__construct(
-            'Clasificación',
             new ClasificacionFields(1),
             new Mensaje('mensaje'),
         );

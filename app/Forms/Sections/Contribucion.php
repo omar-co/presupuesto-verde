@@ -11,7 +11,6 @@ class Contribucion extends FieldCollection {
 
     public function __construct() {
         parent::__construct(
-            'Contribución PP-PV',
             new Mensaje(''),
             new TipoContribucion('tipo_contribucion'),
 
