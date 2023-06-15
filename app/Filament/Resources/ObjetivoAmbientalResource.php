@@ -10,8 +10,8 @@ use App\Filament\Resources\ObjetivoAmbientalResource\Repository;
 use App\Forms\Sections\Contribucion;
 use App\Forms\Sections\Cuantificacion;
 use App\Forms\Sections\Indentificacion;
+use App\Forms\Sections\Politicaspublicas\PoliticasPublicas;
 use App\Forms\Sections\Vinculacion;
-use App\Models\Catalogo;
 use App\Models\ObjetivoAmbiental;
 use App\Services\FormMessage;
 use App\Settings\Calendario;
@@ -52,7 +52,7 @@ class ObjetivoAmbientalResource extends Resource {
                     Wizard\Step::make('Vinculación')
                         ->description('con políticas públicas')
                         ->schema([
-                            (new Promarnat())(),
+                            (new PoliticasPublicas())->build(),
                         ]),
                     Wizard\Step::make('Instrumentos relevantes')
                         ->description('Vinculación')
