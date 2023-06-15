@@ -25,7 +25,7 @@ class PresupuestosTabla extends ViewField implements Field {
     }
 
     public function build(): ViewField {
-        return $this->view('presupuestosTabla')->reactive()
+        return $this->view('presupuestosTabla')
             ->beforeStateDehydrated(function (callable $get, callable $set){
 
                 $set('tabla', [ $get('ramo_id'), $get('modalidad_id')]);
