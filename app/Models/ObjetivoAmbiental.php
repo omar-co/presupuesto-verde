@@ -21,9 +21,25 @@ class ObjetivoAmbiental extends Model
         'ciclo',
         'user_id',
         'ramo_id',
-        'promarnat_objetivo_id',
         'modalidad_id',
         'programa_presupuestario_id',
+        'mir_nivel_id',
+        'mir_objetivo_id',
+        'mir_proposito_id',
+        'componentes',
+        'actividades_con_incidencia',
+        'ods_id',
+
+        'politica_publica_id',
+        'nivel_uno',
+        'nivel_dos',
+        'nivel_tres',
+        'nivel_cuatro',
+        'actividades_o_proyectos',
+        'indicador',
+        'periodo_implementacion',
+        'etapa',
+
         'convenio_diversidad',
         'convenio_desertificacion',
         'recursos_convenio',
@@ -31,6 +47,16 @@ class ObjetivoAmbiental extends Model
         'plataforma_reduccion',
         'recursos_plataforma',
         'observaciones',
+    ];
+
+    protected $casts = [
+        'mir_nivel_id' => 'array',
+        'nivel_uno' => 'array',
+        'nivel_dos' => 'array',
+        'nivel_tres' => 'array',
+        'nivel_cuatro' => 'array',
+        'etapa' => 'array',
+
     ];
 
 

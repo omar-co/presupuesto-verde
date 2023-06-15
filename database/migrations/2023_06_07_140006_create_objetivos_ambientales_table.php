@@ -17,20 +17,25 @@ return new class extends Migration
             $table->integer('ramo_id')->index()->nullable();
             $table->char('modalidad_id');
             $table->integer('programa_presupuestario_id');
-            $table->integer('mir_nivel_id')->nullable(); //TODO: es multi
+            $table->string('mir_nivel_id')->nullable(); //TODO: es multi
             $table->integer('mir_objetivo_id')->nullable();
             $table->integer('mir_proposito_id')->nullable();
             $table->string('componentes')->nullable();
             $table->text('actividades_con_incidencia')->nullable();
             $table->integer('ods_id')->nullable();
 
-            $table->integer('promarnat_objetivo_id')->nullable();
-            $table->integer('promarnat_estrategia_id')->nullable();
-            $table->integer('promarnat_actividad_id')->nullable();
-            $table->mediumText('promarnat_actividades')->nullable();
-            $table->mediumText('promarnat_indicador_propuesto')->nullable();
-            $table->mediumText('promarnat_periodo_implementacion')->nullable();
-            $table->mediumText('promarnat_estapa_politica_id')->nullable();
+
+            //Politicas publicas
+
+            $table->foreignId('politica_publica_id')->constrained('politicas_publicas');
+            $table->string('nivel_uno')->nullable(); //TODO: hacerlo a muchos a muchos?
+            $table->string('nivel_dos')->nullable();
+            $table->string('nivel_tres')->nullable();
+            $table->string('nivel_cuatro')->nullable();
+            $table->mediumText('actividades_o_proyectos')->nullable();
+            $table->string('indicador')->nullable();
+            $table->string('periodo_implementacion')->nullable();
+            $table->string('etapa')->nullable();
 
             $table->string('convenio_diversidad')->nullable();
             $table->string('convenio_desertificacion')->nullable();
@@ -39,6 +44,17 @@ return new class extends Migration
             $table->string('plataforma_reduccion')->nullable();
             $table->string('recursos_plataforma')->nullable();
             $table->mediumText('observaciones')->nullable();
+
+            $table->boolean('tipo_contribucion')->nullable();
+
+            $table->integer('clasificacion_p1')->nullable();
+            $table->integer('clasificacion_p2')->nullable();
+            $table->integer('clasificacion_p3')->nullable();
+            $table->integer('clasificacion_p3_gasto')->nullable();
+            $table->integer('clasificacion_p4')->nullable();
+            $table->integer('clasificacion_p5')->nullable();
+            $table->integer('clasificacion_tipo_gasto')->nullable();
+            $table->integer('clasificacion_puntaje')->nullable();
 
             $table->integer('user_id')->index();
             $table->timestamps();
