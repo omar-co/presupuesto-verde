@@ -5,7 +5,6 @@ namespace App\Http\Livewire;
 
 use App\Models\Catalogo;
 use App\Models\User;
-use App\Services\Data;
 use Filament\Forms\Concerns\HasState;
 use Filament\Support\Concerns\EvaluatesClosures;
 use Filament\Tables\Columns\TextColumn;
