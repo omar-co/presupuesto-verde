@@ -10,7 +10,6 @@ use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Queue\SerializesModels;
-use Illuminate\Support\Facades\Log;
 
 class SavingRegistry
 {
@@ -21,7 +20,7 @@ class SavingRegistry
      */
     public function __construct(public Model $model)
     {
-        Log::debug('Aqui si llega');
+
     }
 
     /**

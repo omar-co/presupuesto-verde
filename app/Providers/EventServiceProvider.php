@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use App\Events\SavingRegistry;
 use App\Listeners\AddCiclo;
+use App\Listeners\AddUserId;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
@@ -22,6 +23,7 @@ class EventServiceProvider extends ServiceProvider
         ],
         SavingRegistry::class => [
             AddCiclo::class,
+            AddUserId::class,
         ]
     ];
 
