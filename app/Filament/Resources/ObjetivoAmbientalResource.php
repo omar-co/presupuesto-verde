@@ -45,39 +45,37 @@ class ObjetivoAmbientalResource extends Resource {
                     ->columnSpan('full'),
                 Wizard::make([
                     Wizard\Step::make('Identificación')
-                        ->description('Identificación')
+                        ->description('del programa presupuestario')
                         ->schema([
-                            Card::make()
-                                ->schema([
-                                    (new Indentificacion())->build(),
-                                ])
+                            (new Indentificacion())->build(),
                         ]),
-                    Wizard\Step::make('Promarnat')
-                        ->description('Promarnat')
+                    Wizard\Step::make('Vinculación')
+                        ->description('con políticas públicas')
                         ->schema([
                             (new Promarnat())(),
                         ]),
-                    Wizard\Step::make('Vinculación otros')
-                        ->description('Vinculación otros')
+                    Wizard\Step::make('Instrumentos relevantes')
+                        ->description('Vinculación')
                         ->schema([
                             (new Vinculacion())->build(),
                         ]),
                     Wizard\Step::make('Contribución PP-PV')
-                        ->description('Contribución PP-PV')
+                        ->description('del programa presupuestario')
                         ->schema([
                             (new Contribucion())->build(),
                         ]),
                     Wizard\Step::make('Cuantificación')
-                        ->description('Cuantificación')
+                        ->description('del programa presupuestario')
                         ->schema([
-                            (new Cuantificacion())->build()->reactive(),
+                            (new Cuantificacion())->build(),
                         ]),
                     Wizard\Step::make('Clasificación')
-                        ->description('Clasificación')
+                        ->description('del programa presupuestario')
                         ->schema([
                             (new Clasificacion())->build(),
                         ]),
                 ])->columnSpan(2)
+                ->skippable()
             ]);
     }
 
