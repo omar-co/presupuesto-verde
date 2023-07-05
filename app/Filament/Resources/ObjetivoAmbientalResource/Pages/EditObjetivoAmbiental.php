@@ -16,4 +16,8 @@ class EditObjetivoAmbiental extends EditRecord
             Actions\DeleteAction::make(),
         ];
     }
+
+    public function refreshCatalogTable($ramoId, $modalidad, $pp, $contribucion) {
+        $this->emit('presupuestosRefreshCatalogTable', $ramoId, $modalidad, $pp, $contribucion);
+    }
 }
