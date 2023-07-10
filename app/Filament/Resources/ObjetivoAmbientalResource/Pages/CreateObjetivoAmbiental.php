@@ -3,16 +3,16 @@
 namespace App\Filament\Resources\ObjetivoAmbientalResource\Pages;
 
 use App\Filament\Resources\ObjetivoAmbientalResource;
+use App\Filament\Traits\HasTable;
+use App\Filament\Traits\RedirectToList;
 use Filament\Pages\Actions;
 use Filament\Resources\Pages\CreateRecord;
 
 class CreateObjetivoAmbiental extends CreateRecord
 {
-    protected static string $resource = ObjetivoAmbientalResource::class;
+    use RedirectToList, HasTable;
 
-    public function refreshCatalogTable($ramoId, $modalidad, $pp, $contribucion, $formId) {
-        $this->emit('presupuestosRefreshCatalogTable', $ramoId, $modalidad, $pp, $contribucion, $formId);
-    }
+    protected static string $resource = ObjetivoAmbientalResource::class;
 
     public function mount(): void {
         session([
@@ -24,10 +24,5 @@ class CreateObjetivoAmbiental extends CreateRecord
         ]);
 
         parent::mount();
-    }
-
-    protected function getRedirectUrl(): string
-    {
-        return $this->getResource()::getUrl('index');
     }
 }
