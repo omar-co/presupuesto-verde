@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Events\SavingRegistry;
+use App\Scopes\ByUserScope;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -70,6 +71,18 @@ class ObjetivoAmbiental extends Model
         'etapa' => 'array',
 
     ];
+
+    /**
+     * The "booting" method of the model.
+     *
+     * @return void
+     */
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::addGlobalScope(new ByUserScope);
+    }
 
 
     public function ramo(): BelongsTo {
