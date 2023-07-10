@@ -3,6 +3,7 @@
 namespace App\Filament\Pages;
 
 use App\Settings\Calendario;
+use BezhanSalleh\FilamentShield\Traits\HasPageShield;
 use Filament\Forms\Components\DatePicker;
 use Filament\Forms\Components\Grid;
 use Filament\Forms\Components\Section;
@@ -11,6 +12,7 @@ use Filament\Pages\SettingsPage;
 
 class General extends SettingsPage
 {
+    use HasPageShield;
     protected static ?string $navigationIcon = 'heroicon-o-cog';
 
     protected static string $settings = Calendario::class;
