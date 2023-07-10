@@ -20,4 +20,9 @@ class EditObjetivoAmbiental extends EditRecord
     public function refreshCatalogTable($ramoId, $modalidad, $pp, $contribucion, $formId) {
         $this->emit('presupuestosRefreshCatalogTable', $ramoId, $modalidad, $pp, $contribucion, $formId);
     }
+
+    protected function getRedirectUrl(): string
+    {
+        return $this->getResource()::getUrl('index');
+    }
 }

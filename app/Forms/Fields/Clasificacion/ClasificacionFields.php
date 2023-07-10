@@ -13,39 +13,39 @@ class ClasificacionFields extends Grid implements Field
     public function build(): Grid
     {
         return $this->schema([
-            Select::make('pregunta_1')
+            Select::make('clasificacion_p1')
                 ->label('P1. ¿Hay información suficiente para poder determinar el impacto ambiental del programa
                 presupuestario?')
                 ->options([
-                    'si' => 'Sí',
-                    'no' => 'No',
+                    '1' => 'Sí',
+                    '0' => 'No',
                 ])
                 ->reactive(),
-            Select::make('pregunta_2')
+            Select::make('clasificacion_p2')
                 ->label('P2. ¿Tiene el programa presupuestario un impacto ambiental claro o participa directamente
                 en la producción de bienes o servicios ambientales? ¿Es su objetivo prioritario proteger la
                 biodiversidad, mejorar la calidad del aire o mejorar la calidad del agua?')
                 ->options([
-                    'si' => 'Sí',
-                    'no' => 'No',
+                    '3' => 'Sí',
+                    '0' => 'No',
                 ])
                 ->reactive()
                 ->hidden(function (callable $get) {
-                    return $get('pregunta_1') != 'si';
+                    return $get('clasificacion_p1') != '1';
                 }),
-            Select::make('pregunta_3')
+            Select::make('clasificacion_p3')
                 ->label('P3. ¿Tiene el programa presuuestario un impacto indirecto favorable? ¿Es su objetivo
                  secundario (indirecto) proteger la biodiversidad, mejorar la calidad del aire o mejorar la calidad del
                   agua?')
                 ->options([
-                    'si' => 'Sí',
-                    'no' => 'No',
+                    '1' => 'Sí',
+                    '0' => 'No',
                 ])
                 ->reactive()
                 ->hidden(function (callable $get) {
-                    return $get('pregunta_2') != 'no';
+                    return $get('clasificacion_p2') != '0';
                 }),
-            Select::make('tipo_gasto')
+            Select::make('clasificacion_p3_gasto')
                 ->label('Por favor seleccione el tipo de gasto:')
                 ->options([
                     '1' => 'Gasto favorable pero contradictorio',
@@ -53,28 +53,27 @@ class ClasificacionFields extends Grid implements Field
                 ])
                 ->reactive()
                 ->hidden(function (callable $get) {
-                    return $get('pregunta_3') != 'si';
+                    return $get('clasificacion_p3') != '1';
                 }),
-            Select::make('pregunta_4')
+            Select::make('clasificacion_p4')
                 ->label('P4. ¿Tiene el programa presupuestario algún efecto significativo sobre el medio ambiente?')
                 ->options([
-                    'si' => 'Sí',
-                    'no' => 'No',
+                    '1' => 'Sí',
+                    '0' => 'No',
                 ])
                 ->reactive()
                 ->hidden(function (callable $get) {
-                    return $get('pregunta_3') != 'no';
+                    return $get('clasificacion_p3') != '0';
                 }),
-            Select::make('pregunta_5')
+            Select::make('clasificacion_p5')
                 ->label('P5. ¿Tiene el programa presupuestario algún impacto ambiental negativo o promueve
                 comportamientos perjudiciales para el medio ambiente?')
                 ->options([
-                    'si' => 'Sí',
-                    'no' => 'No',
+                    '-1' => 'Sí',
                 ])
                 ->reactive()
                 ->hidden(function (callable $get) {
-                    return $get('pregunta_4') != 'si';
+                    return $get('clasificacion_p4') != '1';
                 }),
             ]);
     }
