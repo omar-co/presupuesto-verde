@@ -63,6 +63,7 @@ class Presupuestos extends Component implements Tables\Contracts\HasTable
 
         if ($this->ramoId) {
             $query = Catalogo::query()
+                ->referencia($this->contribucion, $this->modalidad)
                 ->where('id_ramo', $this->ramoId)
                 ->where('id_modalidad', $this->modalidad)
                 ->where('id_pp', $this->pp)
