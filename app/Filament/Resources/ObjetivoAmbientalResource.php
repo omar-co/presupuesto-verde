@@ -30,7 +30,7 @@ use Filament\Tables\Filters\SelectFilter;
 class ObjetivoAmbientalResource extends Resource {
     protected static ?string $model = ObjetivoAmbiental::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-beaker';
+    protected static ?string $navigationIcon = 'heroicon-o-clipboard-list';
     protected static ?string $navigationGroup = 'Presupuesto Verde';
 
     protected static ?string $label = 'Objetivo Ambiental';
