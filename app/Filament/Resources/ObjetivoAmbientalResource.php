@@ -56,7 +56,7 @@ class ObjetivoAmbientalResource extends Resource {
                     Wizard\Step::make('Vinculación')
                         ->description('con políticas públicas')
                         ->schema([
-                            (new PoliticasPublicas())->build(),
+                            (new PoliticasPublicas(self::$model))->build(),
                         ]),
                     Wizard\Step::make('Instrumentos relevantes')
                         ->description('Vinculación')

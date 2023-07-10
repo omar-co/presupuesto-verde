@@ -7,6 +7,7 @@ use App\Models\PoliticaPublica;
 use App\Models\PoliticaPublicaElemento;
 use App\Models\PoliticaPublicaNivel;
 use App\Settings\Calendario;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Collection;
 
 class Repository {
@@ -54,10 +55,11 @@ class Repository {
             ->pluck('name', 'id');
     }
 
-    public static function politicasPublicas(): Collection {
+    public static function politicasPublicas(string $model): Collection {
         $ejercicioFiscal = app(Calendario::class)->ejercicio_fiscal;
 
-        $registosActuales = ObjetivoAmbiental::query()
+        /** @var Model $model */
+        $registosActuales = $model::query()
             ->where('user_id', auth()->id()) //TODO: hacer global scope
             ->where('ciclo', $ejercicioFiscal)
             ->get('politica_publica_id');

@@ -12,9 +12,9 @@ use App\Services\FormBuilder\FieldCollection;
 
 class PoliticasPublicas extends FieldCollection {
 
-    public function __construct() {
+    public function __construct(private readonly string $model) {
         parent::__construct(
-            new PoliticaPublica('politica_publica_id'),
+            (new PoliticaPublica('politica_publica_id'))->setModelClass($this->model),
             (new Nivel('nivel_uno'))
                 ->label(fn(callable $get) => Repository::nombreNivel($get('politica_publica_id'), 1))
                 ->options(fn(callable $get) => Repository::optionsNivelUno($get('politica_publica_id')))
