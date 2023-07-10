@@ -2,6 +2,8 @@
 
 namespace App\Filament\Resources;
 
+use AlperenErsoy\FilamentExport\Actions\FilamentExportBulkAction;
+use AlperenErsoy\FilamentExport\Actions\FilamentExportHeaderAction;
 use App\Filament\Resources\ObjetivoAmbientalResource\Pages;
 use App\Filament\Resources\ObjetivoAmbientalResource\Promarnat;
 use App\Filament\Resources\ObjetivoAmbientalResource\RelationManagers;
@@ -102,8 +104,12 @@ class ObjetivoAmbientalResource extends Resource {
             ->actions([
                 Tables\Actions\EditAction::make(),
             ])
+            ->headerActions([
+                //FilamentExportHeaderAction::make('exportar')
+            ])
             ->bulkActions([
                 Tables\Actions\DeleteBulkAction::make(),
+                FilamentExportBulkAction::make('Exportar'),
             ]);
     }
 
