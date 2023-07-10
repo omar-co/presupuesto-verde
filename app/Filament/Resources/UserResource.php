@@ -8,11 +8,14 @@ use App\Models\Catalogo;
 use App\Models\User;
 use Filament\Forms;
 use Filament\Resources\Form;
+use Filament\Resources\Pages\CreateRecord;
+use Filament\Resources\Pages\Page;
 use Filament\Resources\Resource;
 use Filament\Resources\Table;
 use Filament\Tables;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use Illuminate\Support\Facades\Hash;
 use Spatie\Permission\Models\Role;
 
 class UserResource extends Resource {
@@ -42,10 +45,21 @@ class UserResource extends Resource {
                     ->required()
                     ->maxLength(255),
                 Forms\Components\TextInput::make('password')
+                    ->label('Contraseña')
                     ->password()
-                    ->required()
+                    ->required(fn(Page $livewire): bool => $livewire instanceof CreateRecord)
+                    ->minLength(8)
                     ->maxLength(255)
-                    ->visibleOn('create'),
+                    ->same('passwordConfirmation')
+                    ->dehydrated(fn($state) =>filled($state))
+                    ->dehydrateStateUsing(fn($state) => Hash::make($state)),
+                Forms\Components\TextInput::make('passwordConfirmation')
+                    ->label('Confirmación de Contraseña')
+                    ->password()
+                    ->required(fn(Page $livewire): bool => $livewire instanceof CreateRecord)
+                    ->minLength(8)
+                    ->maxLength(255)
+                    ->dehydrated(false),
                 Forms\Components\Select::make('ramo_id')
                     ->label('Ramo')
                     ->options(
