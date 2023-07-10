@@ -13,6 +13,7 @@ class TipoContribucion extends Select implements Field {
                                 de apoyo del Pp a la Política Nacional mediambiental (PROMARNAT, PNH, ENBIO o ENAC) de
                                 acuerdo con los objetivos seleccionados en las etapas previas?')
             ->required()
+            ->reactive()
             ->options([
                 1 => 'Explícitamente/Directamente',
                 0 => 'Implícitamente/Indirectamente'

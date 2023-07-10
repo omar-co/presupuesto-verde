@@ -5,6 +5,7 @@ namespace App\Http\Livewire;
 
 use App\Models\Catalogo;
 use App\Models\ObjetivoAmbiental;
+use App\Models\Presupuesto;
 use App\Models\User;
 use Filament\Tables\Actions\BulkAction;
 use Filament\Tables\Columns\TextColumn;
@@ -26,6 +27,7 @@ class Presupuestos extends Component implements Tables\Contracts\HasTable
     private $modalidad;
     private $pp;
     private $contribucion;
+    private $formId;
 
     protected $listeners = [
         'presupuestosRefreshCatalogTable' => 'actualiza',
@@ -36,11 +38,12 @@ class Presupuestos extends Component implements Tables\Contracts\HasTable
         return 'catalogos';
     }
 
-    public function actualiza(string $ramoId, $modalidad, $pp, $contribucion) {
+    public function actualiza(string $ramoId, $modalidad, $pp, $contribucion, $formId) {
         $this->ramoId = $ramoId;
         $this->modalidad = $modalidad;
         $this->pp = $pp;
         $this->contribucion = $contribucion;
+        $this->formId = $formId;
 
         $this->setDataFromSession();
 
@@ -62,7 +65,14 @@ class Presupuestos extends Component implements Tables\Contracts\HasTable
             $query = Catalogo::query()
                 ->where('id_ramo', $this->ramoId)
                 ->where('id_modalidad', $this->modalidad)
-                ->where('id_pp', $this->pp);
+                ->where('id_pp', $this->pp)
+                ->addSelect(['presupuesto' => Presupuesto::query()
+                ->select('monto')
+                    ->where('form_id', $this->formId)
+                    ->where('user_id', auth()->id())
+                    ->whereColumn('catalogo_id', 'catalogos.id')
+                    ->limit(1)
+                ]);
         } else {
             $query = Catalogo::query()->where('id', 0);
         }
@@ -152,11 +162,15 @@ class Presupuestos extends Component implements Tables\Contracts\HasTable
             TextColumn::make('id_clave_cartera')
             ->label('Clave cartera')
             ->sortable(),
-            TextInputColumn::make('name')
+            TextInputColumn::make('presupuesto')
             ->updateStateUsing(function ($state, $record) {
-               $ob = ObjetivoAmbiental::find(2);
-               $ob->componentes = $state;
-               $ob->save();
+                Presupuesto::query()
+                    ->create([
+                        'user_id' => auth()->id(),
+                        'form_id' => $this->formId,
+                        'catalogo_id' => $record->id,
+                        'monto' => $state,
+                    ]);
             })
             ];
     }
@@ -179,19 +193,7 @@ class Presupuestos extends Component implements Tables\Contracts\HasTable
     protected function getTableBulkActions(): array
     {
         return [
-            BulkAction::make('updateAuthor')
-                ->action(function (Collection $records, array $data): void {
-                    foreach ($records as $record) {
-                        $record->monto_aprobado = $data['authorId'];
-                        $record->save();
-                    }
-                })
-                ->form([
-                    Forms\Components\Select::make('authorId')
-                        ->label('Author')
-                        ->options(User::query()->pluck('name', 'id'))
-                        ->required(),
-                ])
+
         ];
     }
 
@@ -200,6 +202,7 @@ class Presupuestos extends Component implements Tables\Contracts\HasTable
        $this->modalidad = session('modalidad');
        $this->pp = session('pp');
        $this->contribucion = session('contribucion');
+       $this->formId = session('formId');
      }
 
     private function setDataFromSession() {
@@ -207,7 +210,8 @@ class Presupuestos extends Component implements Tables\Contracts\HasTable
            'ramoId' => $this->ramoId,
            'modalidad' => $this->modalidad,
            'pp' => $this->pp,
-           'contribucion' => $this->contribucion
+           'contribucion' => $this->contribucion,
+           'formId' => $this->formId,
         ]);
     }
 

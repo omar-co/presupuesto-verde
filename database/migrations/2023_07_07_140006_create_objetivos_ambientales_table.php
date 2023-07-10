@@ -56,7 +56,8 @@ return new class extends Migration
             $table->integer('clasificacion_tipo_gasto')->nullable();
             $table->integer('clasificacion_puntaje')->nullable();
 
-            $table->integer('user_id')->index();
+            $table->foreignId('user_id')->constrained();
+            $table->foreignId('form_id')->constrained();
             $table->timestamps();
         });
     }

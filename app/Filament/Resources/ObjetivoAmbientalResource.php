@@ -14,9 +14,11 @@ use App\Forms\Sections\Politicaspublicas\PoliticasPublicas;
 use App\Forms\Sections\Vinculacion;
 use App\Models\ObjetivoAmbiental;
 use App\Services\FormMessage;
+use App\Services\FormService;
 use App\Settings\Calendario;
 use Awcodes\Shout\Shout;
 use Filament\Forms\Components\Card;
+use Filament\Forms\Components\Hidden;
 use Filament\Forms\Components\Tabs;
 use Filament\Forms\Components\Wizard;
 use Filament\Resources\Form;
@@ -43,6 +45,8 @@ class ObjetivoAmbientalResource extends Resource {
                     ->content((new FormMessage())(app(Calendario::class)))
                     ->type('info')
                     ->columnSpan('full'),
+                Hidden::make('form_id')
+                    ->default(FormService::new()),
                 Wizard::make([
                     Wizard\Step::make('Identificación')
                         ->description('del programa presupuestario')

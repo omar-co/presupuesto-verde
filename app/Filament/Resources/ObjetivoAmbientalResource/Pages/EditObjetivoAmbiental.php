@@ -17,7 +17,7 @@ class EditObjetivoAmbiental extends EditRecord
         ];
     }
 
-    public function refreshCatalogTable($ramoId, $modalidad, $pp, $contribucion) {
-        $this->emit('presupuestosRefreshCatalogTable', $ramoId, $modalidad, $pp, $contribucion);
+    public function refreshCatalogTable($ramoId, $modalidad, $pp, $contribucion, $formId) {
+        $this->emit('presupuestosRefreshCatalogTable', $ramoId, $modalidad, $pp, $contribucion, $formId);
     }
 }

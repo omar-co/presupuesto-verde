@@ -20,6 +20,7 @@ class ObjetivoAmbiental extends Model
     protected $fillable = [
         'ciclo',
         'user_id',
+        'form_id',
         'ramo_id',
         'modalidad_id',
         'programa_presupuestario_id',
@@ -47,6 +48,17 @@ class ObjetivoAmbiental extends Model
         'plataforma_reduccion',
         'recursos_plataforma',
         'observaciones',
+
+        'tipo_contribucion',
+
+        'clasificacion_p1',
+        'clasificacion_p2',
+        'clasificacion_p3',
+        'clasificacion_p3_gasto',
+        'clasificacion_p4',
+        'clasificacion_p5',
+        'clasificacion_tipo_gasto',
+        'clasificacion_puntaje',
     ];
 
     protected $casts = [
@@ -69,6 +81,10 @@ class ObjetivoAmbiental extends Model
 
     public function pp(): BelongsTo {
         return $this->createCatalogRelationship('programa_presupuestario', 'pp');
+    }
+
+    public function presupuestos() {
+        return $this->morphMany(Presupuesto::class, 'presupuestable');
     }
 
     private function createCatalogRelationship(string $key, string $foreign = null): BelongsTo {

@@ -10,8 +10,8 @@ class CreateObjetivoAmbiental extends CreateRecord
 {
     protected static string $resource = ObjetivoAmbientalResource::class;
 
-    public function refreshCatalogTable($ramoId, $modalidad, $pp, $contribucion) {
-        $this->emit('presupuestosRefreshCatalogTable', $ramoId, $modalidad, $pp, $contribucion);
+    public function refreshCatalogTable($ramoId, $modalidad, $pp, $contribucion, $formId) {
+        $this->emit('presupuestosRefreshCatalogTable', $ramoId, $modalidad, $pp, $contribucion, $formId);
     }
 
     public function mount(): void {
@@ -19,7 +19,8 @@ class CreateObjetivoAmbiental extends CreateRecord
             'ramoId' => null,
             'modalidad' => null,
             'pp' => null,
-            'contribucion' => null
+            'contribucion' => null,
+            'formId' => null,
         ]);
 
         parent::mount();
