@@ -31,6 +31,10 @@ class ProgramaPresupuestario extends Select implements Field {
             ->afterStateUpdated(function (callable $get, callable $set, $state) {
                 $this->fillActividadesInstitucionales($get, $set);
                 $this->fillUnidadesResponsables($get, $set);
+            })
+            ->afterStateHydrated(function (callable $get, callable $set, $state) {
+                $this->fillActividadesInstitucionales($get, $set);
+                $this->fillUnidadesResponsables($get, $set);
             });
     }
 
