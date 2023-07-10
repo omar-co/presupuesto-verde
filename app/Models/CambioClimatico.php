@@ -8,14 +8,12 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
-class ObjetivoAmbiental extends Model
+class CambioClimatico extends Model
 {
     use HasFactory;
 
-    protected $table = 'objetivos_ambientales';
-
     protected $dispatchesEvents = [
-      'saving' => SavingRegistry::class,
+        'saving' => SavingRegistry::class,
     ];
 
     protected $fillable = [
@@ -51,15 +49,6 @@ class ObjetivoAmbiental extends Model
         'observaciones',
 
         'tipo_contribucion',
-
-        'clasificacion_p1',
-        'clasificacion_p2',
-        'clasificacion_p3',
-        'clasificacion_p3_gasto',
-        'clasificacion_p4',
-        'clasificacion_p5',
-        'clasificacion_tipo_gasto',
-        'clasificacion_puntaje',
     ];
 
     protected $casts = [
