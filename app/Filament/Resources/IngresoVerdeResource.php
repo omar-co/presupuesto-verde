@@ -2,6 +2,7 @@
 
 namespace App\Filament\Resources;
 
+use AlperenErsoy\FilamentExport\Actions\FilamentExportHeaderAction;
 use App\Filament\Resources\IngresoVerdeResource\Pages;
 use App\Filament\Resources\IngresoVerdeResource\RelationManagers;
 use App\Filament\Resources\ObjetivoAmbientalResource\Repository;
@@ -148,6 +149,9 @@ class IngresoVerdeResource extends Resource
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
+            ])
+            ->headerActions([
+                FilamentExportHeaderAction::make('exportar')
             ])
             ->bulkActions([
                 Tables\Actions\DeleteBulkAction::make(),
