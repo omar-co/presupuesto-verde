@@ -126,7 +126,7 @@ class IngresoVerdeResource extends Resource
                             (new Cuantificacion())->build(),
                         ]),
                 ])->columnSpan(2)
-                    ->skippable()
+                    //->skippable()
             ]);
     }
 

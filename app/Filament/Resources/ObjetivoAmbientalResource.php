@@ -81,7 +81,7 @@ class ObjetivoAmbientalResource extends Resource {
                             (new Clasificacion())->build(),
                         ]),
                 ])->columnSpan(2)
-                ->skippable()
+                //->skippable()
             ]);
     }
 
