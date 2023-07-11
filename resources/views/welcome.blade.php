@@ -63,7 +63,7 @@
                         del cambio climático.
                     </p>
                 </a>
-                <a class="home-buttons"   >
+                <a class="home-buttons" href="app/cambio-climaticos"  >
                     <p class="text-center">
                         <b>Presupuesto Verde <br/> Cambio Climático</b>
                     </p>
@@ -74,7 +74,7 @@
                         se destinan al desarrollo de dichas acciones.
                     </p>
                 </a>
-                <a class="home-buttons">
+                <a class="home-buttons" href="app/ingreso-verdes">
                     <p class="text-center">
                         <b>Ingresos Verdes</b>
                     </p>
