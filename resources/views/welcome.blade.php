@@ -17,14 +17,15 @@
         .home-buttons {
             border: 2px solid #B38E5D;
             border-radius: 10px;
-            height: 400px;
-            width: 100%;
+            height: 100%;
             margin: 5px;
             transition: .5s;
             padding: 20px;
-            text-decoration: none;
-            color: #0C231E;
 
+        }
+        .home-buttons a {
+            color: #0C231E;
+            text-decoration: none;
         }
 
         .home-buttons:hover {
@@ -32,11 +33,6 @@
             cursor: pointer;
             color: #0C231E;
             text-decoration: none;
-        }
-
-        .button-container {
-            display: flex;
-            flex-wrap: nowrap;
         }
 
     </style>
@@ -50,42 +46,54 @@
                     </p>
                 </div>
             </div>
-            <div class="row button-container mb-5">
-                <a class="home-buttons" href="app/objetivo-ambientals" >
-                    <p class="text-center">
-                        <b>Presupuesto Verde <br/> Objetivos Ambientales</b>
-                    </p>
-                    <p class="text-justify">
-                        El objetivo es contribuir a la generación de capacidades para la identificación de
-                        acciones que el gobierno lleva a cabo en materia de cambio climático y la cuantificación
-                        de dichos recursos, a través de brindar criterios que permitan identificar las acciones
-                        y los recursos relevantes en la consecución de los objetivos de adaptación y mitigación
-                        del cambio climático.
-                    </p>
-                </a>
-                <a class="home-buttons" href="app/cambio-climaticos"  >
-                    <p class="text-center">
-                        <b>Presupuesto Verde <br/> Cambio Climático</b>
-                    </p>
-                    <p class="text-justify">
-                        El objetivo es contribuir a la generación de capacidades para la identificación de
-                        acciones llevadas a cabo por el gobierno federal que pueden ser consideradas como
-                        presupuesto verde, así como la creación de capacidades para cuantificar los recursos que
-                        se destinan al desarrollo de dichas acciones.
-                    </p>
-                </a>
-                <a class="home-buttons" href="app/ingreso-verdes">
-                    <p class="text-center">
-                        <b>Ingresos Verdes</b>
-                    </p>
-                    <p class="text-justify">
-                        El objetivo es contribuir a la generación de capacidades para la identificación y
-                        clasificación de ingresos que por sus características pueden ser catalogados como
-                        verdes. Se trata de impuestos y otras formas de ingresos corrientes que tienen el
-                        potencial de alterar la recaudación de los ingresos públicos de forma sustancial y de
-                        generar un impacto ambiental positivo o negativo.
-                    </p>
-                </a>
+            <div class="row my-sm-5 mb-5">
+                <div class="col-md-4 my-2 col-sm-12">
+                    <div class="home-buttons">
+                        <a href="app/objetivo-ambientals" >
+                            <p class="text-center">
+                                <b>Presupuesto Verde <br/> Objetivos Ambientales</b>
+                            </p>
+                            <p class="text-justify">
+                                El objetivo es contribuir a la generación de capacidades para la identificación de
+                                acciones que el gobierno lleva a cabo en materia de cambio climático y la cuantificación
+                                de dichos recursos, a través de brindar criterios que permitan identificar las acciones
+                                y los recursos relevantes en la consecución de los objetivos de adaptación y mitigación
+                                del cambio climático.
+                            </p>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-md-4 my-2 col-sm-12">
+                    <div class="home-buttons">
+                        <a href="app/cambio-climaticos"  >
+                            <p class="text-center">
+                                <b>Presupuesto Verde <br/> Cambio Climático</b>
+                            </p>
+                            <p class="text-justify">
+                                El objetivo es contribuir a la generación de capacidades para la identificación de
+                                acciones llevadas a cabo por el gobierno federal que pueden ser consideradas como
+                                presupuesto verde, así como la creación de capacidades para cuantificar los recursos que
+                                se destinan al desarrollo de dichas acciones.
+                            </p>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-md-4 my-2 col-sm-12">
+                    <div class="home-buttons">
+                        <a href="app/ingreso-verdes">
+                            <p class="text-center">
+                                <b>Ingresos Verdes</b>
+                            </p>
+                            <p class="text-justify">
+                                El objetivo es contribuir a la generación de capacidades para la identificación y
+                                clasificación de ingresos que por sus características pueden ser catalogados como
+                                verdes. Se trata de impuestos y otras formas de ingresos corrientes que tienen el
+                                potencial de alterar la recaudación de los ingresos públicos de forma sustancial y de
+                                generar un impacto ambiental positivo o negativo.
+                            </p>
+                        </a>
+                    </div>
+                </div>
             </div>
         </div>
     </main>
