@@ -56,12 +56,9 @@ class Repository {
     }
 
     public static function politicasPublicas(string $model): Collection {
-        $ejercicioFiscal = app(Calendario::class)->ejercicio_fiscal;
-
         /** @var Model $model */
         $registosActuales = $model::query()
             ->where('user_id', auth()->id()) //TODO: hacer global scope
-            ->where('ciclo', $ejercicioFiscal)
             ->get('politica_publica_id');
 
         return PoliticaPublica::query()

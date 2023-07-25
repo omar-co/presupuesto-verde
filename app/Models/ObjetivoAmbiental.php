@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Events\SavingRegistry;
+use App\Scopes\ByCiclo;
 use App\Scopes\ByUserScope;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -78,6 +79,7 @@ class ObjetivoAmbiental extends Model
         parent::boot();
 
         static::addGlobalScope(new ByUserScope);
+        static::addGlobalScope(new ByCiclo);
     }
 
 
