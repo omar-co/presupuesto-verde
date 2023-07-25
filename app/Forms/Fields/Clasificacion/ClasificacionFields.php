@@ -34,7 +34,7 @@ class ClasificacionFields extends Grid implements Field
                     return $get('clasificacion_p1') != '1';
                 }),
             Select::make('clasificacion_p3')
-                ->label('P3. ¿Tiene el programa presuuestario un impacto indirecto favorable? ¿Es su objetivo
+                ->label('P3. ¿Tiene el programa presupuestario un impacto indirecto favorable? ¿Es su objetivo
                  secundario (indirecto) proteger la biodiversidad, mejorar la calidad del aire o mejorar la calidad del
                   agua?')
                 ->options([

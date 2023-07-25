@@ -18,7 +18,7 @@ return new class extends Migration
             $table->char('modalidad_id');
             $table->integer('programa_presupuestario_id');
             $table->string('mir_nivel_id')->nullable();
-            $table->integer('mir_objetivo_id')->nullable();
+            $table->string('mir_objetivo_id')->nullable();
             $table->integer('mir_proposito_id')->nullable();
             $table->string('componentes')->nullable();
             $table->text('actividades_con_incidencia')->nullable();

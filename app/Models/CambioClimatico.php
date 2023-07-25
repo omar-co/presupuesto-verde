@@ -53,6 +53,7 @@ class CambioClimatico extends Model
 
     protected $casts = [
         'mir_nivel_id' => 'array',
+        'mir_objetivo_id' => 'array',
         'nivel_uno' => 'array',
         'nivel_dos' => 'array',
         'nivel_tres' => 'array',
