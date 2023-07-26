@@ -92,74 +92,74 @@ class Presupuestos extends Component implements Tables\Contracts\HasTable
                 })
                 ->label('Ramo'),
             TextColumn::make('id_ur')
-            ->label('Id Unidad responsable')
-            ->sortable(),
-            TextColumn::make('desc_ur')
-            ->label('Unidad responsable')
-            ->sortable(),
+                ->label('Unidad responsable')
+                ->getStateUsing(function (Catalogo $record) {
+                    return "{$record->id_ur} - {$record->desc_ur}";
+                })
+                ->sortable(),
             TextColumn::make('gpo_funcional')
-            ->label('Id Grupo funcional')
-            ->sortable(),
-            TextColumn::make('desc_gpo_funcional')
-            ->label('Grupo Funcional')
-            ->sortable(),
+                ->label('Grupo funcional')
+                ->getStateUsing(function (Catalogo $record) {
+                    return "{$record->gpo_funcional} - {$record->desc_gpo_funcional}";
+                })
+                ->sortable(),
             TextColumn::make('id_funcion')
-            ->label('Id Función')
-            ->sortable(),
-            TextColumn::make('desc_funcion')
-            ->label('Función')
-            ->sortable(),
+                ->label('Función')
+                ->getStateUsing(function (Catalogo $record) {
+                    return "{$record->id_funcion} - {$record->desc_funcion}";
+                })
+                ->sortable(),
             TextColumn::make('id_subfuncion')
-            ->label('Id Subfunción')
-            ->sortable(),
-            TextColumn::make('desc_subfuncion')
-            ->label('Subfunción')
-            ->sortable(),
+                ->label('Subfunción')
+                ->getStateUsing(function (Catalogo $record) {
+                    return "{$record->id_subfuncion} - {$record->desc_subfuncion}";
+                })
+                ->sortable(),
             TextColumn::make('id_ai')
-            ->label('Id Actividad institucional')
-            ->sortable(),
-            TextColumn::make('desc_ai')
-            ->label('Actividad institucional')
-            ->sortable(),
+                ->label('Actividad institucional')
+                ->getStateUsing(function (Catalogo $record) {
+                    return "{$record->id_ai} - {$record->desc_ai}";
+                })
+                ->sortable(),
             TextColumn::make('id_modalidad')
-            ->label('Id Modalidad')
-            ->sortable(),
-            TextColumn::make('desc_modalidad')
-            ->label('Modalidad')
-            ->sortable(),
+                ->label('Modalidad')
+                ->getStateUsing(function (Catalogo $record) {
+                    return "{$record->id_modalidad} - {$record->desc_modalidad}";
+                })
+                ->sortable(),
             TextColumn::make('id_pp')
-            ->label('Id Programa presupuestario')
-            ->sortable(),
-            TextColumn::make('desc_pp')
-            ->label('Programa presupuestario')
-            ->sortable(),
+                ->label('Id Programa presupuestario')
+                ->getStateUsing(function (Catalogo $record) {
+                    return "{$record->id_pp} - {$record->desc_pp}";
+                })
+                ->sortable(),
             TextColumn::make('id_capitulo')
-            ->label('Id Capítulo')
-            ->sortable(),
+                ->label('Id Capítulo')
+                ->sortable(),
             TextColumn::make('id_partida_especifica')
-            ->label('Id Partida específica')
-            ->sortable(),
-            TextColumn::make('desc_partida_especifica')
-            ->label('Partida específica')
-            ->sortable(),
+                ->label('Partida específica')
+                ->getStateUsing(function (Catalogo $record) {
+                    return "{$record->id_partida_especifica} - {$record->desc_partida_especifica}";
+                })
+                ->sortable(),
             TextColumn::make('id_tipogasto')
-            ->label('Id Tipo de gasto')
-            ->sortable(),
-            TextColumn::make('desc_tipogasto')
-            ->label('Tipo de gasto')
-            ->sortable(),
+                ->label('Tipo de gasto')
+                ->getStateUsing(function (Catalogo $record) {
+                    return "{$record->id_tipogasto} - {$record->desc_tipogasto}";
+                })
+                ->sortable(),
             TextColumn::make('id_ff')
-            ->label('Id Fuente financiera')
-            ->sortable(),
-            TextColumn::make('desc_ff')
-            ->label('Fuente financiera')
-            ->sortable(),
+                ->label('Fuente financiera')
+                ->getStateUsing(function (Catalogo $record) {
+                    return "{$record->id_ff} - {$record->desc_ff}";
+                })
+                ->sortable(),
             TextColumn::make('id_entidad_federativa')
-            ->label('Id Entidad Federativa')
-            ->sortable(),
-            TextColumn::make('entidad_federativa')
             ->label('Entidad Federativa')
-            ->sortable(),
+                ->getStateUsing(function (Catalogo $record) {
+                    return "{$record->id_entidad_federativa} - {$record->entidad_federativa}";
+                })
+                ->sortable(),
             TextColumn::make('id_clave_cartera')
             ->label('Clave cartera')
             ->sortable(),
