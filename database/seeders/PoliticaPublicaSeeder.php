@@ -18,6 +18,24 @@ class PoliticaPublicaSeeder extends Seeder {
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
+            [
+                'name' => 'EnBIO',
+                'user_id' => 1,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'name' => 'ENCA',
+                'user_id' => 1,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'name' => 'PNH',
+                'user_id' => 1,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
         ]);
     }
 }

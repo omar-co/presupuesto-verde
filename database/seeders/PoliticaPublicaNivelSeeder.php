@@ -32,6 +32,60 @@ class PoliticaPublicaNivelSeeder extends Seeder
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
+            [
+                'name' => 'Eje',
+                'politica_publica_id' => 2,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'name' => 'SubEje',
+                'politica_publica_id' => 2,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'name' => 'Eje',
+                'politica_publica_id' => 3,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'name' => 'Objetivo',
+                'politica_publica_id' => 3,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'name' => 'Estrategia',
+                'politica_publica_id' => 3,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'name' => 'Línea de Acción',
+                'politica_publica_id' => 3,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'name' => 'Objetivo Prioritario',
+                'politica_publica_id' => 4,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'name' => 'Estrategia Prioritaria',
+                'politica_publica_id' => 4,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'name' => 'Acciones Puntuales',
+                'politica_publica_id' => 4,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
         ]);
     }
 }
