@@ -3,10 +3,10 @@
 namespace App\Policies;
 
 use App\Models\User;
-use Spatie\Permission\Models\Role;
+use App\Models\Ods;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
-class RolePolicy
+class OdsPolicy
 {
     use HandlesAuthorization;
 
@@ -18,19 +18,19 @@ class RolePolicy
      */
     public function viewAny(User $user): bool
     {
-        return $user->can('view_any_role');
+        return $user->can('view_any_ods');
     }
 
     /**
      * Determine whether the user can view the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \Spatie\Permission\Models\Role  $role
+     * @param  \App\Models\Ods  $ods
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function view(User $user, Role $role): bool
+    public function view(User $user, Ods $ods): bool
     {
-        return $user->can('view_role');
+        return $user->can('view_ods');
     }
 
     /**
@@ -41,31 +41,31 @@ class RolePolicy
      */
     public function create(User $user): bool
     {
-        return $user->can('create_role');
+        return $user->can('create_ods');
     }
 
     /**
      * Determine whether the user can update the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \Spatie\Permission\Models\Role  $role
+     * @param  \App\Models\Ods  $ods
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function update(User $user, Role $role): bool
+    public function update(User $user, Ods $ods): bool
     {
-        return $user->can('update_role');
+        return $user->can('update_ods');
     }
 
     /**
      * Determine whether the user can delete the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \Spatie\Permission\Models\Role  $role
+     * @param  \App\Models\Ods  $ods
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function delete(User $user, Role $role): bool
+    public function delete(User $user, Ods $ods): bool
     {
-        return $user->can('delete_role');
+        return $user->can('delete_ods');
     }
 
     /**
@@ -76,17 +76,17 @@ class RolePolicy
      */
     public function deleteAny(User $user): bool
     {
-        return $user->can('delete_any_role');
+        return $user->can('delete_any_ods');
     }
 
     /**
      * Determine whether the user can permanently delete.
      *
      * @param  \App\Models\User  $user
-     * @param  \Spatie\Permission\Models\Role  $role
+     * @param  \App\Models\Ods  $ods
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function forceDelete(User $user, Role $role): bool
+    public function forceDelete(User $user, Ods $ods): bool
     {
         return $user->can('{{ ForceDelete }}');
     }
@@ -106,10 +106,10 @@ class RolePolicy
      * Determine whether the user can restore.
      *
      * @param  \App\Models\User  $user
-     * @param  \Spatie\Permission\Models\Role  $role
+     * @param  \App\Models\Ods  $ods
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function restore(User $user, Role $role): bool
+    public function restore(User $user, Ods $ods): bool
     {
         return $user->can('{{ Restore }}');
     }
@@ -129,10 +129,10 @@ class RolePolicy
      * Determine whether the user can replicate.
      *
      * @param  \App\Models\User  $user
-     * @param  \Spatie\Permission\Models\Role  $role
+     * @param  \App\Models\Ods  $ods
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function replicate(User $user, Role $role): bool
+    public function replicate(User $user, Ods $ods): bool
     {
         return $user->can('{{ Replicate }}');
     }

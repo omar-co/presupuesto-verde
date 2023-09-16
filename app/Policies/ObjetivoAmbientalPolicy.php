@@ -16,7 +16,7 @@ class ObjetivoAmbientalPolicy
      * @param  \App\Models\User  $user
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function viewAny(User $user)
+    public function viewAny(User $user): bool
     {
         return $user->can('view_any_objetivo::ambiental');
     }
@@ -28,7 +28,7 @@ class ObjetivoAmbientalPolicy
      * @param  \App\Models\ObjetivoAmbiental  $objetivoAmbiental
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function view(User $user, ObjetivoAmbiental $objetivoAmbiental)
+    public function view(User $user, ObjetivoAmbiental $objetivoAmbiental): bool
     {
         return $user->can('view_objetivo::ambiental');
     }
@@ -39,7 +39,7 @@ class ObjetivoAmbientalPolicy
      * @param  \App\Models\User  $user
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function create(User $user)
+    public function create(User $user): bool
     {
         return $user->can('create_objetivo::ambiental');
     }
@@ -51,7 +51,7 @@ class ObjetivoAmbientalPolicy
      * @param  \App\Models\ObjetivoAmbiental  $objetivoAmbiental
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function update(User $user, ObjetivoAmbiental $objetivoAmbiental)
+    public function update(User $user, ObjetivoAmbiental $objetivoAmbiental): bool
     {
         return $user->can('update_objetivo::ambiental');
     }
@@ -63,7 +63,7 @@ class ObjetivoAmbientalPolicy
      * @param  \App\Models\ObjetivoAmbiental  $objetivoAmbiental
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function delete(User $user, ObjetivoAmbiental $objetivoAmbiental)
+    public function delete(User $user, ObjetivoAmbiental $objetivoAmbiental): bool
     {
         return $user->can('delete_objetivo::ambiental');
     }
@@ -74,7 +74,7 @@ class ObjetivoAmbientalPolicy
      * @param  \App\Models\User  $user
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function deleteAny(User $user)
+    public function deleteAny(User $user): bool
     {
         return $user->can('delete_any_objetivo::ambiental');
     }
@@ -86,7 +86,7 @@ class ObjetivoAmbientalPolicy
      * @param  \App\Models\ObjetivoAmbiental  $objetivoAmbiental
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function forceDelete(User $user, ObjetivoAmbiental $objetivoAmbiental)
+    public function forceDelete(User $user, ObjetivoAmbiental $objetivoAmbiental): bool
     {
         return $user->can('{{ ForceDelete }}');
     }
@@ -97,7 +97,7 @@ class ObjetivoAmbientalPolicy
      * @param  \App\Models\User  $user
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function forceDeleteAny(User $user)
+    public function forceDeleteAny(User $user): bool
     {
         return $user->can('{{ ForceDeleteAny }}');
     }
@@ -109,7 +109,7 @@ class ObjetivoAmbientalPolicy
      * @param  \App\Models\ObjetivoAmbiental  $objetivoAmbiental
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function restore(User $user, ObjetivoAmbiental $objetivoAmbiental)
+    public function restore(User $user, ObjetivoAmbiental $objetivoAmbiental): bool
     {
         return $user->can('{{ Restore }}');
     }
@@ -120,7 +120,7 @@ class ObjetivoAmbientalPolicy
      * @param  \App\Models\User  $user
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function restoreAny(User $user)
+    public function restoreAny(User $user): bool
     {
         return $user->can('{{ RestoreAny }}');
     }
@@ -132,7 +132,7 @@ class ObjetivoAmbientalPolicy
      * @param  \App\Models\ObjetivoAmbiental  $objetivoAmbiental
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function replicate(User $user, ObjetivoAmbiental $objetivoAmbiental)
+    public function replicate(User $user, ObjetivoAmbiental $objetivoAmbiental): bool
     {
         return $user->can('{{ Replicate }}');
     }
@@ -143,7 +143,7 @@ class ObjetivoAmbientalPolicy
      * @param  \App\Models\User  $user
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function reorder(User $user)
+    public function reorder(User $user): bool
     {
         return $user->can('{{ Reorder }}');
     }

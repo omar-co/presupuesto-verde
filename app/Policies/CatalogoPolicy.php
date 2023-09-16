@@ -16,7 +16,7 @@ class CatalogoPolicy
      * @param  \App\Models\User  $user
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function viewAny(User $user)
+    public function viewAny(User $user): bool
     {
         return $user->can('view_any_catalogo');
     }
@@ -28,7 +28,7 @@ class CatalogoPolicy
      * @param  \App\Models\Catalogo  $catalogo
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function view(User $user, Catalogo $catalogo)
+    public function view(User $user, Catalogo $catalogo): bool
     {
         return $user->can('view_catalogo');
     }
@@ -39,7 +39,7 @@ class CatalogoPolicy
      * @param  \App\Models\User  $user
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function create(User $user)
+    public function create(User $user): bool
     {
         return $user->can('create_catalogo');
     }
@@ -51,7 +51,7 @@ class CatalogoPolicy
      * @param  \App\Models\Catalogo  $catalogo
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function update(User $user, Catalogo $catalogo)
+    public function update(User $user, Catalogo $catalogo): bool
     {
         return $user->can('update_catalogo');
     }
@@ -63,7 +63,7 @@ class CatalogoPolicy
      * @param  \App\Models\Catalogo  $catalogo
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function delete(User $user, Catalogo $catalogo)
+    public function delete(User $user, Catalogo $catalogo): bool
     {
         return $user->can('delete_catalogo');
     }
@@ -74,7 +74,7 @@ class CatalogoPolicy
      * @param  \App\Models\User  $user
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function deleteAny(User $user)
+    public function deleteAny(User $user): bool
     {
         return $user->can('delete_any_catalogo');
     }
@@ -86,7 +86,7 @@ class CatalogoPolicy
      * @param  \App\Models\Catalogo  $catalogo
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function forceDelete(User $user, Catalogo $catalogo)
+    public function forceDelete(User $user, Catalogo $catalogo): bool
     {
         return $user->can('{{ ForceDelete }}');
     }
@@ -97,7 +97,7 @@ class CatalogoPolicy
      * @param  \App\Models\User  $user
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function forceDeleteAny(User $user)
+    public function forceDeleteAny(User $user): bool
     {
         return $user->can('{{ ForceDeleteAny }}');
     }
@@ -109,7 +109,7 @@ class CatalogoPolicy
      * @param  \App\Models\Catalogo  $catalogo
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function restore(User $user, Catalogo $catalogo)
+    public function restore(User $user, Catalogo $catalogo): bool
     {
         return $user->can('{{ Restore }}');
     }
@@ -120,7 +120,7 @@ class CatalogoPolicy
      * @param  \App\Models\User  $user
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function restoreAny(User $user)
+    public function restoreAny(User $user): bool
     {
         return $user->can('{{ RestoreAny }}');
     }
@@ -132,7 +132,7 @@ class CatalogoPolicy
      * @param  \App\Models\Catalogo  $catalogo
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function replicate(User $user, Catalogo $catalogo)
+    public function replicate(User $user, Catalogo $catalogo): bool
     {
         return $user->can('{{ Replicate }}');
     }
@@ -143,7 +143,7 @@ class CatalogoPolicy
      * @param  \App\Models\User  $user
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function reorder(User $user)
+    public function reorder(User $user): bool
     {
         return $user->can('{{ Reorder }}');
     }
