@@ -27,7 +27,7 @@ class UserSeeder extends Seeder
                 'name' => 'Oscar',
                 'last_name' => 'Raygoza',
                 'email' => 'oscar.raygoza@gmail.com',
-                'password' => Hash::make('Oscar*780917'),
+                'password' => Hash::make('$2y$10$tXzhB9z8YYhq0QYs1rVRHeAIAdOP6H/b3LmY952SNVp.juFjV2Nbq'),
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
