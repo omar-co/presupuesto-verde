@@ -50,6 +50,13 @@ class CambioClimatico extends Model
         'observaciones',
 
         'tipo_contribucion',
+
+        'clasificacion_p1',
+        'clasificacion_p2',
+        'clasificacion_p3',
+        'clasificacion_p3_gasto',
+        'clasificacion_p4',
+        'clasificacion_p5',
     ];
 
     protected $casts = [

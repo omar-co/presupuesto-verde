@@ -5,6 +5,7 @@ namespace App\Filament\Resources;
 use App\Filament\Resources\CambioClimaticoResource\Pages;
 use App\Filament\Resources\CambioClimaticoResource\RelationManagers;
 use App\Filament\Resources\ObjetivoAmbientalResource\Repository;
+use App\Forms\Sections\Clasificacion;
 use App\Forms\Sections\Contribucion;
 use App\Forms\Sections\Cuantificacion;
 use App\Forms\Sections\Indentificacion;
@@ -74,6 +75,11 @@ class CambioClimaticoResource extends Resource
                         ->description('del programa presupuestario')
                         ->schema([
                             (new Cuantificacion())->build(),
+                        ]),
+                    Wizard\Step::make('Clasificación')
+                        ->description('del programa presupuestario')
+                        ->schema([
+                            (new Clasificacion())->build(),
                         ]),
                 ])->columnSpan(2)
                     //->skippable()
