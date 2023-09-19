@@ -52,12 +52,7 @@ class IngresoVerdeResource extends Resource
                 Hidden::make('form_id')
                     ->default(FormService::new()),
                 Wizard::make([
-                    Wizard\Step::make('Identificación')
-                        ->description('del ingreso')
-                        ->schema([
-                            (new Indentificacion())->build(),
-                        ]),
-                    Wizard\Step::make('Objetivo y Destino')
+                    Wizard\Step::make('Objetivo y destino')
                         ->description('del ingreso')
                         ->schema([
                             Forms\Components\Card::make()
@@ -104,16 +99,31 @@ class IngresoVerdeResource extends Resource
                                                 return $get('objetivo') === 'O3' && $get('destino') === 'I2';
                                             }),
 
-                                        Forms\Components\Select::make('efecto')
+                                        /*Forms\Components\Select::make('efecto')
                                             ->label('¿De qué manera se da su efecto?')
                                             ->reactive()
                                             ->visible(fn(callable $get) => $get('objetivo') && $get('destino'))
                                             ->options([
                                                 '1' => 'Efecto Directo',
                                                 '0' => 'Efecto Indirecto',
-                                            ]),
+                                            ]),*/
                                     ])
                             ])
+                        ]),
+                    Wizard\Step::make('Efecto')
+                        ->description('del ingreso')
+                        ->schema([
+                            /*(new Indentificacion())->build(),*/
+                            Forms\Components\Select::make('efecto')
+                                ->label('¿De qué manera se da su efecto?')
+                                ->reactive()
+                                ->visible(fn(callable $get) => $get('objetivo') && $get('destino'))
+                                ->options([
+                                    '1' => 'Directo (aquellos que gravan productos, servicios o actividades que tienen un efecto de forma directa en el medio
+                                      ambiente y/o en la explotación de recursos y/o en las emisiones de GEI y/o en procesos de adaptación)',
+                                    '0' => 'Indirecto (aquellos que NO gravan productos, servicios o actividades que tienen un efecto de forma directa
+                                    en el medio ambiente y/o en la explotación de recursos y/o en las emisiones de GEI y/o en procesos de adaptación)',
+                                ]),
                         ]),
                     Wizard\Step::make('Vinculación')
                         ->description('con políticas públicas')
@@ -124,6 +134,11 @@ class IngresoVerdeResource extends Resource
                         ->description('del ingreso')
                         ->schema([
                             (new Cuantificacion())->build(),
+                        ]),
+                    Wizard\Step::make('Clasificación')
+                        ->description('del ingreso')
+                        ->schema([
+                            (new Indentificacion())->build(),
                         ]),
                 ])->columnSpan(2)
                     //->skippable()

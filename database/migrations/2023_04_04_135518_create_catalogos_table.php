@@ -47,7 +47,6 @@ return new class extends Migration
             $table->string('id_clave_cartera',30)->nullable();
             $table->string('monto_aprobado')->nullable();
             $table->timestamps();
-
         });
     }
 

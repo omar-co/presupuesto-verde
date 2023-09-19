@@ -51,7 +51,7 @@ class ObjetivoAmbientalResource extends Resource {
                     ->default(FormService::new()),
                 Wizard::make([
                     Wizard\Step::make('Identificación')
-                        ->description('del programa presupuestario')
+                        ->description('del Programa presupuestario Pp')
                         ->schema([
                             (new Indentificacion())->build(),
                         ]),
@@ -66,17 +66,17 @@ class ObjetivoAmbientalResource extends Resource {
                             (new Vinculacion())->build(),
                         ]),
                     Wizard\Step::make('Contribución PP-PV')
-                        ->description('del programa presupuestario')
+                        ->description('del Programa presupuestario Pp')
                         ->schema([
                             (new Contribucion())->build(),
                         ]),
                     Wizard\Step::make('Cuantificación')
-                        ->description('del programa presupuestario')
+                        ->description('del Programa presupuestario Pp')
                         ->schema([
                             (new Cuantificacion())->build(),
                         ]),
                     Wizard\Step::make('Clasificación')
-                        ->description('del programa presupuestario')
+                        ->description('del Programa presupuestario Pp')
                         ->schema([
                             (new Clasificacion())->build(),
                         ]),
