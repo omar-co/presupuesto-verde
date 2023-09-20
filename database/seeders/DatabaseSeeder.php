@@ -17,12 +17,11 @@ class DatabaseSeeder extends Seeder
             PoliticaPublicaSeeder::class,
             PoliticaPublicaNivelSeeder::class,
             PoliticaPublicaElementoSeeder::class,
+            EnbioSeeder::class,
+            EncaSeeder::class,
+            PnhSeeder::class,
+            PromarnatSeeder::class,
+            PeccSeeder::class,
         ]);
-        // \App\Models\User::factory(10)->create();
-
-        // \App\Models\User::factory()->create([
-        //     'name' => 'Test User',
-        //     'email' => 'test@example.com',
-        // ]);
     }
 }
