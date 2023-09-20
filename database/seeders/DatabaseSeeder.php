@@ -14,9 +14,9 @@ class DatabaseSeeder extends Seeder
     {
         $this->call([
             UserSeeder::class,
-           PoliticaPublicaSeeder::class,
-           PoliticaPublicaNivelSeeder::class,
-           PoliticaPublicaElementoSeeder::class,
+            PoliticaPublicaSeeder::class,
+            PoliticaPublicaNivelSeeder::class,
+            PoliticaPublicaElementoSeeder::class,
         ]);
         // \App\Models\User::factory(10)->create();
 

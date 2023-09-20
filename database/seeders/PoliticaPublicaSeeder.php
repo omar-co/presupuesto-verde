@@ -31,16 +31,16 @@ class PoliticaPublicaSeeder extends Seeder {
                 'update_at' => now(),
             ],
             [
-                'name' => 'PROMARNAT',
-                'user_id' => 1,
-                'created_at' => now(),
-                'update_at' => now(),
-            ],
-            [
                 'name' => 'PNH',
                 'user_id' => 1,
                 'created_at' => now(),
                 'updated_at' => now(),
+            ],
+            [
+                'name' => 'PROMARNAT',
+                'user_id' => 1,
+                'created_at' => now(),
+                'update_at' => now(),
             ],
             [
                 'name' => 'PECC',
