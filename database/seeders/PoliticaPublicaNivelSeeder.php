@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
+use App\Models\PoliticaPublicaElemento;
 
 class PoliticaPublicaNivelSeeder extends Seeder
 {
@@ -157,6 +158,12 @@ class PoliticaPublicaNivelSeeder extends Seeder
                 'politica_publica_id' => 7,
                 'created_at' => now(),
                 'updated_at' => now(),
+            ],
+            [
+                'name' => 'Acción Puntual',
+                'politica_publica_id' => 7,
+                'created_at'=>now(),
+                'updated_at'=>now(),
             ],
         ]);
     }

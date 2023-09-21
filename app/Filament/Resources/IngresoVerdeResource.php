@@ -75,25 +75,25 @@ class IngresoVerdeResource extends Resource
                                                 'I2' => 'Los ingresos generados contribuyen a financiar partidas presupuestales de gasto verde y no verde.',
                                             ]),
                                         Shout::make('success')
-                                            ->content('<span class="font-bold">Ingresos directos y parciales</span> con las siguientes dos características: (1) su objetivo principal es generar cambios en los comportamientos de los agentes con el fin último de proteger el medio ambiente o gestionar los recursos o que han sido específicamente diseñados para la protección ambiental o la gestión de recursos, y (2) los ingresos que generan contribuyen a financiar partidas presupuestarias específicas de gasto verde.')
+                                            ->content('Ingresos directos y parciales con las siguientes dos características: (1) su objetivo principal es generar cambios en los comportamientos de los agentes con el fin último de proteger el medio ambiente o gestionar los recursos o que han sido específicamente diseñados para la protección ambiental o la gestión de recursos, y (2) los ingresos que generan contribuyen a financiar partidas presupuestarias específicas de gasto verde.')
                                             ->columnSpan('full')
                                             ->visible(function (callable $get) {
                                                 return $get('objetivo') === 'O1' && $get('destino') === 'I1';
                                             }),
                                         Shout::make('success')
-                                            ->content('<span class="font-bold">Ingresos directos y parciales</span> con las siguientes características: (1) objetivo principal es también generar cambios en los comportamientos de los agentes con el fin último de proteger el medio ambiente o gestionar los recursos o que han sido específicamente diseñados para la protección ambiental o la gestión, pero (2) los ingresos que generan contribuyen a financiar partidas presupuestarias de gasto verde y no verde.')
+                                            ->content('Ingresos directos y parciales con las siguientes características: (1) objetivo principal es también generar cambios en los comportamientos de los agentes con el fin último de proteger el medio ambiente o gestionar los recursos o que han sido específicamente diseñados para la protección ambiental o la gestión, pero (2) los ingresos que generan contribuyen a financiar partidas presupuestarias de gasto verde y no verde.')
                                             ->columnSpan('full')
                                             ->visible(function (callable $get) {
                                                 return $get('objetivo') === 'O1' && $get('destino') === 'I2';
                                             }),
                                         Shout::make('success')
-                                            ->content('<span class="font-bold">Ingresos indirectos y completos,</span> que se caracterizan por: (1) aunque su objetivo principal no es generar cambios en los comportamientos de los agentes con el fin último de proteger el medio ambiente o gestionar los recursos o que han sido específicamente diseñados para la protección ambiental o la gestión de recursos, generan dichos cambios y (2) los ingresos que generan contribuyen a financiar partidas presupuestarias específicas de gasto verde.')
+                                            ->content('Ingresos indirectos y completos, que se caracterizan por: (1) aunque su objetivo principal no es generar cambios en los comportamientos de los agentes con el fin último de proteger el medio ambiente o gestionar los recursos o que han sido específicamente diseñados para la protección ambiental o la gestión de recursos, generan dichos cambios y (2) los ingresos que generan contribuyen a financiar partidas presupuestarias específicas de gasto verde.')
                                             ->columnSpan('full')
                                             ->visible(function (callable $get) {
                                                 return $get('objetivo') === 'O2' && $get('destino') === 'I1';
                                             }),
                                         Shout::make('success')
-                                            ->content('<span class="font-bold">Ingresos indirectos y parciales</span> que se caracterizan (1) su objetivo principal no es generar cambios en los comportamientos de los agentes con el fin último de proteger el medio ambiente o gestionar los recursos o que han sido específicamente diseñados para la protección ambiental o la gestión de recursos, pero generan dichos cambios, y (2) los ingresos que generan contribuyen a financiar partidas presupuestarias de gasto verde y no verde.')
+                                            ->content('Ingresos indirectos y parciales que se caracterizan (1) su objetivo principal no es generar cambios en los comportamientos de los agentes con el fin último de proteger el medio ambiente o gestionar los recursos o que han sido específicamente diseñados para la protección ambiental o la gestión de recursos, pero generan dichos cambios, y (2) los ingresos que generan contribuyen a financiar partidas presupuestarias de gasto verde y no verde.')
                                             ->columnSpan('full')
                                             ->visible(function (callable $get) {
                                                 return $get('objetivo') === 'O3' && $get('destino') === 'I2';
