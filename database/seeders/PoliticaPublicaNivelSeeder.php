@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
+use App\Models\PoliticaPublicaElemento;
 
 class PoliticaPublicaNivelSeeder extends Seeder
 {
@@ -85,6 +86,84 @@ class PoliticaPublicaNivelSeeder extends Seeder
                 'politica_publica_id' => 4,
                 'created_at' => now(),
                 'updated_at' => now(),
+            ],
+            [
+                'name' => 'Objetivo Prioritario',
+                'politica_publica_id' => 5,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'name' => 'Estrategia Prioritaria',
+                'politica_publica_id' => 5,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'name' => 'Actividad Puntual',
+                'politica_publica_id' => 5,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'name' => 'Objetivo Prioritario',
+                'politica_publica_id' => 6,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'name' => 'Estrategia Prioritaria',
+                'politica_publica_id' => 6,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'name' => 'Actividad Puntual',
+                'politica_publica_id' => 6,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'name' => 'Tipo de Acción Puntual',
+                'politica_publica_id' => 6,
+                'created_at' =>now(),
+                'updated_at' => now(),
+            ],
+            [
+                'name' => 'Instituciones coordinadas',
+                'politica_publica_id' => 6,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'name' => 'Encargado del seguimiento',
+                'politica_publica_id' => 6,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'name' => 'Eje',
+                'politca_publica_id' => 7,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'name' => 'Acción Puntual',
+                'politica_publica_id' => 7,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'name' => 'Componente de Mitigación',
+                'politica_publica_id' => 7,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'name' => 'Acción Puntual',
+                'politica_publica_id' => 7,
+                'created_at'=>now(),
+                'updated_at'=>now(),
             ],
         ]);
     }

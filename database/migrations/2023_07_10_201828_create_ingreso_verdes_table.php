@@ -28,9 +28,7 @@ return new class extends Migration
             $table->string('indicador')->nullable();
             $table->string('periodo_implementacion')->nullable();
             $table->string('etapa')->nullable();
-
             $table->string('relevancia');
-
             $table->integer('clasificacion_p1')->nullable();
             $table->integer('clasificacion_p2')->nullable();
             $table->integer('clasificacion_p3')->nullable();
@@ -39,8 +37,6 @@ return new class extends Migration
             $table->integer('clasificacion_p5')->nullable();
             $table->integer('clasificacion_tipo_gasto')->nullable();
             $table->integer('clasificacion_puntaje')->nullable();
-
-
             $table->string('ciclo');
             $table->integer('ramo_id')->nullable();
             $table->integer('modalidad_id')->nullable();

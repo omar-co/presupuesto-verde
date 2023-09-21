@@ -14,15 +14,15 @@ class DatabaseSeeder extends Seeder
     {
         $this->call([
             UserSeeder::class,
-           PoliticaPublicaSeeder::class,
-           PoliticaPublicaNivelSeeder::class,
-           PoliticaPublicaElementoSeeder::class,
+            PoliticaPublicaSeeder::class,
+            PoliticaPublicaNivelSeeder::class,
+            PoliticaPublicaElementoSeeder::class,
+            EnbioSeeder::class,
+            EncaSeeder::class,
+            PnhSeeder::class,
+            PromarnatSeeder::class,
+            PeccSeeder::class,
+            NdcSeeder::class,
         ]);
-        // \App\Models\User::factory(10)->create();
-
-        // \App\Models\User::factory()->create([
-        //     'name' => 'Test User',
-        //     'email' => 'test@example.com',
-        // ]);
     }
 }
