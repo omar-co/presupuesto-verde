@@ -57,13 +57,11 @@ class PoliticaPublicaResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('user_id'),
-                Tables\Columns\TextColumn::make('name'),
-                Tables\Columns\IconColumn::make('active')
+                Tables\Columns\TextColumn::make('name')->label('Nombre'),
+                Tables\Columns\IconColumn::make('active')->label('¿Activo?')
                     ->boolean(),
-                Tables\Columns\TextColumn::make('created_at')
-                    ->dateTime(),
                 Tables\Columns\TextColumn::make('updated_at')
+                    ->label('Actualizado el')
                     ->dateTime(),
             ])
             ->filters([
