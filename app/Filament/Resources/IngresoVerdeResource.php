@@ -98,22 +98,12 @@ class IngresoVerdeResource extends Resource
                                             ->visible(function (callable $get) {
                                                 return $get('objetivo') === 'O3' && $get('destino') === 'I2';
                                             }),
-
-                                        /*Forms\Components\Select::make('efecto')
-                                            ->label('¿De qué manera se da su efecto?')
-                                            ->reactive()
-                                            ->visible(fn(callable $get) => $get('objetivo') && $get('destino'))
-                                            ->options([
-                                                '1' => 'Efecto Directo',
-                                                '0' => 'Efecto Indirecto',
-                                            ]),*/
                                     ])
                             ])
                         ]),
                     Wizard\Step::make('Efecto')
                         ->description('del ingreso')
                         ->schema([
-                            /*(new Indentificacion())->build(),*/
                             Forms\Components\Select::make('efecto')
                                 ->label('¿De qué manera se da su efecto?')
                                 ->reactive()

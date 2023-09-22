@@ -36,82 +36,20 @@ class PoliticaPublicaResource extends Resource
         return $form
             ->schema([
 
-                Wizard::make([
-                    Wizard\Step::make('Nombre')
-                        ->description('Nombre de la política pública')
-                        ->schema([
-                            Card::make()
-                                ->schema([
-                                    Forms\Components\Hidden::make('user_id')
-                                        ->default(auth()->id())
-                                        ->required(),
-                                    Forms\Components\TextInput::make('name')
-                                        ->label('Nombre')
-                                        ->required()
-                                        ->maxLength(255),
-                                    Forms\Components\Toggle::make('active')
-                                        ->label('¿Activo?')
-                                        ->required(),
-                                ])
-                        ]),
-                    Wizard\Step::make('Estructura')
-                        ->description('Niveles de la política pública')
-                        ->schema([
-                            Card::make()
-                            ->schema([
-                                Placeholder::make('Niveles')
-                                    ->content('Aquí se crean los nombres de los niveles de la política pública por ejemplo: Objetivo, Estrategia, Actividad o Eje, Sub-eje.'),
-                                Grid::make(2)
-                                    ->schema([
-                                        TreeField::make("estructura")
-                                            ->setMaxDepth(999),
+                Card::make()
+                    ->schema([
+                        Forms\Components\Hidden::make('user_id')
+                            ->default(auth()->id())
+                            ->required(),
+                        Forms\Components\TextInput::make('name')
+                            ->label('Nombre')
+                            ->required()
+                            ->maxLength(255),
+                        Forms\Components\Toggle::make('active')
+                            ->label('¿Activo?')
+                            ->required(),
+                    ])
 
-                                        Forms\Components\TextInput::make('name')
-                                            ->label('Nuevo elemento')
-                                            ->reactive()
-                                            ->maxLength(255)
-                                            ->afterStateUpdated(function (callable $get, callable $set, string $state) {
-                                                $get('estructura');
-                                            }),
-                                    ]),
-                            ])
-                        ]),
-                    Wizard\Step::make('Detalles')
-                        ->description('Detalles de la política pública')
-                        ->schema([
-                            Card::make()
-                                ->schema([
-                                    Placeholder::make('Detalles')
-                                        ->content('Usa esta sección para crear los elementos individuales de cada nivel.'),
-                                    TreeField::make("items")
-                                        ->setMaxDepth(999)
-                                        ->default([["id" => "1", "name" => "item 1", "children" => [["id" => "2", "name" => "item 2", "children" => []]]]]),
-                                    /*Repeater::make('detalles')
-                                        ->schema([
-                                            Forms\Components\Select::make('nivel')
-                                                ->required()
-                                                ->options(function (callable $get) {
-                                                    $niveles = collect($get('../../niveles'))->flatten(2);
-                                                    if ($niveles->count() > 1){
-                                                        return $niveles;
-                                                    }
-
-                                                    return [];
-                                                }),
-                                            Forms\Components\Select::make('parent')
-                                                ->required()
-                                                ->options(function (callable $get) {
-                                                   return [];
-                                                }),
-                                            TextInput::make('name')
-                                                ->label('Nombre del elemento')
-                                                ->required(),
-                                        ])
-                                        ->createItemButtonLabel('Agregar nuevo nivel')
-                                        ->columns(1)*/
-                                ])
-                        ]),
-                ])->columnSpan(2)
             ]);
     }
 
@@ -143,7 +81,7 @@ class PoliticaPublicaResource extends Resource
     public static function getRelations(): array
     {
         return [
-            //
+            RelationManagers\NivelesRelationManager::class,
         ];
     }
 
