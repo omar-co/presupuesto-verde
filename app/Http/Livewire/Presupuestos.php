@@ -3,10 +3,12 @@
 namespace App\Http\Livewire;
 
 
+use App\Filament\Filters\CatalogoFilters;
 use App\Models\Catalogo;
 use App\Models\ObjetivoAmbiental;
 use App\Models\Presupuesto;
 use App\Models\User;
+use App\Repositories\CatalogoRepository;
 use Filament\Tables\Actions\BulkAction;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Columns\TextInputColumn;
@@ -178,17 +180,7 @@ class Presupuestos extends Component implements Tables\Contracts\HasTable
 
     protected function getTableFilters(): array
     {
-        return [
-            SelectFilter::make('id_entidad_federativa')
-                ->label('Entidad Federativa')
-                ->options(
-                    Catalogo::query()
-                        ->select(['id_entidad_federativa', 'entidad_federativa'])
-                        ->groupBy(['entidad_federativa', 'id_entidad_federativa'])->
-                        get()
-                        ->pluck('entidad_federativa', 'id_entidad_federativa')
-                )
-        ];
+        return CatalogoFilters::build();
     }
 
     protected function getTableBulkActions(): array

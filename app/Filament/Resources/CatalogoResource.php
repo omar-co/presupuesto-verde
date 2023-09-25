@@ -3,6 +3,7 @@
 namespace App\Filament\Resources;
 
 use AlperenErsoy\FilamentExport\Actions\FilamentExportHeaderAction;
+use App\Filament\Filters\CatalogoFilters;
 use App\Filament\Resources\CatalogoResource\Pages;
 use App\Filament\Resources\CatalogoResource\RelationManagers;
 use App\Models\Catalogo;
@@ -118,9 +119,7 @@ class CatalogoResource extends Resource {
                     ->label('Clave cartera')
                     ->sortable(),
             ])
-            ->filters([
-                //
-            ])
+            ->filters(CatalogoFilters::build())
             ->actions([
                 //Tables\Actions\EditAction::make(),
             ])

@@ -11,7 +11,9 @@ use App\Forms\Sections\Cuantificacion;
 use App\Forms\Sections\Indentificacion;
 use App\Forms\Sections\Politicaspublicas\PoliticasPublicas;
 use App\Forms\Sections\Vinculacion;
+use App\Models\Catalogo;
 use App\Models\IngresoVerde;
+use App\Repositories\CatalogoRepository;
 use App\Services\FormMessage;
 use App\Services\FormService;
 use App\Settings\Calendario;
@@ -150,7 +152,7 @@ class IngresoVerdeResource extends Resource
             ->filters([
                 SelectFilter::make('ramo_id')
                     ->label('Ramo')
-                    ->options(Repository::ramos())
+                    ->options(Catalogo::ramosOptionList())
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),

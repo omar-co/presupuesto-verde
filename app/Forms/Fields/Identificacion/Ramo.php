@@ -3,6 +3,7 @@
 namespace App\Forms\Fields\Identificacion;
 
 use App\Models\Catalogo;
+use App\Repositories\CatalogoRepository;
 use App\Services\FormBuilder\Field;
 use Filament\Forms;
 use Filament\Forms\Components\Select;
@@ -12,12 +13,7 @@ class Ramo extends Select implements Field {
     public function build(): Forms\Components\Select {
         return $this->label('Ramo')
                 ->options(function () {
-                    return Catalogo::select('id_ramo', 'desc_ramo')
-                        ->groupBy('id_ramo', 'desc_ramo')
-                        ->get()
-                        ->mapWithKeys(function ($ramo, $key) {
-                            return [$ramo->id_ramo => "{$ramo->id_ramo} - {$ramo->desc_ramo}"];
-                        });
+                    return Catalogo::ramosOptionList();
                 })
                 ->afterStateUpdated(function ($state, callable $get, callable $set) {
                     $ramo = Catalogo::where('id_ramo', $state)->first();

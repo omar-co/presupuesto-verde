@@ -14,11 +14,11 @@ return new class extends Migration
         Schema::create('catalogos', function (Blueprint $table) {
             $table->unsignedBigInteger('id')->autoIncrement();
             $table->string('ciclo',)->nullable();
-            $table->integer('id_ramo',)->nullable();
+            $table->integer('id_ramo',)->index();
             $table->string('desc_ramo')->nullable();
-            $table->string('id_ur',30)->nullable();
+            $table->string('id_ur',30)->index();
             $table->string('desc_ur')->nullable();
-            $table->integer('gpo_funcional',)->nullable();
+            $table->integer('gpo_funcional',)->index();
             $table->string('desc_gpo_funcional')->nullable();
             $table->integer('id_funcion',)->nullable();
             $table->string('desc_funcion')->nullable();

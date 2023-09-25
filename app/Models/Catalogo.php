@@ -2,11 +2,18 @@
 
 namespace App\Models;
 
+use App\QueryBuilders\CatalogoBuilder;
 use App\Scopes\ByCiclo;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
+/**
+ * @method static ramosOptionList()
+ * @method static unidadResponsableOptionList()
+ * @method static grupoFuncionalOptionList()
+ * @method static entidadesFederativasOptionList()
+ */
 class Catalogo extends Model
 {
     use HasFactory;
@@ -32,6 +39,10 @@ class Catalogo extends Model
         }
 
         return false;
+    }
+
+    public function newEloquentBuilder($query): CatalogoBuilder {
+        return new CatalogoBuilder($query);
     }
 
     public function scopeReferencia($query, $filter, $modalidad) {

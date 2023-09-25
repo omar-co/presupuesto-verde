@@ -3,25 +3,21 @@
 namespace App\Filament\Resources;
 
 use AlperenErsoy\FilamentExport\Actions\FilamentExportBulkAction;
-use AlperenErsoy\FilamentExport\Actions\FilamentExportHeaderAction;
 use App\Filament\Resources\ObjetivoAmbientalResource\Pages;
-use App\Filament\Resources\ObjetivoAmbientalResource\Promarnat;
-use App\Filament\Resources\ObjetivoAmbientalResource\RelationManagers;
 use App\Forms\Sections\Clasificacion;
-use App\Filament\Resources\ObjetivoAmbientalResource\Repository;
 use App\Forms\Sections\Contribucion;
 use App\Forms\Sections\Cuantificacion;
 use App\Forms\Sections\Indentificacion;
 use App\Forms\Sections\Politicaspublicas\PoliticasPublicas;
 use App\Forms\Sections\Vinculacion;
+use App\Models\Catalogo;
 use App\Models\ObjetivoAmbiental;
+use App\Repositories\CatalogoRepository;
 use App\Services\FormMessage;
 use App\Services\FormService;
 use App\Settings\Calendario;
 use Awcodes\Shout\Shout;
-use Filament\Forms\Components\Card;
 use Filament\Forms\Components\Hidden;
-use Filament\Forms\Components\Tabs;
 use Filament\Forms\Components\Wizard;
 use Filament\Resources\Form;
 use Filament\Resources\Resource;
@@ -99,7 +95,7 @@ class ObjetivoAmbientalResource extends Resource {
             ->filters([
                 SelectFilter::make('ramo_id')
                     ->label('Ramo')
-                    ->options(Repository::ramos())
+                    ->options(Catalogo::ramosOptionList())
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
