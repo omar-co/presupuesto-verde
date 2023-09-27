@@ -16,7 +16,7 @@ class RolePolicy
      * @param  \App\Models\User  $user
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function viewAny(User $user): bool
+    public function viewAny(User $user)
     {
         return $user->can('view_any_role');
     }
@@ -28,7 +28,7 @@ class RolePolicy
      * @param  \Spatie\Permission\Models\Role  $role
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function view(User $user, Role $role): bool
+    public function view(User $user, Role $role)
     {
         return $user->can('view_role');
     }
@@ -39,7 +39,7 @@ class RolePolicy
      * @param  \App\Models\User  $user
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function create(User $user): bool
+    public function create(User $user)
     {
         return $user->can('create_role');
     }
@@ -51,7 +51,7 @@ class RolePolicy
      * @param  \Spatie\Permission\Models\Role  $role
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function update(User $user, Role $role): bool
+    public function update(User $user, Role $role)
     {
         return $user->can('update_role');
     }
@@ -63,7 +63,7 @@ class RolePolicy
      * @param  \Spatie\Permission\Models\Role  $role
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function delete(User $user, Role $role): bool
+    public function delete(User $user, Role $role)
     {
         return $user->can('delete_role');
     }
@@ -74,7 +74,7 @@ class RolePolicy
      * @param  \App\Models\User  $user
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function deleteAny(User $user): bool
+    public function deleteAny(User $user)
     {
         return $user->can('delete_any_role');
     }
@@ -86,7 +86,7 @@ class RolePolicy
      * @param  \Spatie\Permission\Models\Role  $role
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function forceDelete(User $user, Role $role): bool
+    public function forceDelete(User $user, Role $role)
     {
         return $user->can('{{ ForceDelete }}');
     }
@@ -97,7 +97,7 @@ class RolePolicy
      * @param  \App\Models\User  $user
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function forceDeleteAny(User $user): bool
+    public function forceDeleteAny(User $user)
     {
         return $user->can('{{ ForceDeleteAny }}');
     }
@@ -109,7 +109,7 @@ class RolePolicy
      * @param  \Spatie\Permission\Models\Role  $role
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function restore(User $user, Role $role): bool
+    public function restore(User $user, Role $role)
     {
         return $user->can('{{ Restore }}');
     }
@@ -120,7 +120,7 @@ class RolePolicy
      * @param  \App\Models\User  $user
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function restoreAny(User $user): bool
+    public function restoreAny(User $user)
     {
         return $user->can('{{ RestoreAny }}');
     }
@@ -132,7 +132,7 @@ class RolePolicy
      * @param  \Spatie\Permission\Models\Role  $role
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function replicate(User $user, Role $role): bool
+    public function replicate(User $user, Role $role)
     {
         return $user->can('{{ Replicate }}');
     }
@@ -143,7 +143,7 @@ class RolePolicy
      * @param  \App\Models\User  $user
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function reorder(User $user): bool
+    public function reorder(User $user)
     {
         return $user->can('{{ Reorder }}');
     }

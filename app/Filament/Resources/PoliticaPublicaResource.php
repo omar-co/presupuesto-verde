@@ -45,6 +45,14 @@ class PoliticaPublicaResource extends Resource
                             ->label('Nombre')
                             ->required()
                             ->maxLength(255),
+                        Forms\Components\Select::make('types')
+                            ->label('Visible en:')
+                            ->multiple()
+                            ->options([
+                                'cambio_climatico' => 'Cambio Climático',
+                                'objetivos_ambientales' => 'Objetivos Ambientales',
+                                'ingresos_verdes' => 'Ingresos Verdes'])
+                            ->required(),
                         Forms\Components\Toggle::make('active')
                             ->label('¿Activo?')
                             ->required(),
@@ -58,6 +66,7 @@ class PoliticaPublicaResource extends Resource
         return $table
             ->columns([
                 Tables\Columns\TextColumn::make('name')->label('Nombre'),
+                Tables\Columns\TagsColumn::make('types')->label('Visible en')->separator(','),
                 Tables\Columns\IconColumn::make('active')->label('¿Activo?')
                     ->boolean(),
                 Tables\Columns\TextColumn::make('updated_at')

@@ -150,9 +150,7 @@ class IngresoVerdeResource extends Resource
                     ->sortable(),
             ])
             ->filters([
-                SelectFilter::make('ramo_id')
-                    ->label('Ramo')
-                    ->options(Catalogo::ramosOptionList())
+
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),

@@ -16,7 +16,7 @@ class CambioClimaticoPolicy
      * @param  \App\Models\User  $user
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function viewAny(User $user): bool
+    public function viewAny(User $user)
     {
         return $user->can('view_any_cambio::climatico');
     }
@@ -28,7 +28,7 @@ class CambioClimaticoPolicy
      * @param  \App\Models\CambioClimatico  $cambioClimatico
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function view(User $user, CambioClimatico $cambioClimatico): bool
+    public function view(User $user, CambioClimatico $cambioClimatico)
     {
         return $user->can('view_cambio::climatico');
     }
@@ -39,7 +39,7 @@ class CambioClimaticoPolicy
      * @param  \App\Models\User  $user
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function create(User $user): bool
+    public function create(User $user)
     {
         return $user->can('create_cambio::climatico');
     }
@@ -51,7 +51,7 @@ class CambioClimaticoPolicy
      * @param  \App\Models\CambioClimatico  $cambioClimatico
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function update(User $user, CambioClimatico $cambioClimatico): bool
+    public function update(User $user, CambioClimatico $cambioClimatico)
     {
         return $user->can('update_cambio::climatico');
     }
@@ -63,7 +63,7 @@ class CambioClimaticoPolicy
      * @param  \App\Models\CambioClimatico  $cambioClimatico
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function delete(User $user, CambioClimatico $cambioClimatico): bool
+    public function delete(User $user, CambioClimatico $cambioClimatico)
     {
         return $user->can('delete_cambio::climatico');
     }
@@ -74,7 +74,7 @@ class CambioClimaticoPolicy
      * @param  \App\Models\User  $user
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function deleteAny(User $user): bool
+    public function deleteAny(User $user)
     {
         return $user->can('delete_any_cambio::climatico');
     }
@@ -86,7 +86,7 @@ class CambioClimaticoPolicy
      * @param  \App\Models\CambioClimatico  $cambioClimatico
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function forceDelete(User $user, CambioClimatico $cambioClimatico): bool
+    public function forceDelete(User $user, CambioClimatico $cambioClimatico)
     {
         return $user->can('{{ ForceDelete }}');
     }
@@ -97,7 +97,7 @@ class CambioClimaticoPolicy
      * @param  \App\Models\User  $user
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function forceDeleteAny(User $user): bool
+    public function forceDeleteAny(User $user)
     {
         return $user->can('{{ ForceDeleteAny }}');
     }
@@ -109,7 +109,7 @@ class CambioClimaticoPolicy
      * @param  \App\Models\CambioClimatico  $cambioClimatico
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function restore(User $user, CambioClimatico $cambioClimatico): bool
+    public function restore(User $user, CambioClimatico $cambioClimatico)
     {
         return $user->can('{{ Restore }}');
     }
@@ -120,7 +120,7 @@ class CambioClimaticoPolicy
      * @param  \App\Models\User  $user
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function restoreAny(User $user): bool
+    public function restoreAny(User $user)
     {
         return $user->can('{{ RestoreAny }}');
     }
@@ -132,7 +132,7 @@ class CambioClimaticoPolicy
      * @param  \App\Models\CambioClimatico  $cambioClimatico
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function replicate(User $user, CambioClimatico $cambioClimatico): bool
+    public function replicate(User $user, CambioClimatico $cambioClimatico)
     {
         return $user->can('{{ Replicate }}');
     }
@@ -143,7 +143,7 @@ class CambioClimaticoPolicy
      * @param  \App\Models\User  $user
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function reorder(User $user): bool
+    public function reorder(User $user)
     {
         return $user->can('{{ Reorder }}');
     }

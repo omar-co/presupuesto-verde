@@ -13,9 +13,14 @@ class PoliticaPublica extends Model
     protected $table = 'politicas_publicas';
 
     protected $fillable = [
-      'name',
-      'active',
-      'user_id',
+        'name',
+        'active',
+        'user_id',
+        'types',
+    ];
+
+    protected $casts = [
+      'types' => 'array',
     ];
 
     public function niveles(): HasMany {
