@@ -8,11 +8,13 @@ use App\Filament\Resources\CatalogoResource\Pages;
 use App\Filament\Resources\CatalogoResource\RelationManagers;
 use App\Models\Catalogo;
 use App\Models\Presupuesto;
+use App\Services\ExportService;
 use Filament\Forms;
 use Filament\Resources\Form;
 use Filament\Resources\Resource;
 use Filament\Resources\Table;
 use Filament\Tables;
+use Filament\Tables\Actions\Action;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Columns\TextInputColumn;
 use Illuminate\Database\Eloquent\Builder;
@@ -124,14 +126,12 @@ class CatalogoResource extends Resource {
                 //Tables\Actions\EditAction::make(),
             ])
             ->headerActions([
-                FilamentExportHeaderAction::make('exportar')
-                    ->directDownload()
-                    ->disablePreview()
-                    ->defaultFormat('csv')
-                    ->disableAdditionalColumns()
-                    ->disableFilterColumns()
-                    ->disableFileName()
-                    ->disableFileNamePrefix()
+                Action::make('exportar')
+                    ->action(function () {
+                       ExportService::catalogo();
+                    })
+                    ->icon('heroicon-o-document-download')
+                    ->color('primary')
             ])
             ->bulkActions([
                 //Tables\Actions\DeleteBulkAction::make(),

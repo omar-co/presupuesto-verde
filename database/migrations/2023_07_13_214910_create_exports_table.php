@@ -11,9 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('ods_1', function (Blueprint $table) {
+        Schema::create('exports', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
+            $table->string('ciclo');
+            $table->foreignId('user_id')->constrained();
+            $table->string('type');
+            $table->boolean('completed')->default(false);
+            $table->string('path')->nullable();
             $table->timestamps();
         });
     }
@@ -23,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('ods_1');
+        Schema::dropIfExists('exports');
     }
 };
