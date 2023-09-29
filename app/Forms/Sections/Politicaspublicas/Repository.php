@@ -2,6 +2,8 @@
 
 namespace App\Forms\Sections\Politicaspublicas;
 
+use App\Models\CambioClimatico;
+use App\Models\IngresoVerde;
 use App\Models\ObjetivoAmbiental;
 use App\Models\PoliticaPublica;
 use App\Models\PoliticaPublicaElemento;
@@ -62,10 +64,19 @@ class Repository {
             ->get('politica_publica_id');
 
         return PoliticaPublica::query()
+            ->where(self::columnNameForModel($model), true)
             ->whereNotIn('id', $registosActuales)
             ->where('active', true)
-            //TODO: Filtrar por tipo (objetivo ambienta, presupuesrto verde, ingresos verdes)
         ->get(['id', 'name'])
             ->pluck('name', 'id');
+    }
+
+
+    private static function columnNameForModel(string $model): string {
+        return match ($model) {
+            ObjetivoAmbiental::class => 'objetivos_ambientales',
+            CambioClimatico::class => 'cambio_climatico',
+            IngresoVerde::class => 'ingresos_verdes',
+        };
     }
 }

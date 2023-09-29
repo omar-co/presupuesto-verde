@@ -15,7 +15,9 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->boolean('active')->default(true);
-            $table->string('types');
+            $table->boolean('objetivos_ambientales')->default(false);
+            $table->boolean('cambio_climatico')->default(false);
+            $table->boolean('ingresos_verdes')->default(false);
             $table->foreignId('user_id')->constrained();
             $table->timestamps();
         });

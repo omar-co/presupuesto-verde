@@ -16,11 +16,13 @@ class PoliticaPublica extends Model
         'name',
         'active',
         'user_id',
-        'types',
+        'objetivos_ambientales',
+        'cambio_climatico',
+        'ingresos_verdes',
     ];
 
     protected $casts = [
-      'types' => 'array',
+
     ];
 
     public function niveles(): HasMany {

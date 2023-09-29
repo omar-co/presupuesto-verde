@@ -7,6 +7,7 @@ use App\Filament\Resources\PoliticaPublicaResource\RelationManagers;
 use App\Models\PoliticaPublica;
 use Filament\Forms;
 use Filament\Forms\Components\Card;
+use Filament\Forms\Components\Fieldset;
 use Filament\Forms\Components\Grid;
 use Filament\Forms\Components\Placeholder;
 use Filament\Forms\Components\Repeater;
@@ -45,14 +46,18 @@ class PoliticaPublicaResource extends Resource
                             ->label('Nombre')
                             ->required()
                             ->maxLength(255),
-                        Forms\Components\Select::make('types')
-                            ->label('Visible en:')
-                            ->multiple()
-                            ->options([
-                                'cambio_climatico' => 'Cambio Climático',
-                                'objetivos_ambientales' => 'Objetivos Ambientales',
-                                'ingresos_verdes' => 'Ingresos Verdes'])
-                            ->required(),
+                        Fieldset::make('Visible en:')
+                            ->schema([
+                                Forms\Components\Toggle::make('objetivos_ambientales')
+                                    ->label('Objetivos Ambientales')
+                                    ->required(),
+                                Forms\Components\Toggle::make('cambio_climatico')
+                                    ->label('Cambio Climatico')
+                                    ->required(),
+                                Forms\Components\Toggle::make('ingresos_verdes')
+                                    ->label('Ingresos Verdes')
+                                    ->required(),
+                            ]),
                         Forms\Components\Toggle::make('active')
                             ->label('¿Activo?')
                             ->required(),
@@ -66,7 +71,12 @@ class PoliticaPublicaResource extends Resource
         return $table
             ->columns([
                 Tables\Columns\TextColumn::make('name')->label('Nombre'),
-                Tables\Columns\TagsColumn::make('types')->label('Visible en')->separator(','),
+                Tables\Columns\IconColumn::make('objetivos_ambientales')->label('Objetivos Ambientales')
+                    ->boolean(),
+                Tables\Columns\IconColumn::make('cambio_climatico')->label('Cambio Climatico')
+                    ->boolean(),
+                Tables\Columns\IconColumn::make('ingresos_verdes')->label('Ingresos Verdes')
+                    ->boolean(),
                 Tables\Columns\IconColumn::make('active')->label('¿Activo?')
                     ->boolean(),
                 Tables\Columns\TextColumn::make('updated_at')
