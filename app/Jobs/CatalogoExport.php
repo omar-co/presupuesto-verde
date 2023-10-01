@@ -39,6 +39,7 @@ class CatalogoExport implements ShouldQueue
         $date = Carbon::now()->format('d-m-Y-H-i-s');
         $basePath = 'storage/app/';
         $path = "exports/catalogo/programas_presupuestales_{$date}.csv";
+        info(realpath('storage/app/exports/catalogo'));
         (new FastExcel($this->catalogoGenerator()))->export($basePath . $path);
 
         $this->export->path = $path;
