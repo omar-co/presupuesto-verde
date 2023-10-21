@@ -16,7 +16,7 @@ class PoliticaPublicaElementoPolicy
      * @param  \App\Models\User  $user
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function viewAny(User $user)
+    public function viewAny(User $user): bool
     {
         return $user->can('view_any_politica::publica::elemento');
     }
@@ -28,7 +28,7 @@ class PoliticaPublicaElementoPolicy
      * @param  \App\Models\PoliticaPublicaElemento  $politicaPublicaElemento
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function view(User $user, PoliticaPublicaElemento $politicaPublicaElemento)
+    public function view(User $user, PoliticaPublicaElemento $politicaPublicaElemento): bool
     {
         return $user->can('view_politica::publica::elemento');
     }
@@ -39,7 +39,7 @@ class PoliticaPublicaElementoPolicy
      * @param  \App\Models\User  $user
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function create(User $user)
+    public function create(User $user): bool
     {
         return $user->can('create_politica::publica::elemento');
     }
@@ -51,7 +51,7 @@ class PoliticaPublicaElementoPolicy
      * @param  \App\Models\PoliticaPublicaElemento  $politicaPublicaElemento
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function update(User $user, PoliticaPublicaElemento $politicaPublicaElemento)
+    public function update(User $user, PoliticaPublicaElemento $politicaPublicaElemento): bool
     {
         return $user->can('update_politica::publica::elemento');
     }
@@ -63,7 +63,7 @@ class PoliticaPublicaElementoPolicy
      * @param  \App\Models\PoliticaPublicaElemento  $politicaPublicaElemento
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function delete(User $user, PoliticaPublicaElemento $politicaPublicaElemento)
+    public function delete(User $user, PoliticaPublicaElemento $politicaPublicaElemento): bool
     {
         return $user->can('delete_politica::publica::elemento');
     }
@@ -74,7 +74,7 @@ class PoliticaPublicaElementoPolicy
      * @param  \App\Models\User  $user
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function deleteAny(User $user)
+    public function deleteAny(User $user): bool
     {
         return $user->can('delete_any_politica::publica::elemento');
     }
@@ -86,7 +86,7 @@ class PoliticaPublicaElementoPolicy
      * @param  \App\Models\PoliticaPublicaElemento  $politicaPublicaElemento
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function forceDelete(User $user, PoliticaPublicaElemento $politicaPublicaElemento)
+    public function forceDelete(User $user, PoliticaPublicaElemento $politicaPublicaElemento): bool
     {
         return $user->can('{{ ForceDelete }}');
     }
@@ -97,7 +97,7 @@ class PoliticaPublicaElementoPolicy
      * @param  \App\Models\User  $user
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function forceDeleteAny(User $user)
+    public function forceDeleteAny(User $user): bool
     {
         return $user->can('{{ ForceDeleteAny }}');
     }
@@ -109,7 +109,7 @@ class PoliticaPublicaElementoPolicy
      * @param  \App\Models\PoliticaPublicaElemento  $politicaPublicaElemento
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function restore(User $user, PoliticaPublicaElemento $politicaPublicaElemento)
+    public function restore(User $user, PoliticaPublicaElemento $politicaPublicaElemento): bool
     {
         return $user->can('{{ Restore }}');
     }
@@ -120,7 +120,7 @@ class PoliticaPublicaElementoPolicy
      * @param  \App\Models\User  $user
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function restoreAny(User $user)
+    public function restoreAny(User $user): bool
     {
         return $user->can('{{ RestoreAny }}');
     }
@@ -132,7 +132,7 @@ class PoliticaPublicaElementoPolicy
      * @param  \App\Models\PoliticaPublicaElemento  $politicaPublicaElemento
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function replicate(User $user, PoliticaPublicaElemento $politicaPublicaElemento)
+    public function replicate(User $user, PoliticaPublicaElemento $politicaPublicaElemento): bool
     {
         return $user->can('{{ Replicate }}');
     }
@@ -143,7 +143,7 @@ class PoliticaPublicaElementoPolicy
      * @param  \App\Models\User  $user
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function reorder(User $user)
+    public function reorder(User $user): bool
     {
         return $user->can('{{ Reorder }}');
     }

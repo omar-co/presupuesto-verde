@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Casts\Monto;
 use App\Events\SavingRegistry;
 use App\Scopes\ByCiclo;
 use App\Scopes\ByUserScope;
@@ -28,6 +29,12 @@ class IngresoVerde extends Model
         'objetivo',
         'destino',
 
+        'efecto',
+        'tipo_ingreso',
+        'tipo_ingreso_uno',
+        'tipo_ingreso_dos',
+        'monto',
+
         'politica_publica_id',
         'nivel_uno',
         'nivel_dos',
@@ -38,8 +45,6 @@ class IngresoVerde extends Model
         'periodo_implementacion',
         'etapa',
 
-        'relevancia',
-
         'clasificacion_p1',
         'clasificacion_p2',
         'clasificacion_p3',
@@ -48,6 +53,15 @@ class IngresoVerde extends Model
         'clasificacion_p5',
         'clasificacion_tipo_gasto',
         'clasificacion_puntaje',
+    ];
+
+    protected $casts = [
+        'monto' => Monto::class,
+        'nivel_uno' => 'array',
+        'nivel_dos' => 'array',
+        'nivel_tres' => 'array',
+        'nivel_cuatro' => 'array',
+        'etapa' => 'array',
     ];
 
     protected static function boot()

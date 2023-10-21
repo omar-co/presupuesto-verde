@@ -16,7 +16,7 @@ class ExportPolicy
      * @param  \App\Models\User  $user
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function viewAny(User $user)
+    public function viewAny(User $user): bool
     {
         return $user->can('view_any_export');
     }
@@ -28,7 +28,7 @@ class ExportPolicy
      * @param  \App\Models\Export  $export
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function view(User $user, Export $export)
+    public function view(User $user, Export $export): bool
     {
         return $user->can('view_export');
     }
@@ -39,7 +39,7 @@ class ExportPolicy
      * @param  \App\Models\User  $user
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function create(User $user)
+    public function create(User $user): bool
     {
         return $user->can('create_export');
     }
@@ -51,7 +51,7 @@ class ExportPolicy
      * @param  \App\Models\Export  $export
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function update(User $user, Export $export)
+    public function update(User $user, Export $export): bool
     {
         return $user->can('update_export');
     }
@@ -63,7 +63,7 @@ class ExportPolicy
      * @param  \App\Models\Export  $export
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function delete(User $user, Export $export)
+    public function delete(User $user, Export $export): bool
     {
         return $user->can('delete_export');
     }
@@ -74,7 +74,7 @@ class ExportPolicy
      * @param  \App\Models\User  $user
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function deleteAny(User $user)
+    public function deleteAny(User $user): bool
     {
         return $user->can('delete_any_export');
     }
@@ -86,7 +86,7 @@ class ExportPolicy
      * @param  \App\Models\Export  $export
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function forceDelete(User $user, Export $export)
+    public function forceDelete(User $user, Export $export): bool
     {
         return $user->can('{{ ForceDelete }}');
     }
@@ -97,7 +97,7 @@ class ExportPolicy
      * @param  \App\Models\User  $user
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function forceDeleteAny(User $user)
+    public function forceDeleteAny(User $user): bool
     {
         return $user->can('{{ ForceDeleteAny }}');
     }
@@ -109,7 +109,7 @@ class ExportPolicy
      * @param  \App\Models\Export  $export
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function restore(User $user, Export $export)
+    public function restore(User $user, Export $export): bool
     {
         return $user->can('{{ Restore }}');
     }
@@ -120,7 +120,7 @@ class ExportPolicy
      * @param  \App\Models\User  $user
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function restoreAny(User $user)
+    public function restoreAny(User $user): bool
     {
         return $user->can('{{ RestoreAny }}');
     }
@@ -132,7 +132,7 @@ class ExportPolicy
      * @param  \App\Models\Export  $export
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function replicate(User $user, Export $export)
+    public function replicate(User $user, Export $export): bool
     {
         return $user->can('{{ Replicate }}');
     }
@@ -143,7 +143,7 @@ class ExportPolicy
      * @param  \App\Models\User  $user
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function reorder(User $user)
+    public function reorder(User $user): bool
     {
         return $user->can('{{ Reorder }}');
     }

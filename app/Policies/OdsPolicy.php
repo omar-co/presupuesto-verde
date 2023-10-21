@@ -16,7 +16,7 @@ class OdsPolicy
      * @param  \App\Models\User  $user
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function viewAny(User $user)
+    public function viewAny(User $user): bool
     {
         return $user->can('view_any_ods');
     }
@@ -28,7 +28,7 @@ class OdsPolicy
      * @param  \App\Models\Ods  $ods
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function view(User $user, Ods $ods)
+    public function view(User $user, Ods $ods): bool
     {
         return $user->can('view_ods');
     }
@@ -39,7 +39,7 @@ class OdsPolicy
      * @param  \App\Models\User  $user
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function create(User $user)
+    public function create(User $user): bool
     {
         return $user->can('create_ods');
     }
@@ -51,7 +51,7 @@ class OdsPolicy
      * @param  \App\Models\Ods  $ods
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function update(User $user, Ods $ods)
+    public function update(User $user, Ods $ods): bool
     {
         return $user->can('update_ods');
     }
@@ -63,7 +63,7 @@ class OdsPolicy
      * @param  \App\Models\Ods  $ods
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function delete(User $user, Ods $ods)
+    public function delete(User $user, Ods $ods): bool
     {
         return $user->can('delete_ods');
     }
@@ -74,7 +74,7 @@ class OdsPolicy
      * @param  \App\Models\User  $user
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function deleteAny(User $user)
+    public function deleteAny(User $user): bool
     {
         return $user->can('delete_any_ods');
     }
@@ -86,7 +86,7 @@ class OdsPolicy
      * @param  \App\Models\Ods  $ods
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function forceDelete(User $user, Ods $ods)
+    public function forceDelete(User $user, Ods $ods): bool
     {
         return $user->can('{{ ForceDelete }}');
     }
@@ -97,7 +97,7 @@ class OdsPolicy
      * @param  \App\Models\User  $user
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function forceDeleteAny(User $user)
+    public function forceDeleteAny(User $user): bool
     {
         return $user->can('{{ ForceDeleteAny }}');
     }
@@ -109,7 +109,7 @@ class OdsPolicy
      * @param  \App\Models\Ods  $ods
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function restore(User $user, Ods $ods)
+    public function restore(User $user, Ods $ods): bool
     {
         return $user->can('{{ Restore }}');
     }
@@ -120,7 +120,7 @@ class OdsPolicy
      * @param  \App\Models\User  $user
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function restoreAny(User $user)
+    public function restoreAny(User $user): bool
     {
         return $user->can('{{ RestoreAny }}');
     }
@@ -132,7 +132,7 @@ class OdsPolicy
      * @param  \App\Models\Ods  $ods
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function replicate(User $user, Ods $ods)
+    public function replicate(User $user, Ods $ods): bool
     {
         return $user->can('{{ Replicate }}');
     }
@@ -143,7 +143,7 @@ class OdsPolicy
      * @param  \App\Models\User  $user
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function reorder(User $user)
+    public function reorder(User $user): bool
     {
         return $user->can('{{ Reorder }}');
     }
