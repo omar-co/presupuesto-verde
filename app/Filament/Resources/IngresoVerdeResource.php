@@ -6,6 +6,7 @@ use AlperenErsoy\FilamentExport\Actions\FilamentExportHeaderAction;
 use App\Filament\Resources\IngresoVerdeResource\Pages;
 use App\Filament\Resources\IngresoVerdeResource\RelationManagers;
 use App\Filament\Resources\ObjetivoAmbientalResource\Repository;
+use App\Forms\Sections\Clasificacion;
 use App\Forms\Sections\Contribucion;
 use App\Forms\Sections\Cuantificacion;
 use App\Forms\Sections\Indentificacion;
@@ -16,6 +17,7 @@ use App\Models\IngresoVerde;
 use App\Repositories\CatalogoRepository;
 use App\Services\FormMessage;
 use App\Services\FormService;
+use App\Services\IngresoVerde\TipoIngreso;
 use App\Settings\Calendario;
 use Awcodes\Shout\Shout;
 use Filament\Forms;
@@ -25,9 +27,6 @@ use Filament\Resources\Form;
 use Filament\Resources\Resource;
 use Filament\Resources\Table;
 use Filament\Tables;
-use Filament\Tables\Filters\SelectFilter;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\SoftDeletingScope;
 
 class IngresoVerdeResource extends Resource
 {
@@ -106,34 +105,61 @@ class IngresoVerdeResource extends Resource
                     Wizard\Step::make('Efecto')
                         ->description('del ingreso')
                         ->schema([
-                            Forms\Components\Select::make('efecto')
-                                ->label('¿De qué manera se da su efecto?')
-                                ->reactive()
-                                ->visible(fn(callable $get) => $get('objetivo') && $get('destino'))
-                                ->options([
-                                    '1' => 'Directo (aquellos que gravan productos, servicios o actividades que tienen un efecto de forma directa en el medio
+                            Forms\Components\Card::make()
+                                ->schema([
+                                    Forms\Components\Select::make('efecto')
+                                        ->label('¿De qué manera se da su efecto?')
+                                        ->reactive()
+                                        ->options([
+                                            '1' => 'Directo (aquellos que gravan productos, servicios o actividades que tienen un efecto de forma directa en el medio
                                       ambiente y/o en la explotación de recursos y/o en las emisiones de GEI y/o en procesos de adaptación)',
-                                    '0' => 'Indirecto (aquellos que NO gravan productos, servicios o actividades que tienen un efecto de forma directa
+                                            '0' => 'Indirecto (aquellos que NO gravan productos, servicios o actividades que tienen un efecto de forma directa
                                     en el medio ambiente y/o en la explotación de recursos y/o en las emisiones de GEI y/o en procesos de adaptación)',
-                                ]),
+                                        ]),
+                                    ]),
                         ]),
                     Wizard\Step::make('Vinculación')
                         ->description('con políticas públicas')
                         ->schema([
                             (new PoliticasPublicas(self::$model))->build(),
                         ]),
-                    Wizard\Step::make('Cuantificación')
+                    Wizard\Step::make('Tipificación y cuantificación')
                         ->description('del ingreso')
                         ->schema([
-                            (new Cuantificacion())->build(),
+                            Forms\Components\Card::make()
+                                ->schema([
+                                    Forms\Components\Select::make('tipo_ingreso')
+                                        ->reactive()
+                                        ->required()
+                                        ->options([
+                                            TipoIngreso::IngresosOrdinarios->value => 'I. Ingresos Ordinarios (se obtienen de manera regular)',
+                                            TipoIngreso::IngresosExtraordinarios->value => 'I. Ingresos Extraordinarios (se obtienen de manera no regular)',
+                                        ]),
+                                    Forms\Components\Select::make('tipo_ingreso_uno')
+                                        ->label('')
+                                        ->required()
+                                        ->reactive()
+                                        ->disabled(fn(callable $get) => TipoIngreso::tryFrom($get('tipo_ingreso')) === null)
+                                        ->options(fn(callable $get) => TipoIngreso::tryFrom($get('tipo_ingreso'))?->options()),
+
+                                    Forms\Components\Select::make('tipo_ingreso_dos')
+                                        ->label('')
+                                        ->required()
+                                        ->reactive()
+                                        ->visible(fn(callable $get) => $get('tipo_ingreso_uno') && TipoIngreso::levelTwo($get('tipo_ingreso_uno')))
+                                        ->options(fn(callable $get) => TipoIngreso::levelTwo($get('tipo_ingreso_uno'))),
+                                    Forms\Components\TextInput::make('monto')
+                                        ->required()
+                                        ->mask(fn (Forms\Components\TextInput\Mask $mask) => $mask->money())
+                                ])
                         ]),
                     Wizard\Step::make('Clasificación')
                         ->description('del ingreso')
                         ->schema([
-                            (new Indentificacion())->build(),
+                            (new Clasificacion())->build(),
                         ]),
                 ])->columnSpan(2)
-                    //->skippable()
+                    ->skippable(fn() => auth()->user()->email === 'omar.goco@gmail.com')
             ]);
     }
 

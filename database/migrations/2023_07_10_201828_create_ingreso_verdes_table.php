@@ -29,7 +29,6 @@ return new class extends Migration
             $table->string('periodo_implementacion')->nullable();
             $table->string('etapa')->nullable();
 
-            $table->string('relevancia');
 
             $table->integer('clasificacion_p1')->nullable();
             $table->integer('clasificacion_p2')->nullable();
