@@ -14,26 +14,40 @@ class Mensaje extends Grid implements Field
     public function build(): Grid
     {
         return $this->schema([
-            Shout::make('success')
-                ->content('¡Atención! El programa presupuestario tiene un impacto ambiental favorable.')
-                ->type('success')
-                ->columnSpan('full')
-                ->visible(function (callable $get) {
-                    return $get('clasificacion_p1') === '1' && $get('clasificacion_p2') === '3';
-                }),
             Shout::make('warning')
-                ->content('¡Atención! El programa presupuestario no tiene un impacto ambiental directo.')
+                ->content('¡Atención! El programa presupuestario tiene un gasto neutro.')
                 ->type('warning')
                 ->columnSpan('full')
                 ->visible(function (callable $get) {
-                    return $get('clasificacion_p3') === '1' && ($get('clasificacion_p3_gasto') === '1' || $get('clasificacion_p3_gasto') === '2' );
+                    return $get('clasificacion_p1') === 'no' || $get('clasificacion_p4') === 'no' || $get('clasificacion_p5') === 'no';
+                }),
+            Shout::make('success')
+                ->content('¡Atención! El programa presupuestario tiene un gasto muy favorable.')
+                ->type('success')
+                ->columnSpan('full')
+                ->visible(function (callable $get) {
+                    return $get('clasificacion_p2_extra') === 'no';
+                }),
+            Shout::make('info')
+                ->content('¡Atención! El programa presupuestario tiene un gasto controvertido.')
+                ->type('warning')
+                ->columnSpan('full')
+                ->visible(function (callable $get) {
+                    return $get('clasificacion_p2_extra') === 'si' || $get('clasificacion_p4_extra') === 'si';
+                }),
+            Shout::make('info')
+                ->content('¡Atención! El programa presupuestario tiene un gasto favorable.')
+                ->type('info')
+                ->columnSpan('full')
+                ->visible(function (callable $get) {
+                    return $get('clasificacion_p3') === 'si';
                 }),
             Shout::make('danger')
-                ->content('¡Atención! El programa presupuestario no tiene un impacto directo favorable.')
+                ->content('¡Atención! El programa presupuestario tiene un gasto desfavorable.')
                 ->type('danger')
                 ->columnSpan('full')
                 ->visible(function (callable $get) {
-                    return $get('clasificacion_p4') === '0' || $get('clasificacion_p5') === '-1';
+                    return $get('clasificacion_p5') === 'si';
                 }),
         ]);
 
