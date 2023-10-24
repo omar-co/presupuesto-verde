@@ -14,19 +14,37 @@ class PoliticasPublicas extends FieldCollection {
 
     public function __construct(private readonly string $model) {
         parent::__construct(
-            (new PoliticaPublica('politica_publica_id'))->setModelClass($this->model),
+            (new PoliticaPublica('politica_publica_id'))->setModelClass($this->model)
+                ->afterStateUpdated(function (callable $set) {
+                    $set('nivel_uno', null);
+                    $set('nivel_dos', null);
+                    $set('nivel_tres', null);
+                    $set('nivel_cuatro', null);
+                }),
             (new Nivel('nivel_uno'))
                 ->label(fn(callable $get) => Repository::nombreNivel($get('politica_publica_id'), 1))
                 ->options(fn(callable $get) => Repository::optionsNivelUno($get('politica_publica_id')))
-                ->visible(fn(callable $get) => $get('politica_publica_id')),
+                ->visible(fn(callable $get) => $get('politica_publica_id'))
+                ->afterStateUpdated(function (callable $set) {
+                    $set('nivel_dos', null);
+                    $set('nivel_tres', null);
+                    $set('nivel_cuatro', null);
+                }),
             (new Nivel('nivel_dos'))
                 ->label(fn(callable $get) => Repository::nombreNivel($get('politica_publica_id'), 2))
                 ->options(fn(callable $get) => Repository::optionsNivel($get('politica_publica_id'), 2, $get('nivel_uno')))
-                ->visible(fn(callable $get) => ($get('politica_publica_id') && Repository::nombreNivel($get('politica_publica_id'), 2))),
+                ->visible(fn(callable $get) => ($get('politica_publica_id') && Repository::nombreNivel($get('politica_publica_id'), 2)))
+                ->afterStateUpdated(function (callable $set) {
+                    $set('nivel_tres', null);
+                    $set('nivel_cuatro', null);
+                }),
             (new Nivel('nivel_tres'))
                 ->label(fn(callable $get) => Repository::nombreNivel($get('politica_publica_id'), 3))
                 ->options(fn(callable $get) => Repository::optionsNivel($get('politica_publica_id'), 3, $get('nivel_dos')))
-                ->visible(fn(callable $get) => ($get('politica_publica_id') && Repository::nombreNivel($get('politica_publica_id'), 3))),
+                ->visible(fn(callable $get) => ($get('politica_publica_id') && Repository::nombreNivel($get('politica_publica_id'), 3)))
+                ->afterStateUpdated(function (callable $set) {
+                    $set('nivel_cuatro', null);
+                }),
             (new Nivel('nivel_cuatro'))
                 ->label(fn(callable $get) => Repository::nombreNivel($get('politica_publica_id'), 4))
                 ->options(fn(callable $get) => Repository::optionsNivel($get('politica_publica_id'), 4, $get('nivel_tres')))

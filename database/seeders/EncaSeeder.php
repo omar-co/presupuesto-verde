@@ -28,7 +28,7 @@ class EncaSeeder extends Seeder
                 "politica_publica_nivel_id" => 1
             ],
             [
-                "name" => "3. Empresas comprometidas con la camidad del aire",
+                "name" => "3. Empresas comprometidas con la calidad del aire",
                 "parent_id" => null,
                 "politica_publica_id" => 3,
                 "politica_publica_nivel_id" => 1
