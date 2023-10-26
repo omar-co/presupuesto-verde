@@ -23,6 +23,7 @@ class DatabaseSeeder extends Seeder
             PromarnatSeeder::class,
             PeccSeeder::class,
             NdcSeeder::class,
+            PnccSeeder::class,
         ]);
     }
 }
