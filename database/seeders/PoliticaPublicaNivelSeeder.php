@@ -142,6 +142,12 @@ class PoliticaPublicaNivelSeeder extends Seeder
                 'updated_at' => now(),
             ],
             [
+                'name' => 'Componente',
+                'politca_publica_id' => 7,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
                 'name' => 'Eje',
                 'politca_publica_id' => 7,
                 'created_at' => now(),
@@ -153,18 +159,7 @@ class PoliticaPublicaNivelSeeder extends Seeder
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
-            [
-                'name' => 'Componente de Mitigación',
-                'politica_publica_id' => 7,
-                'created_at' => now(),
-                'updated_at' => now(),
-            ],
-            [
-                'name' => 'Acción Puntual',
-                'politica_publica_id' => 7,
-                'created_at'=>now(),
-                'updated_at'=>now(),
-            ],
+
         ]);
     }
 }
