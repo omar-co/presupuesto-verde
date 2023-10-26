@@ -47,13 +47,14 @@ return new class extends Migration
 
             $table->boolean('tipo_contribucion')->nullable();
 
-            $table->integer('clasificacion_p1')->nullable();
-            $table->integer('clasificacion_p2')->nullable();
-            $table->integer('clasificacion_p3')->nullable();
-            $table->integer('clasificacion_p3_gasto')->nullable();
-            $table->integer('clasificacion_p4')->nullable();
-            $table->integer('clasificacion_p5')->nullable();
-            $table->integer('clasificacion_tipo_gasto')->nullable();
+            $table->string('clasificacion_p1')->nullable();
+            $table->string('clasificacion_p2')->nullable();
+            $table->string('clasificacion_p2_extra')->nullable();
+            $table->string('clasificacion_p3')->nullable();
+            $table->string('clasificacion_p4')->nullable();
+            $table->string('clasificacion_p4_extra')->nullable();
+            $table->string('clasificacion_p5')->nullable();
+            $table->string('clasificacion_tipo_gasto')->nullable();
             $table->integer('clasificacion_puntaje')->nullable();
 
             $table->foreignId('user_id')->constrained();

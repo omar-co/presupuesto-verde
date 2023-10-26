@@ -35,6 +35,16 @@ return new class extends Migration
             $table->string('periodo_implementacion')->nullable();
             $table->string('etapa')->nullable();
 
+            $table->string('clasificacion_p1')->nullable();
+            $table->string('clasificacion_p2')->nullable();
+            $table->string('clasificacion_p2_extra')->nullable();
+            $table->string('clasificacion_p3')->nullable();
+            $table->string('clasificacion_p4')->nullable();
+            $table->string('clasificacion_p4_extra')->nullable();
+            $table->string('clasificacion_p5')->nullable();
+            $table->string('clasificacion_tipo_gasto')->nullable();
+            $table->integer('clasificacion_puntaje')->nullable();
+
 
             $table->string('convenio_diversidad')->nullable();
             $table->string('convenio_desertificacion')->nullable();

@@ -53,10 +53,12 @@ class CambioClimatico extends Model
 
         'clasificacion_p1',
         'clasificacion_p2',
+        'clasificacion_p2_extra',
         'clasificacion_p3',
-        'clasificacion_p3_gasto',
-        'clasificacion_p4',
+        'clasificacion_p4_extra',
         'clasificacion_p5',
+        'clasificacion_tipo_gasto',
+        'clasificacion_puntaje',
     ];
 
     protected $casts = [
