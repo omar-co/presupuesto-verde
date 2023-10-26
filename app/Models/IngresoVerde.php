@@ -88,6 +88,11 @@ class IngresoVerde extends Model
         return $this->morphMany(Presupuesto::class, 'presupuestable');
     }
 
+    public function user(): BelongsTo
+    {
+        return $this->belongsTo(User::class);
+    }
+
     private function createCatalogRelationship(string $key, string $foreign = null): BelongsTo {
 
         if (!$foreign) {

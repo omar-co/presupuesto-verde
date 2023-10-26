@@ -168,9 +168,7 @@ class IngresoVerdeResource extends Resource
         return $table
             ->columns([
                 Tables\Columns\TextColumn::make('id')->sortable(),
-                Tables\Columns\TextColumn::make('ramo.desc_ramo'),
-                Tables\Columns\TextColumn::make('modalidad.desc_modalidad'),
-                Tables\Columns\TextColumn::make('programa_presupuestario_id'),
+                Tables\Columns\TextColumn::make('user.ramo_id')->label('Ramo'),
                 Tables\Columns\TextColumn::make('updated_at')
                     ->label('Actualizado el')
                     ->sortable(),
