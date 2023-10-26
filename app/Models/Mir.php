@@ -10,6 +10,14 @@ class Mir extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+      'ciclo',
+      'id_ramo',
+      'id_objetivo',
+      'desc_objetivo',
+      'id_nivel',
+    ];
+
     protected static function boot()
     {
         parent::boot();
