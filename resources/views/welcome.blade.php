@@ -90,10 +90,9 @@
                             </p>
                             <p class="text-justify">
                                 El objetivo es contribuir a la generación de capacidades para la identificación de
-                                acciones que el gobierno lleva a cabo en materia de cambio climático y la cuantificación
-                                de dichos recursos, a través de brindar criterios que permitan identificar las acciones
-                                y los recursos relevantes en la consecución de los objetivos de adaptación y mitigación
-                                del cambio climático.
+                                acciones llevadas a cabo por el gobierno federal que pueden ser consideradas como
+                                presupuesto verde, así como la creación de capacidades para cuantificar los recursos que
+                                se destinan al desarrollo de dichas acciones.
                             </p>
                         </a>
                     </div>
@@ -106,9 +105,10 @@
                             </p>
                             <p class="text-justify">
                                 El objetivo es contribuir a la generación de capacidades para la identificación de
-                                acciones llevadas a cabo por el gobierno federal que pueden ser consideradas como
-                                presupuesto verde, así como la creación de capacidades para cuantificar los recursos que
-                                se destinan al desarrollo de dichas acciones.
+                                acciones que el gobierno lleva a cabo en materia de cambio climático y la cuantificación
+                                de dichos recursos, a través de brindar criterios que permitan identificar las acciones
+                                y los recursos relevantes en la consecución de los objetivos de adaptación y mitigación
+                                del cambio climático.
                             </p>
                         </a>
                     </div>
