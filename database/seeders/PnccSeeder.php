@@ -21,7 +21,7 @@ class PnccSeeder extends Seeder
                 'cambio_climatico' => true,
                 'ingresos_verdes' => true,
                 'created_at' => now(),
-                'update_at' => now(),
+                'updated_at' => now(),
             ],
         ]);
 

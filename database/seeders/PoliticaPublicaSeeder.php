@@ -37,7 +37,7 @@ class PoliticaPublicaSeeder extends Seeder {
                 'cambio_climatico' => false,
                 'ingresos_verdes' => true,
                 'created_at' => now(),
-                'update_at' => now(),
+                'updated_at' => now(),
             ],
             [
                 'name' => 'PNH',
@@ -55,7 +55,7 @@ class PoliticaPublicaSeeder extends Seeder {
                 'cambio_climatico' => false,
                 'ingresos_verdes' => true,
                 'created_at' => now(),
-                'update_at' => now(),
+                'updated_at' => now(),
             ],
             [
                 'name' => 'PECC',
@@ -64,7 +64,7 @@ class PoliticaPublicaSeeder extends Seeder {
                 'cambio_climatico' => false,
                 'ingresos_verdes' => true,
                 'created_at' => now(),
-                'update_at' => now(),
+                'updated_at' => now(),
             ],
             [
                 'name' => 'NDC',
@@ -73,7 +73,7 @@ class PoliticaPublicaSeeder extends Seeder {
                 'cambio_climatico' => false,
                 'ingresos_verdes' => true,
                 'created_at' => now(),
-                'update_at' => now(),
+                'updated_at' => now(),
             ],
         ]);
     }
