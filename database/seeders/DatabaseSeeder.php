@@ -24,6 +24,7 @@ class DatabaseSeeder extends Seeder
             PeccSeeder::class,
             NdcSeeder::class,
             PnccSeeder::class,
+            OdsSeeder::class,
         ]);
     }
 }
