@@ -169,6 +169,7 @@ class IngresoVerdeResource extends Resource
             ->columns([
                 Tables\Columns\TextColumn::make('id')->sortable(),
                 Tables\Columns\TextColumn::make('user.ramo_id')->label('Ramo'),
+                Tables\Columns\TextColumn::make('clasificacion_tipo_gasto')->label('Tipo de Gasto'),
                 Tables\Columns\TextColumn::make('updated_at')
                     ->label('Actualizado el')
                     ->sortable(),
