@@ -5,6 +5,7 @@ namespace App\Models;
 use App\Events\SavingRegistry;
 use App\Scopes\ByCiclo;
 use App\Scopes\ByUserScope;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -94,6 +95,39 @@ class CambioClimatico extends Model
 
     public function presupuestos() {
         return $this->morphMany(Presupuesto::class, 'presupuestable');
+    }
+
+    public function politicaPublica(): BelongsTo
+    {
+        return $this->belongsTo(PoliticaPublica::class);
+    }
+
+    public function scopeEfecto(Builder $query, ?bool $efecto): void
+    {
+        if ($efecto !== null) {
+            $query->where('tipo_contribucion', $efecto);
+        }
+    }
+
+    public function scopeWherePoliticaPublica(Builder $query, ?int $politicaPublicaId): void
+    {
+        if ($politicaPublicaId !== null) {
+            $query->where('politica_publica_id', $politicaPublicaId);
+        }
+    }
+
+    public function scopeClasificacionTipoGasto(Builder $query, ?string $tipoClasificacion): void
+    {
+        if ($tipoClasificacion !== null) {
+            $query->where('clasificacion_tipo_gasto', $tipoClasificacion);
+        }
+    }
+
+    public function scopeTipoGasto(Builder $query, ?string $tipoGasto): void
+    {
+        if ($tipoGasto !== null) {
+            $query->where('tipo_ingreso', $tipoGasto);
+        }
     }
 
     private function createCatalogRelationship(string $key, string $foreign = null): BelongsTo {

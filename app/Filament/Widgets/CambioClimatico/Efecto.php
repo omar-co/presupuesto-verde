@@ -1,9 +1,10 @@
 <?php
 
-namespace App\Filament\Widgets\IngresoVerde;
+namespace App\Filament\Widgets\CambioClimatico;
 
-use App\Models\IngresoVerde;
+use App\Models\CambioClimatico;
 use App\Models\PoliticaPublica;
+use App\Models\Presupuesto;
 use App\Values\Millions;
 use Filament\Forms\Components\Select;
 use Illuminate\Support\Facades\DB;
@@ -16,14 +17,14 @@ class Efecto extends ApexChartWidget
      *
      * @var string
      */
-    protected static string $chartId = 'IngresoVerdeEfecto';
+    protected static string $chartId = 'CambioClimaticoEfecto';
 
     /**
      * Widget Title
      *
      * @var string|null
      */
-    protected static ?string $heading = 'Ingreso verde por efecto ';
+    protected static ?string $heading = 'Cambio climatico por efecto ';
 
     protected static ?string $pollingInterval = null;
 
@@ -81,13 +82,6 @@ class Efecto extends ApexChartWidget
                         ->pluck('name', 'id')
                 ),
 
-            Select::make('tipo_gasto')
-                ->label('Tipo de gasto')
-                ->options([
-                    'ordinarios' => 'ordinarios',
-                    'extraordinarios' => 'extraordinarios',
-                ]),
-
             Select::make('clasificacion_tipo_gasto')
                 ->label('Categoría')
                 ->options([
@@ -104,15 +98,19 @@ class Efecto extends ApexChartWidget
 
     private function getValues()
     {
-        return IngresoVerde::select(['efecto', DB::raw('SUM(monto) as total')])
-            ->tipoGasto($this->filterFormData['tipo_gasto'])
+        return CambioClimatico::select(['tipo_contribucion'])
+            ->addSelect(['presupuesto' => Presupuesto::query()
+                ->select(DB::raw('SUM(monto) as total'))
+                ->whereColumn('form_id', 'cambio_climaticos.form_id')
+                ->limit(1)
+            ])
             ->clasificacionTipoGasto($this->filterFormData['clasificacion_tipo_gasto'])
             ->wherePoliticaPublica($this->filterFormData['politica_publica_id'])
-            ->groupBy('efecto')
+            ->groupBy('tipo_contribucion', 'presupuesto')
             ->get()
             ->map(function ($ingreso) {
                 return [
-                    $ingreso->efecto === 1 ? 'Directo' : 'Indirecto' => (new Millions((int)$ingreso->total))->formatted,
+                    $ingreso->tipo_contribucion === 1 ? 'Directo' : 'Indirecto' => (new Millions((int)$ingreso->presupuesto * 100))->formatted,
                 ];
             })
             ->flatMap(fn($values) => $values)

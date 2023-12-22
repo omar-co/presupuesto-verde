@@ -5,6 +5,7 @@ namespace App\Models;
 use App\Events\SavingRegistry;
 use App\Scopes\ByCiclo;
 use App\Scopes\ByUserScope;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -95,7 +96,12 @@ class ObjetivoAmbiental extends Model
     }
 
     public function presupuestos() {
-        return $this->morphMany(Presupuesto::class, 'presupuestable');
+        return $this->hasManyThrough(Presupuesto::class, Form::class);
+    }
+
+    public function politicaPublica(): BelongsTo
+    {
+        return $this->belongsTo(PoliticaPublica::class);
     }
 
     private function createCatalogRelationship(string $key, string $foreign = null): BelongsTo {
@@ -107,5 +113,33 @@ class ObjetivoAmbiental extends Model
         return $this->belongsTo(Catalogo::class,"{$key}_id", "id_{$foreign}")
             ->select(["id_{$foreign}", "desc_{$foreign}"])
             ->groupBy(["id_{$foreign}", "desc_{$foreign}"]);
+    }
+
+    public function scopeEfecto(Builder $query, ?bool $efecto): void
+    {
+        if ($efecto !== null) {
+            $query->where('tipo_contribucion', $efecto);
+        }
+    }
+
+    public function scopeWherePoliticaPublica(Builder $query, ?int $politicaPublicaId): void
+    {
+        if ($politicaPublicaId !== null) {
+            $query->where('politica_publica_id', $politicaPublicaId);
+        }
+    }
+
+    public function scopeClasificacionTipoGasto(Builder $query, ?string $tipoClasificacion): void
+    {
+        if ($tipoClasificacion !== null) {
+            $query->where('clasificacion_tipo_gasto', $tipoClasificacion);
+        }
+    }
+
+    public function scopeTipoGasto(Builder $query, ?string $tipoGasto): void
+    {
+        if ($tipoGasto !== null) {
+            $query->where('tipo_ingreso', $tipoGasto);
+        }
     }
 }

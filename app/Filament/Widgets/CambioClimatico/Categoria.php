@@ -1,31 +1,55 @@
 <?php
 
-namespace App\Filament\Widgets\IngresoVerde;
+namespace App\Filament\Widgets\CambioClimatico;
 
-use App\Models\IngresoVerde;
-use App\Models\PoliticaPublica;
+
+use App\Models\CambioClimatico;
+use App\Models\Presupuesto;
 use App\Values\Millions;
 use Filament\Forms\Components\Select;
 use Illuminate\Support\Facades\DB;
 use Leandrocfe\FilamentApexCharts\Widgets\ApexChartWidget;
 
-class Efecto extends ApexChartWidget
+class Categoria extends ApexChartWidget
 {
     /**
      * Chart Id
      *
      * @var string
      */
-    protected static string $chartId = 'IngresoVerdeEfecto';
+    protected static string $chartId = 'CambioClimaticoCategoria';
 
     /**
      * Widget Title
      *
      * @var string|null
      */
-    protected static ?string $heading = 'Ingreso verde por efecto ';
+    protected static ?string $heading = 'Cambio climatico por categoría ';
 
     protected static ?string $pollingInterval = null;
+
+    protected function getFormSchema(): array
+    {
+        return [
+
+            Select::make('efecto')
+                ->options([
+                    0 => 'Indirecto',
+                    1 => 'Directo',
+                ]),
+
+            Select::make('clasificacion_tipo_gasto')
+                ->label('Categoría')
+                ->options([
+                    'gasto muy favorable' => 'gasto muy favorable',
+                    'gasto favorable' => 'gasto favorable',
+                    'gasto neutro' => 'gasto neutro',
+                    'gasto desfavorable' => 'gasto desfavorable',
+                    'gasto controvertido' => 'gasto controvertido',
+                ]),
+
+        ];
+    }
 
     /**
      * Chart options (series, labels, types, size, animations...)
@@ -69,50 +93,23 @@ class Efecto extends ApexChartWidget
         ];
     }
 
-    protected function getFormSchema(): array
-    {
-        return [
-
-            Select::make('politica_publica_id')
-                ->label('Politica pública')
-                ->options(
-                    PoliticaPublica::select(['id', 'name'])
-                        ->get()
-                        ->pluck('name', 'id')
-                ),
-
-            Select::make('tipo_gasto')
-                ->label('Tipo de gasto')
-                ->options([
-                    'ordinarios' => 'ordinarios',
-                    'extraordinarios' => 'extraordinarios',
-                ]),
-
-            Select::make('clasificacion_tipo_gasto')
-                ->label('Categoría')
-                ->options([
-                    'gasto muy favorable' => 'gasto muy favorable',
-                    'gasto favorable' => 'gasto favorable',
-                    'gasto neutro' => 'gasto neutro',
-                    'gasto desfavorable' => 'gasto desfavorable',
-                    'gasto controvertido' => 'gasto controvertido',
-                ]),
-
-        ];
-    }
-
 
     private function getValues()
     {
-        return IngresoVerde::select(['efecto', DB::raw('SUM(monto) as total')])
-            ->tipoGasto($this->filterFormData['tipo_gasto'])
+        return CambioClimatico::select(['politica_publica_id'])
+            ->with(['politicaPublica'])
+            ->addSelect(['presupuesto' => Presupuesto::query()
+                ->select(DB::raw('SUM(monto) as total'))
+                ->whereColumn('form_id', 'cambio_climaticos.form_id')
+                ->limit(1)
+            ])
+            ->efecto($this->filterFormData['efecto'])
             ->clasificacionTipoGasto($this->filterFormData['clasificacion_tipo_gasto'])
-            ->wherePoliticaPublica($this->filterFormData['politica_publica_id'])
-            ->groupBy('efecto')
+            ->groupBy('politica_publica_id', 'presupuesto')
             ->get()
             ->map(function ($ingreso) {
                 return [
-                    $ingreso->efecto === 1 ? 'Directo' : 'Indirecto' => (new Millions((int)$ingreso->total))->formatted,
+                    $ingreso->politicaPublica->name => (new Millions((int)$ingreso->presupuesto * 100))->formatted,
                 ];
             })
             ->flatMap(fn($values) => $values)

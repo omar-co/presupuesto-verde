@@ -10,7 +10,7 @@ use Filament\Pages\Page;
 
 class IngresoVerde extends Page
 {
-    protected static ?string $navigationIcon = 'heroicon-o-document-text';
+    protected static ?string $navigationIcon = 'heroicon-o-chart-pie';
 
     protected static string $view = 'filament.pages.ingreso-verde';
 
