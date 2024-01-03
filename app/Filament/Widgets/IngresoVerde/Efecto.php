@@ -98,14 +98,25 @@ class Efecto extends ApexChartWidget
                     'gasto controvertido' => 'gasto controvertido',
                 ]),
 
+            Select::make('ciclo')
+                ->options(IngresoVerde::select('ciclo')
+                    ->groupBy('ciclo')
+                    ->get()
+                    ->mapWithKeys(function ($ciclo) {
+                        return [$ciclo->ciclo => $ciclo->ciclo];
+                    })
+                ),
+
         ];
     }
 
 
     private function getValues()
     {
-        return IngresoVerde::select(['efecto', DB::raw('SUM(monto) as total')])
+        return IngresoVerde::withoutGlobalScopes()
+            ->select(['efecto', DB::raw('SUM(monto) as total')])
             ->tipoGasto($this->filterFormData['tipo_gasto'])
+            ->ciclo($this->filterFormData['ciclo'])
             ->clasificacionTipoGasto($this->filterFormData['clasificacion_tipo_gasto'])
             ->wherePoliticaPublica($this->filterFormData['politica_publica_id'])
             ->groupBy('efecto')

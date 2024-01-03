@@ -92,19 +92,30 @@ class Efecto extends ApexChartWidget
                     'gasto controvertido' => 'gasto controvertido',
                 ]),
 
+            Select::make('ciclo')
+                ->options(ObjetivoAmbiental::select('ciclo')
+                    ->groupBy('ciclo')
+                    ->get()
+                    ->mapWithKeys(function ($ciclo) {
+                        return [$ciclo->ciclo => $ciclo->ciclo];
+                    })
+                ),
+
         ];
     }
 
 
     private function getValues()
     {
-        return ObjetivoAmbiental::select(['tipo_contribucion'])
+        return ObjetivoAmbiental::withoutGlobalScopes()
+            ->select(['tipo_contribucion'])
             ->addSelect(['presupuesto' => Presupuesto::query()
                 ->select(DB::raw('SUM(monto) as total'))
                 ->whereColumn('form_id', 'objetivos_ambientales.form_id')
                 ->limit(1)
             ])
             ->clasificacionTipoGasto($this->filterFormData['clasificacion_tipo_gasto'])
+            ->ciclo($this->filterFormData['ciclo'])
             ->wherePoliticaPublica($this->filterFormData['politica_publica_id'])
             ->groupBy('tipo_contribucion', 'presupuesto')
             ->get()

@@ -47,6 +47,15 @@ class Categoria extends ApexChartWidget
                     'gasto controvertido' => 'gasto controvertido',
                 ]),
 
+            Select::make('ciclo')
+                ->options(ObjetivoAmbiental::select('ciclo')
+                    ->groupBy('ciclo')
+                    ->get()
+                    ->mapWithKeys(function ($ciclo) {
+                        return [$ciclo->ciclo => $ciclo->ciclo];
+                    })
+                ),
+
         ];
     }
 
@@ -95,7 +104,8 @@ class Categoria extends ApexChartWidget
 
     private function getValues()
     {
-        return ObjetivoAmbiental::select(['politica_publica_id'])
+        return ObjetivoAmbiental::withoutGlobalScopes()
+            ->select(['politica_publica_id'])
             ->with(['politicaPublica'])
             ->addSelect(['presupuesto' => Presupuesto::query()
                 ->select(DB::raw('SUM(monto) as total'))
@@ -103,6 +113,7 @@ class Categoria extends ApexChartWidget
                 ->limit(1)
             ])
             ->efecto($this->filterFormData['efecto'])
+            ->ciclo($this->filterFormData['ciclo'])
             ->clasificacionTipoGasto($this->filterFormData['clasificacion_tipo_gasto'])
             ->groupBy('politica_publica_id', 'presupuesto')
             ->get()

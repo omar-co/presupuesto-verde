@@ -105,7 +105,8 @@ class TipoIngreso extends ApexChartWidget
 
     private function getValues()
     {
-        return ObjetivoAmbiental::select(['clasificacion_tipo_gasto'])
+        return ObjetivoAmbiental::withoutGlobalScopes()
+            ->select(['clasificacion_tipo_gasto'])
             ->addSelect(['presupuesto' => Presupuesto::query()
                 ->select(DB::raw('SUM(monto) as total'))
                 ->whereColumn('form_id', 'objetivos_ambientales.form_id')

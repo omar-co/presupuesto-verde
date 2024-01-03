@@ -98,6 +98,15 @@ class TipoIngreso extends ApexChartWidget
                     'gasto controvertido' => 'gasto controvertido',
                 ]),
 
+            Select::make('ciclo')
+                ->options(IngresoVerde::select('ciclo')
+                    ->groupBy('ciclo')
+                    ->get()
+                    ->mapWithKeys(function ($ciclo) {
+                        return [$ciclo->ciclo => $ciclo->ciclo];
+                    })
+                ),
+
         ];
     }
 
@@ -105,8 +114,10 @@ class TipoIngreso extends ApexChartWidget
     private function getValues()
     {
 
-        return IngresoVerde::select(['tipo_ingreso', DB::raw('SUM(monto) as total')])
+        return IngresoVerde::withoutGlobalScopes()
+            ->select(['tipo_ingreso', DB::raw('SUM(monto) as total')])
             ->efecto($this->filterFormData['efecto'])
+            ->ciclo($this->filterFormData['ciclo'])
             ->wherePoliticaPublica($this->filterFormData['politica_publica_id'])
             ->clasificacionTipoGasto($this->filterFormData['clasificacion_tipo_gasto'])
             ->groupBy('tipo_ingreso')

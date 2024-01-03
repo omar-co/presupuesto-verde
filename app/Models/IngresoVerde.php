@@ -6,6 +6,7 @@ use App\Casts\Monto;
 use App\Events\SavingRegistry;
 use App\Scopes\ByCiclo;
 use App\Scopes\ByUserScope;
+use App\Traits\DashboardFilters;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -14,6 +15,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 class IngresoVerde extends Model
 {
     use HasFactory;
+    use DashboardFilters;
 
     protected $dispatchesEvents = [
         'saving' => SavingRegistry::class,

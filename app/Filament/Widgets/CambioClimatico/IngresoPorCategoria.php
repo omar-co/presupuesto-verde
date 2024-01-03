@@ -72,18 +72,29 @@ class IngresoPorCategoria extends ApexChartWidget
                         ->pluck('name', 'id')
                 ),
 
+            Select::make('ciclo')
+                ->options(CambioClimatico::select('ciclo')
+                    ->groupBy('ciclo')
+                    ->get()
+                    ->mapWithKeys(function ($ciclo) {
+                        return [$ciclo->ciclo => $ciclo->ciclo];
+                    })
+                ),
+
         ];
     }
 
 
     private function getValues()
     {
-        return CambioClimatico::select(['clasificacion_tipo_gasto'])
+        return CambioClimatico::withoutGlobalScopes()
+            ->select(['clasificacion_tipo_gasto'])
             ->addSelect(['presupuesto' => Presupuesto::query()
                 ->select(DB::raw('SUM(monto) as total'))
                 ->whereColumn('form_id', 'cambio_climaticos.form_id')
                 ->limit(1)
             ])
+            ->ciclo($this->filterFormData['ciclo'])
             ->efecto($this->filterFormData['efecto'])
             ->wherePoliticaPublica($this->filterFormData['politica_publica_id'])
             ->groupBy('clasificacion_tipo_gasto', 'presupuesto')

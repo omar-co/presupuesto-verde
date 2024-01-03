@@ -78,14 +78,25 @@ class IngresoPorCategoria extends ApexChartWidget
                     'extraordinarios' => 'extraordinarios',
                 ]),
 
+            Select::make('ciclo')
+                ->options(IngresoVerde::select('ciclo')
+                    ->groupBy('ciclo')
+                    ->get()
+                    ->mapWithKeys(function ($ciclo) {
+                        return [$ciclo->ciclo => $ciclo->ciclo];
+                    })
+                ),
+
         ];
     }
 
 
     private function getValues()
     {
-        return IngresoVerde::select(['clasificacion_tipo_gasto', DB::raw('SUM(monto) as total')])
+        return IngresoVerde::withoutGlobalScopes()
+            ->select(['clasificacion_tipo_gasto', DB::raw('SUM(monto) as total')])
             ->efecto($this->filterFormData['efecto'])
+            ->ciclo($this->filterFormData['ciclo'])
             ->tipoGasto($this->filterFormData['tipo_gasto'])
             ->wherePoliticaPublica($this->filterFormData['politica_publica_id'])
             ->groupBy('clasificacion_tipo_gasto')

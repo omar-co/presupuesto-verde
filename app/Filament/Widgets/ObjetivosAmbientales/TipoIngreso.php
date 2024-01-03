@@ -99,13 +99,23 @@ class TipoIngreso extends ApexChartWidget
                     'gasto controvertido' => 'gasto controvertido',
                 ]),
 
+            Select::make('ciclo')
+                ->options(ObjetivoAmbiental::select('ciclo')
+                    ->groupBy('ciclo')
+                    ->get()
+                    ->mapWithKeys(function ($ciclo) {
+                        return [$ciclo->ciclo => $ciclo->ciclo];
+                    })
+                ),
+
         ];
     }
 
 
     private function getValues()
     {
-        return ObjetivoAmbiental::select(['clasificacion_tipo_gasto'])
+        return ObjetivoAmbiental::withoutGlobalScopes()
+            ->select(['clasificacion_tipo_gasto'])
             ->addSelect(['presupuesto' => Presupuesto::query()
                 ->select(DB::raw('SUM(monto) as total'))
                 ->whereColumn('form_id', 'objetivos_ambientales.form_id')
@@ -113,6 +123,7 @@ class TipoIngreso extends ApexChartWidget
             ])
             ->tipoGasto($this->filterFormData['tipo_gasto'])
             ->efecto($this->filterFormData['efecto'])
+            ->ciclo($this->filterFormData['ciclo'])
             ->wherePoliticaPublica($this->filterFormData['politica_publica_id'])
             ->groupBy('clasificacion_tipo_gasto', 'presupuesto')
             ->get()
