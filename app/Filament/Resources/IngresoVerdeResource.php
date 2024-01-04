@@ -27,6 +27,8 @@ use Filament\Resources\Form;
 use Filament\Resources\Resource;
 use Filament\Resources\Table;
 use Filament\Tables;
+use Filament\Tables\Filters\SelectFilter;
+use Illuminate\Support\Facades\Cache;
 
 class IngresoVerdeResource extends Resource
 {
@@ -60,6 +62,12 @@ class IngresoVerdeResource extends Resource
                             ->schema([
                                 Forms\Components\Grid::make(1)
                                     ->schema([
+                                        Forms\Components\Select::make('ramo_id')
+                                            ->label('Ramo')
+                                            ->options(Cache::remember('ramos', now()->addDay(), function () {
+                                                return Catalogo::ramosOptionList();
+                                            }))
+                                            ->visible(auth()->user()->ramo_id === null),
                                         Forms\Components\Select::make('objetivo')
                                             ->label('Objetivo del ingreso')
                                             ->reactive()
