@@ -2,10 +2,12 @@
 
 namespace App\Filament\Widgets\IngresoVerde;
 
+use App\Models\Catalogo;
 use App\Models\IngresoVerde;
 use App\Models\PoliticaPublica;
 use App\Values\Millions;
 use Filament\Forms\Components\Select;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\DB;
 use Leandrocfe\FilamentApexCharts\Widgets\ApexChartWidget;
 
@@ -87,6 +89,11 @@ class IngresoPorCategoria extends ApexChartWidget
                     })
                 ),
 
+            Select::make('ramo')
+                ->options(Cache::remember('ramos', now()->addDay(), function () {
+                    return Catalogo::ramosOptionList();
+                })),
+
         ];
     }
 
@@ -97,6 +104,7 @@ class IngresoPorCategoria extends ApexChartWidget
             ->select(['clasificacion_tipo_gasto', DB::raw('SUM(monto) as total')])
             ->efecto($this->filterFormData['efecto'])
             ->ciclo($this->filterFormData['ciclo'])
+            ->ramo($this->filterFormData['ramo'])
             ->tipoGasto($this->filterFormData['tipo_gasto'])
             ->wherePoliticaPublica($this->filterFormData['politica_publica_id'])
             ->groupBy('clasificacion_tipo_gasto')

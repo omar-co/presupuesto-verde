@@ -4,10 +4,12 @@ namespace App\Filament\Widgets\ObjetivosAmbientales;
 
 
 use App\Models\CambioClimatico;
+use App\Models\Catalogo;
 use App\Models\ObjetivoAmbiental;
 use App\Models\Presupuesto;
 use App\Values\Millions;
 use Filament\Forms\Components\Select;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\DB;
 use Leandrocfe\FilamentApexCharts\Widgets\ApexChartWidget;
 
@@ -57,6 +59,11 @@ class RamoPorAnyo extends ApexChartWidget
                         return [$ciclo->ciclo => $ciclo->ciclo];
                     })
                 ),
+
+            Select::make('ramo')
+                ->options(Cache::remember('ramos', now()->addDay(), function () {
+                    return Catalogo::ramosOptionList();
+                })),
 
         ];
     }
@@ -113,6 +120,7 @@ class RamoPorAnyo extends ApexChartWidget
                 ->limit(1)
             ])
             ->efecto($this->filterFormData['efecto'])
+            ->ramo($this->filterFormData['ramo'])
             ->clasificacionTipoGasto($this->filterFormData['clasificacion_tipo_gasto'])
             ->ciclo($this->filterFormData['ciclo'])
             ->groupBy('ciclo', 'ramo_id', 'presupuesto')

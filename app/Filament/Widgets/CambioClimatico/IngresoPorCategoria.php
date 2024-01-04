@@ -3,10 +3,12 @@
 namespace App\Filament\Widgets\CambioClimatico;
 
 use App\Models\CambioClimatico;
+use App\Models\Catalogo;
 use App\Models\PoliticaPublica;
 use App\Models\Presupuesto;
 use App\Values\Millions;
 use Filament\Forms\Components\Select;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\DB;
 use Leandrocfe\FilamentApexCharts\Widgets\ApexChartWidget;
 
@@ -81,6 +83,11 @@ class IngresoPorCategoria extends ApexChartWidget
                     })
                 ),
 
+            Select::make('ramo')
+                ->options(Cache::remember('ramos', now()->addDay(), function () {
+                    return Catalogo::ramosOptionList();
+                })),
+
         ];
     }
 
@@ -96,6 +103,7 @@ class IngresoPorCategoria extends ApexChartWidget
             ])
             ->ciclo($this->filterFormData['ciclo'])
             ->efecto($this->filterFormData['efecto'])
+            ->ramo($this->filterFormData['ramo'])
             ->wherePoliticaPublica($this->filterFormData['politica_publica_id'])
             ->groupBy('clasificacion_tipo_gasto', 'presupuesto')
             ->get()

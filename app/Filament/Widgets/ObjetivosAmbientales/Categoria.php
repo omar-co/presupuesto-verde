@@ -2,10 +2,12 @@
 
 namespace App\Filament\Widgets\ObjetivosAmbientales;
 
+use App\Models\Catalogo;
 use App\Models\ObjetivoAmbiental;
 use App\Models\Presupuesto;
 use App\Values\Millions;
 use Filament\Forms\Components\Select;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\DB;
 use Leandrocfe\FilamentApexCharts\Widgets\ApexChartWidget;
 
@@ -55,6 +57,11 @@ class Categoria extends ApexChartWidget
                         return [$ciclo->ciclo => $ciclo->ciclo];
                     })
                 ),
+
+            Select::make('ramo')
+                ->options(Cache::remember('ramos', now()->addDay(), function () {
+                    return Catalogo::ramosOptionList();
+                })),
 
         ];
     }
@@ -114,6 +121,7 @@ class Categoria extends ApexChartWidget
             ])
             ->efecto($this->filterFormData['efecto'])
             ->ciclo($this->filterFormData['ciclo'])
+            ->ramo($this->filterFormData['ramo'])
             ->clasificacionTipoGasto($this->filterFormData['clasificacion_tipo_gasto'])
             ->groupBy('politica_publica_id', 'presupuesto')
             ->get()
