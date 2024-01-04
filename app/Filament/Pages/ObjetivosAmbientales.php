@@ -5,6 +5,7 @@ namespace App\Filament\Pages;
 use App\Filament\Widgets\ObjetivosAmbientales\Categoria;
 use App\Filament\Widgets\ObjetivosAmbientales\Efecto;
 use App\Filament\Widgets\ObjetivosAmbientales\IngresoPorCategoria;
+use App\Filament\Widgets\ObjetivosAmbientales\RamoPorAnyo;
 use Filament\Pages\Page;
 
 class ObjetivosAmbientales extends Page
@@ -24,6 +25,7 @@ class ObjetivosAmbientales extends Page
             Efecto::class,
             //TipoIngreso::class,
             IngresoPorCategoria::class,
+            RamoPorAnyo::class,
         ];
     }
 

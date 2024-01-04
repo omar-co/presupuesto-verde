@@ -5,6 +5,7 @@ namespace App\Filament\Pages;
 use App\Filament\Widgets\CambioClimatico\Categoria;
 use App\Filament\Widgets\CambioClimatico\Efecto;
 use App\Filament\Widgets\CambioClimatico\IngresoPorCategoria;
+use App\Filament\Widgets\CambioClimatico\RamoPorAnyo;
 use Filament\Pages\Page;
 
 class CambioClimatico extends Page
@@ -24,6 +25,7 @@ class CambioClimatico extends Page
             Efecto::class,
             //TipoIngreso::class,
             IngresoPorCategoria::class,
+            RamoPorAnyo::class,
         ];
     }
 
