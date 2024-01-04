@@ -102,7 +102,7 @@ class IngresoPorCategoria extends ApexChartWidget
                 ->limit(1)
             ])
             ->efecto($this->filterFormData['efecto'])
-            ->ciclo($this->filterFormData['ciclo'])
+            ->ciclo((int)$this->filterFormData['ciclo'])
             ->ramo($this->filterFormData['ramo'])
             ->wherePoliticaPublica($this->filterFormData['politica_publica_id'])
             ->groupBy('clasificacion_tipo_gasto', 'presupuesto')

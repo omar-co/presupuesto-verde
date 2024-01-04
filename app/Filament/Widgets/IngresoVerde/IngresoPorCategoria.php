@@ -103,7 +103,7 @@ class IngresoPorCategoria extends ApexChartWidget
         return IngresoVerde::withoutGlobalScopes()
             ->select(['clasificacion_tipo_gasto', DB::raw('SUM(monto) as total')])
             ->efecto($this->filterFormData['efecto'])
-            ->ciclo($this->filterFormData['ciclo'])
+            ->ciclo((int)$this->filterFormData['ciclo'])
             ->ramo($this->filterFormData['ramo'])
             ->tipoGasto($this->filterFormData['tipo_gasto'])
             ->wherePoliticaPublica($this->filterFormData['politica_publica_id'])

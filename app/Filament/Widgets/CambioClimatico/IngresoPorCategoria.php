@@ -101,7 +101,7 @@ class IngresoPorCategoria extends ApexChartWidget
                 ->whereColumn('form_id', 'cambio_climaticos.form_id')
                 ->limit(1)
             ])
-            ->ciclo($this->filterFormData['ciclo'])
+            ->ciclo((int)$this->filterFormData['ciclo'])
             ->efecto($this->filterFormData['efecto'])
             ->ramo($this->filterFormData['ramo'])
             ->wherePoliticaPublica($this->filterFormData['politica_publica_id'])

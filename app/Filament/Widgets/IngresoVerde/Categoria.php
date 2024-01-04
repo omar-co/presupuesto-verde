@@ -121,7 +121,7 @@ class Categoria extends ApexChartWidget
             ->select(['politica_publica_id', DB::raw('SUM(monto) as total')])
             ->with('politicaPublica')
             ->efecto($this->filterFormData['efecto'])
-            ->ciclo($this->filterFormData['ciclo'])
+            ->ciclo((int)$this->filterFormData['ciclo'])
             ->ramo($this->filterFormData['ramo'])
             ->tipoGasto($this->filterFormData['tipo_gasto'])
             ->clasificacionTipoGasto($this->filterFormData['clasificacion_tipo_gasto'])

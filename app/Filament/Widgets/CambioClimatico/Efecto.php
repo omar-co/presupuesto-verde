@@ -121,7 +121,7 @@ class Efecto extends ApexChartWidget
                 ->whereColumn('form_id', 'cambio_climaticos.form_id')
                 ->limit(1)
             ])
-            ->ciclo($this->filterFormData['ciclo'])
+            ->ciclo((int)$this->filterFormData['ciclo'])
             ->ramo($this->filterFormData['ramo'])
             ->clasificacionTipoGasto($this->filterFormData['clasificacion_tipo_gasto'])
             ->wherePoliticaPublica($this->filterFormData['politica_publica_id'])

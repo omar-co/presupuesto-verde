@@ -123,7 +123,7 @@ class Efecto extends ApexChartWidget
         return IngresoVerde::withoutGlobalScopes()
             ->select(['efecto', DB::raw('SUM(monto) as total')])
             ->tipoGasto($this->filterFormData['tipo_gasto'])
-            ->ciclo($this->filterFormData['ciclo'])
+            ->ciclo((int)$this->filterFormData['ciclo'])
             ->ramo($this->filterFormData['ramo'])
             ->clasificacionTipoGasto($this->filterFormData['clasificacion_tipo_gasto'])
             ->wherePoliticaPublica($this->filterFormData['politica_publica_id'])

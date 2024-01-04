@@ -123,7 +123,7 @@ class Categoria extends ApexChartWidget
             ->efecto($this->filterFormData['efecto'])
             ->ramo($this->filterFormData['ramo'])
             ->clasificacionTipoGasto($this->filterFormData['clasificacion_tipo_gasto'])
-            ->ciclo($this->filterFormData['ciclo'])
+            ->ciclo((int)$this->filterFormData['ciclo'])
             ->groupBy('politica_publica_id', 'presupuesto')
             ->get()
             ->map(function ($ingreso) {

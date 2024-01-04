@@ -116,7 +116,7 @@ class RamoPorAnyo extends ApexChartWidget
             ->with(['user'])
             ->efecto($this->filterFormData['efecto'])
             ->clasificacionTipoGasto($this->filterFormData['clasificacion_tipo_gasto'])
-            ->ciclo($this->filterFormData['ciclo'])
+            ->ciclo((int)$this->filterFormData['ciclo'])
             ->ramo($this->filterFormData['ramo'])
             ->get();
     }
