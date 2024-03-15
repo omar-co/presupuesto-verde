@@ -18,6 +18,8 @@ class Catalogo extends Model
 {
     use HasFactory;
 
+    protected $guarded = [];
+
     private function capitulos(string $modalidad): array|bool {
         $capitulos = [
             'A' => [2000, 3000],

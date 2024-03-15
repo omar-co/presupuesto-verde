@@ -7,6 +7,7 @@ use App\Filament\Filters\CatalogoFilters;
 use App\Filament\Resources\CatalogoResource\Pages;
 use App\Filament\Resources\CatalogoResource\RelationManagers;
 use App\Models\Catalogo;
+use App\Models\Import;
 use App\Models\Presupuesto;
 use App\Services\ExportService;
 use Filament\Forms;
@@ -19,6 +20,8 @@ use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Columns\TextInputColumn;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use Illuminate\Support\Str;
+use Rap2hpoutre\FastExcel\FastExcel;
 
 class CatalogoResource extends Resource {
     protected static ?string $model = Catalogo::class;
@@ -131,7 +134,20 @@ class CatalogoResource extends Resource {
                        ExportService::catalogo();
                     })
                     ->icon('heroicon-o-document-download')
-                    ->color('primary')
+                    ->color('primary'),
+                Action::make('importar')
+                    ->form([
+                        Forms\Components\FileUpload::make('attachment')
+                        //->acceptedFileTypes(['*.csv', '*.xlsx', '*.xls'])
+                        //->maxSize(1500 * 1024)
+                    ])
+                    ->action(function (array $data) {
+                        Import::create([
+                            'type' => 'Catalogo',
+                            'file' => $data['attachment'],
+                            'completed' => false,
+                        ]);
+                    })
             ])
             ->bulkActions([
                 //Tables\Actions\DeleteBulkAction::make(),
