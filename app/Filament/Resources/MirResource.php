@@ -4,14 +4,20 @@ namespace App\Filament\Resources;
 
 use App\Filament\Resources\MirResource\Pages;
 use App\Filament\Resources\MirResource\RelationManagers;
+use App\Forms\Fields\Identificacion\ObjetivosMir;
 use App\Models\Mir;
+use App\Models\Ods;
+use App\Settings\Calendario;
 use Filament\Forms;
+use Filament\Forms\Components\FileUpload;
 use Filament\Resources\Form;
 use Filament\Resources\Resource;
 use Filament\Resources\Table;
 use Filament\Tables;
+use Filament\Tables\Actions\Action;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use Rap2hpoutre\FastExcel\FastExcel;
 
 class MirResource extends Resource
 {
@@ -46,6 +52,25 @@ class MirResource extends Resource
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
+            ])
+            ->headerActions([
+                Action::make('importar')
+                    ->form([
+                        FileUpload::make('attachment')
+                    ])
+                    ->action(function (array $data) {
+                        $file = storage_path('app/public/' . $data['attachment']);
+                        (new FastExcel())->import($file, function ($row) {
+                            return Mir::create([
+                                'ciclo' => $row['ciclo'],
+                                'id_ramo' => $row['id_ramo'],
+                                'id_objetivo' => $row['id_objetivo'],
+                                'desc_objetivo' => $row['desc_objetivo'],
+                                'id_nivel' => $row['id_nivel'],
+                                'desc_nivel' => $row['desc_nivel'],
+                            ]);
+                        });
+                    })
             ])
             ->bulkActions([
                 Tables\Actions\DeleteBulkAction::make(),
