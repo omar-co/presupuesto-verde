@@ -45,7 +45,12 @@ class MirResource extends Resource
     {
         return $table
             ->columns([
-                //
+                Tables\Columns\TextColumn::make('ciclo'),
+                Tables\Columns\TextColumn::make('id_ramo')->label('id ramo'),
+                Tables\Columns\TextColumn::make('id_objetivo')->label('id objetivo'),
+                Tables\Columns\TextColumn::make('desc_objetivo')->label('objetivo'),
+                Tables\Columns\TextColumn::make('id_nivel')->label('id nivel'),
+                Tables\Columns\TextColumn::make('desc_nivel')->label('nivel'),
             ])
             ->filters([
                 //
@@ -64,8 +69,8 @@ class MirResource extends Resource
                             return Mir::create([
                                 'ciclo' => $row['ciclo'],
                                 'id_ramo' => $row['id_ramo'],
-                                'id_objetivo' => $row['id_objetivo'],
-                                'desc_objetivo' => $row['desc_objetivo'],
+                                'id_objetivo' => $row['id_objetivo'] === '' ? null : $row['id_objetivo'],
+                                'desc_objetivo' => $row['desc_objetivo'] === '' ? null : $row['desc_objetivo'],
                                 'id_nivel' => $row['id_nivel'],
                                 'desc_nivel' => $row['desc_nivel'],
                             ]);
