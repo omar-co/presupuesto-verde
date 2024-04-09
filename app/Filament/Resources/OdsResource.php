@@ -5,6 +5,7 @@ namespace App\Filament\Resources;
 use App\Filament\Resources\OdsResource\Pages;
 use App\Filament\Resources\OdsResource\RelationManagers;
 use App\Models\Ods;
+use App\Settings\Calendario;
 use Filament\Forms;
 use Filament\Forms\Components\FileUpload;
 use Filament\Resources\Form;
@@ -60,7 +61,7 @@ class OdsResource extends Resource
                                 'id_ramo' => $row['ramo'],
                                 'desc_ramo' => $row['ramodescripcion'],
                                 'id_modalidad' => $row['modalidad'],
-                                'ciclo' => $row['ciclo'],
+                                'ciclo' => app(Calendario::class)->ejercicio_fiscal,
                                 'desc_modalidad' => $row['modalidaddescripcion'],
                                 'id_pp' => $row['programa_presupuestario'],
                                 'desc_pp' => $row['programa_presupuestariodescripcion'],
