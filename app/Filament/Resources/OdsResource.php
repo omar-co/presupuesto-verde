@@ -56,7 +56,7 @@ class OdsResource extends Resource
                     ])
                     ->action(function (array $data) {
                         $file = storage_path('app/public/' . $data['attachment']);
-                        (new FastExcel())->import($file, function ($row) {
+                        (new FastExcel())->import($data['attachment'], function ($row) {
                             return Ods::create([
                                 'id_ramo' => $row['ramo'],
                                 'desc_ramo' => $row['ramodescripcion'],
