@@ -41,7 +41,11 @@ class OdsResource extends Resource
     {
         return $table
             ->columns([
-                //
+                Tables\Columns\TextColumn::make('id'),
+                Tables\Columns\TextColumn::make('desc_ramo')->label('ramo'),
+                Tables\Columns\TextColumn::make('desc_modalidad')->label('modalidad'),
+                Tables\Columns\TextColumn::make('programa_presupuestariodescripcion')->label('Programa Presupuestario'),
+                Tables\Columns\TextColumn::make('objetivo_de_desarrollo_sostenibledescripcion')->label('ODS'),
             ])
             ->filters([
                 //
